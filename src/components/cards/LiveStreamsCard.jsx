@@ -1,13 +1,18 @@
 import Image from "next/image";
 import React from "react";
 import { FaFutbol } from "react-icons/fa";
+import { IoIosArrowDown } from "react-icons/io";
+import { BsPinAngleFill } from "react-icons/bs";
+import { CiStar } from "react-icons/ci";
+import { TbWorld } from "react-icons/tb";
+import { MdSportsCricket } from "react-icons/md";
 
 const LiveStreamsCard = () => {
   return (
     <div className=" bg-white text-[#000000]">
       {/* card header  */}
-      <div className=" grid grid-cols-3 bg-light-muted p-2">
-        <div className=" col-span-1">
+      <div className="grid grid-cols-3 items-center bg-light-muted p-2">
+        <div className="col-span-1">
           <div className="flex items-center gap-2  ">
             <FaFutbol className="text-[14px]" />
             <Image
@@ -24,11 +29,84 @@ const LiveStreamsCard = () => {
             </p>
           </div>
         </div>
+        <div className="col-span-2">
+          <div className="w-full">
+            <div className="flex items-center gap-2 w-full">
+              <div className="grid grid-cols-3 w-full">
+                <div className="flex justify-around  items-center gap-1">
+                  <p className="text-[10px] sm:text-[12px]">1</p>
+                  <p className="flex flex-col items-center">
+                    <span className="block text-[10px]  md:text-[12px]">X</span>
+                    <IoIosArrowDown className="text-[14px]" />
+                  </p>
+                  <p className="text-[10px] sm:text-[12px]">2</p>
+                </div>
+                <div className="flex justify-around  items-center gap-1">
+                  <p className="text-[10px] sm:text-[12px]">1</p>
+                  <p className="flex flex-col items-center">
+                    <span className="block text-[10px]  md:text-[12px]">
+                      Team Wins
+                    </span>
+                    <IoIosArrowDown className="text-[14px]" />
+                  </p>
+                  <p className="text-[10px] sm:text-[12px]">2</p>
+                </div>
+                <div className="flex justify-around  items-center gap-1">
+                  <p className="text-[10px] sm:text-[12px]">1</p>
+                  <p className="flex flex-col items-center">
+                    <span className="block text-[10px]  md:text-[12px] ">
+                      IT1
+                    </span>
+                    <IoIosArrowDown className="text-[14px]" />
+                  </p>
+                  <p className="text-[10px] sm:text-[12px]">2</p>
+                </div>
+              </div>
+              <div>
+                <p className="text-[10px] sm:text-[12px]">+5</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="grid grid-cols-3 items-center  p-2 gap-4">
+        <div className=" py-2  col-span-1">
+          <div className="flex items-start gap-2 w-full">
+            <div className=" flex  flex-col gap-2 mt-1 border-r border-spacing-0  px-2">
+              <BsPinAngleFill className="text-[14px]" />
+              <CiStar className="text-[14px] text-primary-base" />
+            </div>
+            {/* teams  */}
+            <div className="space-y-1 w-full">
+              <div className=" flex justify-between items-center gap-1">
+                <div className=" flex justify-start items-center gap-1">
+                  <TbWorld className="text-[12px]" />
+                  <p className="text-[10px] sm:text-[12px]">
+                    Australia A (Women)
+                  </p>
+                </div>
+                <p className="text-[10px] sm:text-[12px]">0/0</p>
+              </div>
+              <div className=" flex justify-between items-center gap-1">
+                <div className=" flex justify-start items-center gap-1">
+                  <TbWorld className="text-[12px]" />
+                  <p className="text-[10px] sm:text-[12px]">India A (Women)</p>
+                </div>
+                <p className="flex items-center gap-1">
+                  <MdSportsCricket className="text-[12px]" />{" "}
+                  <span className="text-[10px] sm:text-[12px]">65/2</span>{" "}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
         <div className=" col-span-2">
           <div>
-            <div>1</div>
-            <div>X</div>
-            <div>2</div>
+            <div>
+              <button className="bg-light-muted p-2 rounded">23</button>
+            </div>
+            <div></div>
+            <div></div>
           </div>
         </div>
       </div>
