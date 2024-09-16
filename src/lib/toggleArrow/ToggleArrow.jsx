@@ -1,7 +1,6 @@
 import React from "react";
 import { IoIosArrowDown } from "react-icons/io";
 const ToggleArrow = ({ active, setActive }) => {
-  console.log(active)
   return (
     <div
       onClick={() => setActive(!active)}

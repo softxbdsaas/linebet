@@ -6,7 +6,7 @@ import NavFeatureItems from "./NavFeatureItems";
 import NavbarRightSite from "./NavbarRightSite";
 const Navbar = () => {
   return (
-    <div className=" py-2 sticky top-0 w-full px-1 md:px-2 bg-[#2D5822]">
+    <div className=" py-2 sticky top-0 w-full z-[200] px-1 md:px-2 bg-[#2D5822]">
       <div className=" flex justify-between items-center gap-3">
         <div className="flex items-center gap-4">
           <div className="flex items-center gap-8">

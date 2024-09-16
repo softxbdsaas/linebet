@@ -24,6 +24,7 @@ module.exports = {
         },
         shape: {
           base: `var(--color-shape-base)`,
+          muted: `var(--color-shape-muted)`,
         },
         danger: {
           base: `var(--color-danger-base)`,
@@ -55,6 +56,7 @@ module.exports = {
         },
         shape: {
           base: `var(--color-shape-base)`,
+          muted: `var(--color-shape-muted)`,
         },
         danger: {
           base: `var(--color-danger-base)`,
@@ -68,6 +70,7 @@ module.exports = {
         },
         black: {
           base: `var(--color-black-base)`,
+          muted: `var(--color-black-muted)`,
         },
       },
       // border color  declaration
@@ -91,9 +94,9 @@ module.exports = {
         success: {
           base: `var(--color-success-base)`,
         },
-        neutral: {
-          base: `var(--color-neutral-base)`,
-          muted: `var(--color-neutral-muted)`,
+        black: {
+          base: `var(--color-black-base)`,
+          muted: `var(--color-black-muted)`,
         },
       },
     },

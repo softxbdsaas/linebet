@@ -1,10 +1,14 @@
+import WithLiveStreams from "@/components/streams/withLiveStreams/WithLiveStreams";
 import HomeHero from "@/components/ui/banners/HomeHero";
+import GamesSlider from "@/components/ui/gamesSlider/GamesSlider";
 
 export default function Home() {
   return (
-    <div className=" w-full overflow-hidden">
+    <div className="overflow-hidden">
       <HomeHero />
-      <div>
+      <GamesSlider />
+      <WithLiveStreams />
+      <div className="pt-4">
         <h1>
           {" "}
           lorem10000 loreՀայերեն Shqip ‫العربية Български Català 中文简体

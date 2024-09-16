@@ -9,11 +9,11 @@ const CommonLayout = ({ children }) => {
       <div className=" w-full">
         <Navbar />
         <div className=" flex items-start gap-2 px-1 md:px-2 w-full">
-          <div className={`w-[18%]`}>
+          <div className={`w-[15%]`}>
             <LeftSiteSidebar />
           </div>
-          <div>{children}</div>
-          <div className={`w-[18%]`}>
+          <div className="w-[70%]">{children}</div>
+          <div className={`w-[15%]`}>
             <RightSiteSidebar />
           </div>
         </div>
