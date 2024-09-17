@@ -62,15 +62,16 @@ const LiveStreamsCard = () => {
                   <p className="text-[10px] sm:text-[12px]">2</p>
                 </div>
               </div>
-              <div>
-                <p className="text-[10px] sm:text-[12px]">+5</p>
+              <div className="min-w-[80px]">
+                <p className="text-[10px] text-center sm:text-[12px]">+5</p>
               </div>
             </div>
           </div>
         </div>
       </div>
       <div className="grid grid-cols-3 items-center  p-2 gap-4">
-        <div className=" py-2  col-span-1">
+        {/* team ui  */}
+        <div className="py-2 col-span-1">
           <div className="flex items-start gap-2 w-full">
             <div className=" flex  flex-col gap-2 mt-1 border-r border-spacing-0  px-2">
               <BsPinAngleFill className="text-[14px]" />
@@ -100,13 +101,65 @@ const LiveStreamsCard = () => {
             </div>
           </div>
         </div>
+        {/* result ui  */}
         <div className=" col-span-2">
-          <div>
-            <div>
-              <button className="bg-light-muted p-2 rounded">23</button>
+          <div className="flex items-center  gap-1">
+            <div className=" grid grid-cols-3 gap-2  w-full">
+              <div className="flex items-center justify-around border-x border-shape-base">
+                <div>
+                  <button className="bg-light-muted text-[10ox] min-w-[35px] sm:min-w-[50px] sm:text-[12px] py-2 px-2 sm:px-3 rounded">
+                    23
+                  </button>
+                </div>
+                <div>
+                  <button className="bg-light-muted text-[10ox] min-w-[35px] sm:min-w-[50px] sm:text-[12px] py-2 px-2 sm:px-3 rounded">
+                    23
+                  </button>
+                </div>
+                <div>
+                  <button className="bg-light-muted text-[10ox] min-w-[35px] sm:min-w-[50px] sm:text-[12px] py-2 px-2 sm:px-3 rounded">
+                    23
+                  </button>
+                </div>
+              </div>
+              <div className="flex items-center justify-around border-r border-shape-base">
+                <div>
+                  <button className="bg-light-muted text-[10ox] min-w-[35px] sm:min-w-[50px] sm:text-[12px] py-2 px-2 sm:px-3 rounded">
+                    23
+                  </button>
+                </div>
+                <div>
+                  <button className="bg-light-muted text-[10ox] min-w-[35px] sm:min-w-[50px] sm:text-[12px] py-2 px-2 sm:px-3 rounded">
+                    23
+                  </button>
+                </div>
+                <div>
+                  <button className="bg-light-muted text-[10ox] min-w-[35px] sm:min-w-[50px] sm:text-[12px] py-2 px-2 sm:px-3 rounded">
+                    -
+                  </button>
+                </div>
+              </div>
+              <div className="flex items-center justify-around border-r border-shape-base">
+                <div>
+                  <button className="bg-light-muted text-[10ox] min-w-[35px] sm:min-w-[50px] sm:text-[12px] py-2 px-2 sm:px-3 rounded">
+                    -
+                  </button>
+                </div>
+                <div>
+                  <button className="bg-light-muted text-[10ox] min-w-[35px] sm:min-w-[50px] sm:text-[12px] py-2 px-2 sm:px-3 rounded">
+                    23
+                  </button>
+                </div>
+                <div>
+                  <button className="bg-light-muted text-[10ox] min-w-[35px] sm:min-w-[50px] sm:text-[12px] py-2 px-2 sm:px-3 rounded">
+                    23
+                  </button>
+                </div>
+              </div>
             </div>
-            <div></div>
-            <div></div>
+            <div className="min-w-[80px]">
+              <p className="text-[10ox] text-center sm:text-[12px]">+25</p>
+            </div>
           </div>
         </div>
       </div>

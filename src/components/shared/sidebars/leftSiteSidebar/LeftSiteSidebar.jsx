@@ -5,7 +5,7 @@ import TopCompetitions from "./recommended/TopCompetitions";
 import TopGames from "./recommended/TopGames";
 import SportsMenu from "./sportsMenu/SportsMenu";
 
-const LeftSiteSidebar = () => {
+const  LeftSiteSidebar = () => {
   return (
     <div className={`w-[280px] mt-4`}>
       <CollapseButton />

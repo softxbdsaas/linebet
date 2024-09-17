@@ -28,7 +28,11 @@ const GamesSlider = () => {
               spaceBetween: 8,
             },
             1024: {
-              slidesPerView: 6,
+              slidesPerView: 8,
+              spaceBetween: 8,
+            },
+            1440: {
+              slidesPerView: 10,
               spaceBetween: 8,
             },
           }}

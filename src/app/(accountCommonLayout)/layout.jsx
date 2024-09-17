@@ -1,3 +1,4 @@
+import Footer from "@/components/shared/footers/Footer";
 import Navbar from "@/components/shared/headers/Navbar";
 import LeftSiteSidebar from "@/components/shared/sidebars/leftSiteSidebar/LeftSiteSidebar";
 import RightSiteSidebar from "@/components/shared/sidebars/rightSiteSidebar/RightSiteSidebar";
@@ -17,9 +18,7 @@ const CommonLayout = ({ children }) => {
             <RightSiteSidebar />
           </div>
         </div>
-        <footer className="py-4 bg-[#2D5822] text-center text-[#ffffff]">
-          <p>�� 2022 Asian IT Inc.</p>
-        </footer>
+        <Footer />
       </div>
     </>
   );

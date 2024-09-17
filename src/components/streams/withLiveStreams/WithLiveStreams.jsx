@@ -22,6 +22,11 @@ const WithLiveStreams = () => {
 
         <div>
           <LiveStreamsCard />
+          <LiveStreamsCard />
+          <LiveStreamsCard />
+          <LiveStreamsCard />
+          <LiveStreamsCard />
+          <LiveStreamsCard />
         </div>
       </div>
     </>

@@ -3,7 +3,7 @@ import React from "react";
 const LiveStreamsToggleButton = () => {
   return (
     <div>
-      <div className="flex  items-center gap-1 bg-primary-base px-2 py-[12px] gap-3 w-full">
+      <div className="flex  items-center  bg-primary-base px-2 py-[12px] gap-3 w-full">
         <label class="relative inline-flex cursor-pointer items-center ">
           <input id="switch" type="checkbox" class="peer sr-only" />
           <label for="switch" class="hidden"></label>

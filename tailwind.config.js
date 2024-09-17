@@ -18,7 +18,7 @@ module.exports = {
           base: `var(--color-light-base)`,
           muted: `var(--color-light-muted)`,
         },
-        
+
         button: {
           base: `var(--color-button-base)`,
         },
@@ -32,9 +32,8 @@ module.exports = {
         success: {
           base: `var(--color-success-base)`,
         },
-        neutral: {
-          base: `var(--color-neutral-base)`,
-          muted: `var(--color-neutral-muted)`,
+        button: {
+          base: `var(--color-button-base)`,
         },
         black: {
           base: `var(--color-black-base)`,
@@ -64,9 +63,8 @@ module.exports = {
         success: {
           base: `var(--color-success-base)`,
         },
-        neutral: {
-          base: `var(--color-neutral-base)`,
-          muted: `var(--color-neutral-muted)`,
+        button: {
+          base: `var(--color-button-base)`,
         },
         black: {
           base: `var(--color-black-base)`,
@@ -88,6 +86,9 @@ module.exports = {
         shape: {
           base: `var(--color-shape-base)`,
         },
+        button: {
+          base: `var(--color-button-base)`,
+        },
         danger: {
           base: `var(--color-danger-base)`,
         },
@@ -98,6 +99,10 @@ module.exports = {
           base: `var(--color-black-base)`,
           muted: `var(--color-black-muted)`,
         },
+      },
+      //  gradient colors 
+      backgroundImage: {
+        'bonus-card-gradient': 'linear-gradient(117deg, #386E2B 1.61%, #091F03 99.53%)',
       },
     },
   },
