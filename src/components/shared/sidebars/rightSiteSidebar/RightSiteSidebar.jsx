@@ -6,11 +6,11 @@ import DownloadSystems from "./DownloadSystems";
 
 const RightSiteSidebar = () => {
   return (
-    <div className={`w-[280px] mt-4 pr-2`}>
-       <CollapseButton />
-       <YourBet />
-       <BonusAccount  />
-       <DownloadSystems/>
+    <div className={`w-full pr-2`}>
+      <CollapseButton />
+      <YourBet />
+      <BonusAccount />
+      <DownloadSystems />
     </div>
   );
 };

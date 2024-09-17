@@ -7,7 +7,7 @@ import SportsMenu from "./sportsMenu/SportsMenu";
 
 const  LeftSiteSidebar = () => {
   return (
-    <div className={`w-[280px] mt-4`}>
+    <div className={`w-[250px]`}>
       <CollapseButton />
       <div className="space-y-1 mt-2">
         <RecommendedSports />
