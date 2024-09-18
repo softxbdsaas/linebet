@@ -29,8 +29,8 @@ module.exports = {
         danger: {
           base: `var(--color-danger-base)`,
         },
-        success: {
-          base: `var(--color-success-base)`,
+        active: {
+          base: `var(--color-active-base)`,
         },
         button: {
           base: `var(--color-button-base)`,
@@ -60,8 +60,8 @@ module.exports = {
         danger: {
           base: `var(--color-danger-base)`,
         },
-        success: {
-          base: `var(--color-success-base)`,
+        active: {
+          base: `var(--color-active-base)`,
         },
         button: {
           base: `var(--color-button-base)`,
@@ -92,8 +92,8 @@ module.exports = {
         danger: {
           base: `var(--color-danger-base)`,
         },
-        success: {
-          base: `var(--color-success-base)`,
+        active: {
+          base: `var(--color-active-base)`,
         },
         black: {
           base: `var(--color-black-base)`,

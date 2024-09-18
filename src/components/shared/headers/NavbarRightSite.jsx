@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import { FaGift } from "react-icons/fa6";
 import { MdEmail } from "react-icons/md";
@@ -7,12 +8,18 @@ import NavbarWebsiteSetting from "./NavbarWebsiteSetting";
 import TimeZone from "./TimeZone";
 import LanguageSetting from "./languageSetting";
 import { MdPhone } from "react-icons/md";
+import { useDispatch } from "react-redux";
+import { registerToggle } from "@/redux/features/registerSlice";
 
 const NavbarRightSite = () => {
+  const dispatch = useDispatch();
   return (
     <div className="flex items-center gap-2">
-      <button className="bg-button-base p-1 uppercase font-medium rounded md:p-2 text-[12px] sm:text-[14px]">
-        make a deposit
+      <button
+        onClick={() => dispatch(registerToggle())}
+        className="bg-button-base p-1 uppercase font-medium rounded md:py-2 md:px-3 text-[12px] sm:text-[14px]"
+      >
+        Registration
       </button>
       <div className="flex items-center gap-4">
         {/* gift box  */}
@@ -37,8 +44,8 @@ const NavbarRightSite = () => {
         <NavbarWebsiteSetting />
         <TimeZone />
         <LanguageSetting />
-         {/* call  */}
-         <div className="bg-light-base pr-1 pl-2 cursor-pointer py-[6px] flex items-center rounded">
+        {/* call  */}
+        <div className="bg-light-base pr-1 pl-2 cursor-pointer py-[6px] flex items-center rounded">
           <MdPhone className="text-[18px] text-white" />
         </div>
       </div>

@@ -3,11 +3,11 @@ import React from "react";
 
 const LineBetOwned = () => {
   return (
-    <div className="">
+    <div className="pb-2">
       <div className="flex gap-2">
-        <div className="w-[100px] h-auto bg-primary-base my-2 p-4 rounded">
+        <div className="w-[100px] h-auto bg-primary-base py-2 flex justify-center items-center  rounded">
           <Image
-            className="w-[60px] h-[60px] object-contain"
+            className="w-[60px] h-[60px] object-contain mx-auto"
             width={60}
             height={60}
             src={
@@ -16,7 +16,7 @@ const LineBetOwned = () => {
             alt="image"
           />
         </div>
-        <div className="bg-primary-base rounded my-2 p-4 h-auto w-full flex justify-start items-center">
+        <div className="bg-primary-base rounded p-4 h-auto w-full py-2 flex justify-start items-center">
           <p className="text-[10px] sm:text-[12px] font-normal ">
             Linebet.com is owned and operated by ASPRO N.V as a License Holder
             (Curacao license 8048/JAZ2016-053). Talkeetna LTD (reg numder

@@ -11,10 +11,11 @@
     --color-button-base: #2cb04d;
     --color-shape-base: #a7e240;
     --color-danger-base: #ce3426;
-    --color-success-base: #157f40;
+    --color-active-base: #61d17d;
     --color-button-base: #2CB04D;
     --color-black-base: #333;
     --color-black-muted: #646963;
+    --color-modal-muted: #23401cad;
   }
 }
 
@@ -32,7 +33,7 @@ body {
   }
 }
 
-/* class="swiper-pagination-bullet swiper-pagination-bullet-active" */
+/* className="swiper-pagination-bullet swiper-pagination-bullet-active" */
 
 /* swiper global css    */
 /* hero swiper slider  */
@@ -73,3 +74,20 @@ body {
   border-radius: 99px;
   background: #ffffff;
 }
+
+
+ /* scroll ber  */
+
+ .selectBarScroll::-webkit-scrollbar {
+  width: 4px;
+}
+.selectBarScroll::-webkit-scrollbar-track {
+  background: #d8e8d4 ;
+}
+.selectBarScroll::-webkit-scrollbar-thumb {
+  background-color: #767676cf;
+  border-radius: 10px;
+}
+
+
+/* input filed css   */

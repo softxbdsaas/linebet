@@ -6,7 +6,7 @@ import DownloadSystems from "./DownloadSystems";
 
 const RightSiteSidebar = () => {
   return (
-    <div className={`w-full pr-2`}>
+    <div className={`w-full`}>
       <CollapseButton />
       <YourBet />
       <BonusAccount />

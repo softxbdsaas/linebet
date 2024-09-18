@@ -24,14 +24,14 @@ const StreamsEvenItems = () => {
         ))}
       </div>
       <div>
-        <div class="relative ">
+        <div className="relative ">
           <input
             type="search"
             name="search"
             placeholder="Search by match"
-            class=" h-[23px] px-5 bg-primary-base  rounded text-[12px] focus:outline-none"
+            className=" h-[23px] px-5 bg-primary-base  rounded text-[12px] focus:outline-none"
           />
-          <button type="submit" class="absolute right-0 top-0 mt-[8px] mr-4">
+          <button type="submit" className="absolute right-0 top-0 mt-[8px] mr-4">
             <FaSearch className=" text-[12px] text-white"/>
           </button>
         </div>
