@@ -12,7 +12,7 @@ const DownloadSystems = () => {
         <div
           onClick={() => setActiveBet("android")}
           className={`${
-            activeBet == "android" ? " bg-light-base" : "bg-[#2D5822]"
+            activeBet == "android" ? " bg-light-base" : "bg-primary-base"
           } cursor-pointer flex justify-center items-center gap-2 rounded-l-sm w-full py-2 `}
         >
           <FaAndroid className="text-[14px]" />
@@ -21,7 +21,7 @@ const DownloadSystems = () => {
         <div
           onClick={() => setActiveBet("iso")}
           className={`${
-            activeBet == "iso" ? " bg-light-base" : " bg-[#2D5822]"
+            activeBet == "iso" ? " bg-light-base" : " bg-primary-base"
           } cursor-pointer  flex justify-center items-center w-full  py-2 `}
         >
           <span className="text-[14px] font-medium">IOS</span>{" "}

@@ -112,7 +112,7 @@ module.exports = {
       //  gradient colors
       backgroundImage: {
         "bonus-card-gradient":
-          "linear-gradient(117deg, #386E2B 1.61%, #091F03 99.53%)",
+          "linear-gradient(117deg, #B389C9 1.61%, #8E4FAE 99.53%)",
       },
     },
   },

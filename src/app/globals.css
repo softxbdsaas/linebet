@@ -4,15 +4,15 @@
 
 @layer base {
   :root {
-    --color-primary-base: #2d5822;
-    --color-primary-muted: #224219;
-    --color-light-base: #386e2b;
+    --color-primary-base: #8E4FAE;
+    --color-primary-muted: #B389C9;
+    --color-light-base: #8E4FAE;
     --color-light-muted: #d8e8d4;
-    --color-button-base: #2cb04d;
+    --color-button-base: #6d07a0ce;
     --color-shape-base: #a7e240;
     --color-danger-base: #ce3426;
-    --color-active-base: #61d17d;
-    --color-button-base: #2CB04D;
+    --color-active-base: #6d07a0;
+    --color-button-muted: #6d07a0;
     --color-black-base: #333;
     --color-black-muted: #646963;
     --color-modal-muted: #23401cad;

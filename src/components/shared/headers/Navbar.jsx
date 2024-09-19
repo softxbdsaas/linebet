@@ -7,7 +7,7 @@ import NavbarRightSite from "./NavbarRightSite";
 import Link from "next/link";
 const Navbar = () => {
   return (
-    <div className=" py-2 sticky top-0 w-full z-[200] px-1 md:px-2 bg-[#2D5822]">
+    <div className=" py-2 sticky top-0 w-full z-[200] px-1 md:px-2  bg-primary-muted">
       <div className=" flex justify-between items-center gap-3">
         <div className="flex items-center gap-4">
           <Link href={"/"} className="flex items-center gap-8">
