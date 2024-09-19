@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import { gamesItems } from "../../../../public/database/gamesItems";
 import OthersSports from "./OthersSports";
-import ESports from "./Esports";
+import ESports from "./ESports";
 
 const StreamsGamesItems = () => {
   const [active, setActive] = useState(1);

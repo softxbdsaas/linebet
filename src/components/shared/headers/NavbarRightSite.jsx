@@ -6,11 +6,11 @@ import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 import { FaRegUser } from "react-icons/fa";
 import NavbarWebsiteSetting from "./NavbarWebsiteSetting";
 import TimeZone from "./TimeZone";
-import LanguageSetting from "./languageSetting";
 import { MdPhone } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
 import { registerToggle } from "@/redux/features/registerSlice";
 import Link from "next/link";
+import LanguageSetting from "./LanguageSetting";
 
 const NavbarRightSite = () => {
   const dispatch = useDispatch();
