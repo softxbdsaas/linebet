@@ -11,7 +11,7 @@ const ProfileMenu = () => {
         <ul className="space-y-1">
           <Link
             href={"/office/account"}
-            className="py-1 hover:bg-light-base duration-300 flex justify-between items-center gap-1"
+            className="py-[6px] hover:bg-light-base duration-300 flex justify-between items-center gap-1"
           >
             <div className=" flex items-center gap-1">
               <BsCurrencyDollar />
@@ -21,7 +21,7 @@ const ProfileMenu = () => {
           </Link>
           <Link
             href={"/office/account"}
-            className="py-1 hover:bg-light-base duration-300 flex justify-between items-center gap-1"
+            className="py-[6px] hover:bg-light-base duration-300 flex justify-between items-center gap-1"
           >
             <div className=" flex items-center gap-1">
               <BsCurrencyDollar />
@@ -31,7 +31,7 @@ const ProfileMenu = () => {
           </Link>
           <Link
             href={"/office/account"}
-            className="py-1 px-2 hover:bg-light-base duration-200  flex justify-between items-center gap-1"
+            className="py-[6px] hover:bg-light-base duration-200  flex justify-between items-center gap-1"
           >
             <div className=" flex items-center gap-1">
               <BsCurrencyDollar />

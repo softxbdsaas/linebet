@@ -1,9 +1,7 @@
-
 import Footer from "@/components/shared/footers/Footer";
 import Navbar from "@/components/shared/headers/Navbar";
 import AccountLeftSidebar from "@/components/shared/sidebars/accountLeftSidebar/AccountLeftSidebar";
 import React from "react";
-
 const CommonLayout = ({ children }) => {
   return (
     <>

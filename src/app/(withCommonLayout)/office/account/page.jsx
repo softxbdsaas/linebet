@@ -6,7 +6,9 @@ const page = () => {
   return (
     <div>
       <div className="overflow-hidden">
-        <TopMessage />
+        <div className="pb-2">
+          <TopMessage />
+        </div>
         <PaymentMethod />
       </div>
     </div>

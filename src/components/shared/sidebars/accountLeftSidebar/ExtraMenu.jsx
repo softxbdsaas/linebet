@@ -11,7 +11,7 @@ const ExtraMenu = () => {
         <ul className="space-y-1">
           <Link
             href={"/office/account"}
-            className="py-1 border-l-[2px] bg-light-base px-2 border-active-base  flex justify-between items-center gap-1"
+            className="py-[6px] border-l-[2px] bg-light-base  px-2 border-active-base  flex justify-between items-center gap-1"
           >
             <div className=" flex items-center gap-1">
               <BsCurrencyDollar />
@@ -20,7 +20,7 @@ const ExtraMenu = () => {
           </Link>
           <Link
             href={"/office/account"}
-            className="py-1 px-2 hover:bg-light-base duration-200  flex justify-between items-center gap-1"
+            className="py-[6px] px-2 hover:bg-light-base duration-200  flex justify-between items-center gap-1"
           >
             <div className=" flex items-center gap-1">
               <BsCurrencyDollar />
@@ -29,7 +29,7 @@ const ExtraMenu = () => {
           </Link>
           <Link
             href={"/office/account"}
-            className="py-1 px-2 hover:bg-light-base duration-200  flex justify-between items-center gap-1"
+            className="py-[6px] px-2 hover:bg-light-base duration-200  flex justify-between items-center gap-1"
           >
             <div className=" flex items-center gap-1">
               <BsCurrencyDollar />
@@ -38,7 +38,7 @@ const ExtraMenu = () => {
           </Link>
           <Link
             href={"/office/account"}
-            className="py-1 px-2 hover:bg-light-base duration-200  flex justify-between items-center gap-1"
+            className="py-[6px] px-2 hover:bg-light-base duration-200  flex justify-between items-center gap-1"
           >
             <div className=" flex items-center gap-1">
               <BsCurrencyDollar />

@@ -4,7 +4,7 @@ import HomeHero from "@/components/ui/banners/HomeHero";
 import GamesSlider from "@/components/ui/gamesSlider/GamesSlider";
 import React from "react";
 
-const Home = () => {
+const page = () => {
   return (
     <div>
       <div className="overflow-hidden">

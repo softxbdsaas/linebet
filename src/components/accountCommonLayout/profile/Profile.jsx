@@ -1,24 +1,29 @@
+"use client";
+import CircleProgress from "@/components/ui/progress/ProfileProgress";
 import Image from "next/image";
-import React from "react";
+import React, { useState } from "react";
+import { useSelector } from "react-redux";
 
 const Profile = () => {
+  const { user } = useSelector((state) => state.auth);
+  const [currentStep, setCurrentStep] = useState(1);
+  const totalSteps = 5;
   return (
     <div className=" bg-primary-base rounded">
       <div className="bg-light-base p-2  flex justify-between items-center gap-3">
         <div>
           <h1 className="text-[16px] tracking-wider font-semibold">Shamim</h1>
-          <p className="text-[12px] text-light-muted">shamim@gmail.com</p>
+          <p className="text-[12px] text-light-muted">
+            {" "}
+            {user?.email
+              ? user?.email
+              : user?.phoneNumber
+              ? user?.phoneNumber
+              : user?.userId}{" "}
+          </p>
         </div>
         <div>
-          <Image
-            className="w-[80px] h-[80px] rounded-full"
-            width={80}
-            height={80}
-            src={
-              "https://i.ibb.co.com/P1JYx3Z/Screenshot-2024-09-18-160022.png"
-            }
-            alt="image"
-          />
+          <CircleProgress currentStep={currentStep} totalSteps={totalSteps} />
         </div>
       </div>
       <div className=" space-y-2 p-2">
