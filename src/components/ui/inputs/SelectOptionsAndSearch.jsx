@@ -2,9 +2,8 @@ import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import { IoIosArrowUp } from "react-icons/io";
 
-const SelectOptionsAndSearch = () => {
+const SelectOptionsAndSearch = ({selectCountry, setSelectCountry}) => {
   const [activeCountry, setActiveCountry] = useState(false);
-  const [selectCountry, setSelectCountry] = useState();
   const [allCountry, setAllCountry] = useState([]);
   const CountryData = async (value) => {
     try {
@@ -44,7 +43,7 @@ const SelectOptionsAndSearch = () => {
       const value = "";
       CountryData(value);
     }
-  }, [allCountry, selectCountry]);
+  }, [allCountry, selectCountry,setSelectCountry]);
 
   return (
     <div className="w-full relative">

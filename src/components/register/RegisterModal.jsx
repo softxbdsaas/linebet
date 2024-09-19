@@ -109,8 +109,8 @@ const RegisterModal = () => {
                 <MultipleRegisterTab />
                 <div className=" pt-4 pb-10 text-black-base text-center">
                   <p className="text-[10px] md:text-[14px]">
-                    By clicking the "Register" button, you confirm that you have
-                    read and agree to the company's{" "}
+                    By clicking the Register button, you confirm that you have
+                    read and agree to the company s{" "}
                     <Link className="text-button-base" href={"/"}>
                       Terms of Service
                     </Link>{" "}

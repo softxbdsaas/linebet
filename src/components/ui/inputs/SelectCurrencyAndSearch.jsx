@@ -2,11 +2,12 @@
 import React, { useEffect, useState } from "react";
 import { IoIosArrowUp } from "react-icons/io";
 import { currencyData } from "../../../../public/database/currencyDB";
-const SelectCurrencyAndSearch = () => {
+const SelectCurrencyAndSearch = ({selectCurrency, setSelectCurrency}) => {
   const currencyAllData = currencyData;
   const [activeCurrency, setActiveCurrency] = useState(false);
-  const [selectCurrency, setSelectCurrency] = useState();
   const [searchQuery, setSearchQuery] = useState("");
+ 
+  
   //  search country
   const filteredCurrency = currencyAllData?.filter((option) =>
     option?.name?.toLowerCase().includes(searchQuery.toLowerCase())
@@ -16,7 +17,7 @@ const SelectCurrencyAndSearch = () => {
       const activeCurrency = currencyAllData?.[0];
       setSelectCurrency(activeCurrency);
     }
-  }, [currencyAllData, selectCurrency]);
+  }, [currencyAllData, selectCurrency,setSelectCurrency]);
 
   return (
     <div className="w-full relative">

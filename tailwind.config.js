@@ -39,6 +39,9 @@ module.exports = {
           base: `var(--color-black-base)`,
           muted: `var(--color-black-muted)`,
         },
+        gray: {
+          base: `var(--color-gray-base)`,
+        },
       },
       // background color  declaration
       backgroundColor: {
@@ -70,6 +73,9 @@ module.exports = {
           base: `var(--color-black-base)`,
           muted: `var(--color-black-muted)`,
         },
+        gray: {
+          base: `var(--color-gray-base)`,
+        },
       },
       // border color  declaration
       borderColor: {
@@ -99,10 +105,14 @@ module.exports = {
           base: `var(--color-black-base)`,
           muted: `var(--color-black-muted)`,
         },
+        gray: {
+          base: `var(--color-gray-base)`,
+        },
       },
-      //  gradient colors 
+      //  gradient colors
       backgroundImage: {
-        'bonus-card-gradient': 'linear-gradient(117deg, #386E2B 1.61%, #091F03 99.53%)',
+        "bonus-card-gradient":
+          "linear-gradient(117deg, #386E2B 1.61%, #091F03 99.53%)",
       },
     },
   },

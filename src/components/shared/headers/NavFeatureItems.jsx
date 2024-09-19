@@ -5,7 +5,7 @@ const NavFeatureItems = () => {
   return (
     <>
       <div className="flex items-center gap-2 md:gap-3">
-        {FeatureData?.slice(1,7)?.map((item, index) => (
+        {FeatureData?.slice(1,10)?.map((item, index) => (
           <div key={index} className=" cursor-pointer">
             <p className="text-[21px] md:text-[14px] font-medium">{item?.name}</p>
           </div>

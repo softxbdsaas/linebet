@@ -8,19 +8,26 @@ import NavbarWebsiteSetting from "./NavbarWebsiteSetting";
 import TimeZone from "./TimeZone";
 import LanguageSetting from "./languageSetting";
 import { MdPhone } from "react-icons/md";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { registerToggle } from "@/redux/features/registerSlice";
+import Link from "next/link";
 
 const NavbarRightSite = () => {
   const dispatch = useDispatch();
+  const { user } = useSelector((state) => state.auth);
   return (
     <div className="flex items-center gap-2">
-      <button
-        onClick={() => dispatch(registerToggle())}
-        className="bg-button-base p-1 uppercase font-medium rounded md:py-2 md:px-3 text-[12px] sm:text-[14px]"
-      >
-        Registration
-      </button>
+      {user?.userId ? (
+        <></>
+      ) : (
+        <button
+          onClick={() => dispatch(registerToggle())}
+          className="bg-button-base p-1 uppercase font-medium rounded md:py-2 md:px-3 text-[12px] sm:text-[14px]"
+        >
+          Registration
+        </button>
+      )}
+
       <div className="flex items-center gap-4">
         {/* gift box  */}
         <div className="bg-light-base  p-2 rounded relative">
@@ -35,10 +42,13 @@ const NavbarRightSite = () => {
           <MdOutlineKeyboardArrowDown className="text-[20px] text-white" />
         </div>
         {/* users box  */}
-        <div className="bg-light-base pr-1 pl-2 cursor-pointer py-[6px] flex items-center rounded">
+        <Link
+          href={"/office/account"}
+          className="bg-light-base pr-1 pl-2 cursor-pointer py-[6px] flex items-center rounded"
+        >
           <FaRegUser className="text-[16px] text-white" />
           <MdOutlineKeyboardArrowDown className="text-[20px] text-white" />
-        </div>
+        </Link>
         {/* setting  options  */}
 
         <NavbarWebsiteSetting />
