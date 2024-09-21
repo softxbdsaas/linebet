@@ -1,4 +1,4 @@
-import Profile from "@/components/accountCommonLayout/profile/Profile";
+import Profile from "@/components/accountCommonLayout/recharge/profile/Profile";
 import React from "react";
 import AccountMenu from "./AccountMenu";
 import ExtraMenu from "./ExtraMenu";

@@ -42,6 +42,13 @@ module.exports = {
         gray: {
           base: `var(--color-gray-base)`,
         },
+        slot_dark: {
+          base: `var(--color-slot_dark-base)`,
+          muted: `var(--color-slot_dark-muted)`,
+        },
+        slot_active: {
+          base: `var(--color-slot_active-base)`,
+        },
       },
       // background color  declaration
       backgroundColor: {
@@ -76,6 +83,13 @@ module.exports = {
         gray: {
           base: `var(--color-gray-base)`,
         },
+        slot_dark: {
+          base: `var(--color-slot_dark-base)`,
+          muted: `var(--color-slot_dark-muted)`,
+        },
+        slot_active: {
+          base: `var(--color-slot_active-base)`,
+        },
       },
       // border color  declaration
       borderColor: {
@@ -107,6 +121,13 @@ module.exports = {
         },
         gray: {
           base: `var(--color-gray-base)`,
+        },
+        slot_dark: {
+          base: `var(--color-slot_dark-base)`,
+          muted: `var(--color-slot_dark-muted)`,
+        },
+        slot_active: {
+          base: `var(--color-slot_active-base)`,
         },
       },
       //  gradient colors

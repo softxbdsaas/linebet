@@ -1,17 +1,11 @@
-import PaymentMethod from "@/components/accountCommonLayout/paymentMethods/PaymentMethod";
-import TopMessage from "@/components/accountCommonLayout/topMessage/TopMessage";
+import PersonalProfile from "@/components/accountCommonLayout/account/PersonalProfile";
 import React from "react";
 
 const page = () => {
   return (
-    <div>
-      <div className="overflow-hidden">
-        <div className="pb-2">
-          <TopMessage />
-        </div>
-        <PaymentMethod />
-      </div>
-    </div>
+    <>
+      <PersonalProfile />
+    </>
   );
 };
 

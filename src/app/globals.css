@@ -4,20 +4,22 @@
 
 @layer base {
   :root {
-    --color-primary-base: #8E4FAE;
-    --color-primary-muted: #B389C9;
-    --color-light-base: #8E4FAE;
+    --color-primary-base: #2d5822;
+    --color-primary-muted: #224219;
+    --color-light-base: #386e2b;
     --color-light-muted: #d8e8d4;
-    --color-button-base: #6d07a0ce;
+    --color-button-base: #2cb04d;
     --color-shape-base: #a7e240;
     --color-danger-base: #ce3426;
-    --color-active-base: #6d07a0;
-    --color-button-muted: #6d07a0;
+    --color-active-base: #61d17d;
+    --color-button-muted: #2cb04d;
     --color-black-base: #333;
     --color-black-muted: #646963;
     --color-modal-muted: #23401cad;
-    --color-gray-base: #E0E0E0;
-    
+    --color-gray-base: #e0e0e0;
+    --color-slot_dark-base: #141b1f;
+    --color-slot_dark-muted: #262B31;
+    --color-slot_active-base: #90c533;
   }
 }
 
@@ -77,19 +79,17 @@ body {
   background: #ffffff;
 }
 
+/* scroll ber  */
 
- /* scroll ber  */
-
- .selectBarScroll::-webkit-scrollbar {
+.selectBarScroll::-webkit-scrollbar {
   width: 4px;
 }
 .selectBarScroll::-webkit-scrollbar-track {
-  background: #d8e8d4 ;
+  background: #d8e8d4;
 }
 .selectBarScroll::-webkit-scrollbar-thumb {
   background-color: #767676cf;
   border-radius: 10px;
 }
-
 
 /* input filed css   */

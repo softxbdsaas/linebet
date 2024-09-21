@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import { PaymentMethodsData } from "../../../../public/database/PaymentMethodItemsDB";
+import { PaymentMethodsData } from "../../../../../public/database/PaymentMethodItemsDB";
 const PaymentMethodsMenu = () => {
   const [active, setActive] = useState(1);
   return (
