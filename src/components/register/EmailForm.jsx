@@ -35,7 +35,10 @@ const EmailForm = () => {
           </div>
         </div>
         <div className="py-2">
-          <SelectCurrencyAndSearch />
+          <SelectCurrencyAndSearch
+            selectCurrency={selectCurrency}
+            setSelectCurrency={setSelectCurrency}
+          />
         </div>
         <div className="grid sm:grid-cols-2 gap-4 items-start py-3">
           <div className="relative w-full  text-black-base max-w-full">

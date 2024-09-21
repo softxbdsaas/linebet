@@ -21,13 +21,14 @@ const Logout = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         // Perform logout action
-        window.location.reload("/");
+
         dispatch(userInfo()); // Reset user info in Redux
         MySwal.fire(
           "Logged Out",
           "You have been successfully logged out.",
           "success"
         );
+        window.location.reload("/");
       }
     });
   };
