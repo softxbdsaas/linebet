@@ -18,7 +18,7 @@ const LineBetOwned = () => {
         </div>
         <div className="bg-primary-base rounded p-4 h-auto w-full py-2 flex justify-start items-center">
           <p className="text-[10px] sm:text-[12px] font-normal ">
-            Linebet.com is owned and operated by ASPRO N.V as a License Holder
+            mybet27.com is owned and operated by ASPRO N.V as a License Holder
             (Curacao license 8048/JAZ2016-053). Talkeetna LTD (reg numder
             361115) and MINSI LTD (reg numder HE448325) provide processing
             services on the website as a Billing Agents . All rights reserved

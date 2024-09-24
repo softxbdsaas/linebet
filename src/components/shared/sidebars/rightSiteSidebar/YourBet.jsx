@@ -12,7 +12,7 @@ const YourBet = () => {
         <div
           onClick={() => setActiveBet("live")}
           className={`${
-            activeBet == "live" ? " bg-light-base" : "bg-active-base"
+            activeBet == "live" ? " bg-light-base" : "bg-primary-base"
           } cursor-pointer flex justify-center items-center  rounded-l-sm w-full py-2 `}
         >
           <span className="text-[14px] font-medium">Bet slip</span>{" "}
@@ -20,7 +20,7 @@ const YourBet = () => {
         <div
           onClick={() => setActiveBet("sports")}
           className={`${
-            activeBet == "sports" ? " bg-light-base" : " bg-active-base"
+            activeBet == "sports" ? " bg-light-base" : " bg-primary-base"
           } cursor-pointer  flex justify-center items-center w-full rounded-r-sm  py-2 `}
         >
           <span className="text-[14px] font-medium">My bets</span>{" "}

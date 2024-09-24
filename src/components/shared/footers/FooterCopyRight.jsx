@@ -14,12 +14,12 @@ const FooterCopyRight = () => {
           <div className="bg-primary-base flex flex-col justify-center  rounded p-4 h-full w-full py-2 ">
             <div>
               <p className="text-[10px] sm:text-[12px] font-normal ">
-                Copyright © 2019 - 2024 «Linebet».
+                Copyright © 2019 - 2024 «mybet27».
               </p>
               <p className="text-[10px] sm:text-[12px] font-normal ">
-                Linebet uses cookies to ensure the best user experience. By
+                mybet27 uses cookies to ensure the best user experience. By
                 remaining on the website, you consent to the use of your cookie
-                files on Linebet. Find out more
+                files on mybet27. Find out more
               </p>
             </div>
           </div>

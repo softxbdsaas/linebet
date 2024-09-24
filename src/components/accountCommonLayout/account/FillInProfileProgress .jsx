@@ -19,7 +19,7 @@ const FillInProfileProgress = () => {
         </div>
         <div className="w-full bg-gray-200 rounded-full h-1  mt-2">
           <div
-            className="bg-active-base h-1 rounded-full"
+            className="bg-light-base h-1 rounded-full"
             style={{ width: `${65}%` }}
           ></div>
         </div>
