@@ -1,5 +1,4 @@
 import React from "react";
-
 const BetSelector = () => {
   return (
     <div className=" bg-[#151937]  rounded-[20px] h-full">

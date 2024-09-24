@@ -8,7 +8,7 @@ const LiveSports = () => {
   return (
     <>
       {" "}
-      <div className="flex items-center px-2 justify-between gap-2">
+      <div className="flex items-center px-2 justify-between gap-2 py-2">
         <div className="flex items-center  gap-3  cursor-pointer text-[#000]">
           <h1 className="text-[14px] font-normal text-[#000]">
             {" "}

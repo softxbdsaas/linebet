@@ -11,7 +11,7 @@ const SportsMenu = () => {
         <div
           onClick={() => setActiveSportMenu("live")}
           className={`${
-            activeSportMenu == "live" ? " bg-light-base" : "bg-active-base"
+            activeSportMenu == "live" ? " bg-light-base" : "bg-primary-base"
           } cursor-pointer flex justify-center items-center gap-2 rounded-l-sm w-full py-2 `}
         >
           <span className="w-[8px] h-[8px] rounded-full bg-shape-base"></span>{" "}
@@ -20,13 +20,13 @@ const SportsMenu = () => {
         <div
           onClick={() => setActiveSportMenu("sports")}
           className={`${
-            activeSportMenu == "sports" ? " bg-light-base" : " bg-active-base"
+            activeSportMenu == "sports" ? " bg-light-base" : " bg-primary-base"
           } cursor-pointer  flex justify-center items-center w-full rounded-r-sm  py-2 `}
         >
           <span className="text-[14px] font-medium">SPORTS</span>{" "}
         </div>
       </div>
-      <div className="py-2 bg-white ">
+      <div className="bg-white ">
        
         <div>
           {activeSportMenu == "live" ? <LiveSports /> : <Sports />}

@@ -7,7 +7,7 @@ import Link from "next/link";
 
 const SteamsHome = () => {
   return (
-    <div className=" bg-light-base p-[9.5px] rounded-tl">
+    <div className=" bg-primary-base p-[9.5px] rounded-tl">
       <div className="flex items-center gap-1">
         <Link href={"/"}>
           <FaHome className="text-[16px]" />

@@ -47,7 +47,7 @@ const DownloadSystems = () => {
               />
             </svg>
             <Image
-              className="w-[65px] h-[65px] object-cover absolute  top-8 left-4"
+              className="w-[65px] h-[65px] object-cover absolute  top-[80px] left-4"
               width={65}
               height={65}
               src={"https://i.ibb.co.com/5hF0vfV/image-8.png"}
@@ -57,11 +57,11 @@ const DownloadSystems = () => {
           <div>
             <div className="space-y-2">
               <Image
-                className="w-[64px] mx-auto h-[19px]"
-                height={19}
-                width={64}
+                className="w-[120px] mx-auto h-[55px]"
+                height={80}
+                width={120}
                 src={
-                  "https://i.ibb.co.com/0yPtL4X/99a9737cf639c454ed74d72260beb0d6-1.png"
+                  "https://i.ibb.co.com/0qmn96G/logo.png"
                 }
                 alt="image"
               />

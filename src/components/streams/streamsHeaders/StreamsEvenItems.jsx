@@ -6,7 +6,7 @@ import { FaSearch } from "react-icons/fa";
 const StreamsEvenItems = () => {
   const [active, setActive] = useState(1);
   return (
-    <div className=" bg-light-base p-[5px]  flex justify-between items-center  rounded-tr w-full">
+    <div className=" bg-primary-base p-[5px]  flex justify-between items-center  rounded-tr w-full">
       <div className="flex items-center gap-3">
         {streamsEventData?.map((item, index) => (
           <div
