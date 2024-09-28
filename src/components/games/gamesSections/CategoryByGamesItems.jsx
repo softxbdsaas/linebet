@@ -14,26 +14,27 @@ const CategoryByGamesItems = ({ allGamesData, prev, next }) => {
           prevEl: `.${prev}`,
           nextEl: `.${next}`,
         }}
-        slidesPerView={1}
+        slidesPerView={2}
+        spaceBetween={6}
         breakpoints={{
           640: {
-            slidesPerView: 2,
-            spaceBetween: 8,
-          },
-          768: {
             slidesPerView: 3,
             spaceBetween: 8,
           },
-          1024: {
+          768: {
             slidesPerView: 4,
             spaceBetween: 8,
           },
-          1440: {
+          1024: {
             slidesPerView: 5,
             spaceBetween: 8,
           },
+          1440: {
+            slidesPerView: 6,
+            spaceBetween: 8,
+          },
           2560: {
-            slidesPerView: 8,
+            slidesPerView: 7,
             spaceBetween: 8,
           },
         }}
@@ -45,7 +46,7 @@ const CategoryByGamesItems = ({ allGamesData, prev, next }) => {
         className="swiper "
       >
         {allGamesData?.map((item, index) => (
-          <SwiperSlide key={index} className=" space-y-2">
+          <SwiperSlide key={index} style={{width:"150px"}} className="w-[150px] space-y-2">
             <GamesCard item={item} />
             <GamesCard item={item} />
           </SwiperSlide>

@@ -2,10 +2,9 @@ import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import { IoIosArrowUp } from "react-icons/io";
 import { cityData } from "../../../../public/database/cityDB";
-const SelectCityAndSearch = () => {
+const SelectCityAndSearch = ({ selectCity, setSelectCity }) => {
   const cityAllData = cityData;
   const [activeCity, setActiveCity] = useState(false);
-  const [selectCity, setSelectCity] = useState();
   const [searchQuery, setSearchQuery] = useState("");
   //  search country
   const filteredCity = cityAllData?.filter((option) =>
@@ -16,7 +15,7 @@ const SelectCityAndSearch = () => {
       const activeCity = cityAllData?.[0];
       setSelectCity(activeCity);
     }
-  }, [cityAllData, selectCity]);
+  }, [cityAllData, selectCity, setSelectCity]);
 
   return (
     <div className="w-full relative">

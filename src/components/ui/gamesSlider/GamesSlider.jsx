@@ -18,9 +18,11 @@ const GamesSlider = () => {
             prevEl: ".custom-swiper-button-prev-games",
             nextEl: ".custom-swiper-button-next-games",
           }}
+          slidesPerView={2}
+          spaceBetween={6}
           breakpoints={{
             640: {
-              slidesPerView: 2,
+              slidesPerView: 3,
               spaceBetween: 8,
             },
             768: {
@@ -43,13 +45,6 @@ const GamesSlider = () => {
               slidesPerView: 10,
               spaceBetween: 8,
             },
-          }}
-          autoplay={{
-            delay: 2500,
-            disableOnInteraction: false,
-          }}
-          pagination={{
-            clickable: true,
           }}
           loop={true}
           modules={[Pagination, Autoplay, Navigation]}

@@ -13,7 +13,7 @@ const CircleProgress = ({ currentStep, totalSteps, size = 60, strokeWidth = 6 })
 
   return (
     <div
-      className="flex justify-center items-center"
+      className="flex justify-center items-center  relative"
       style={{ backgroundColor: '#2C0C5A', borderRadius: '50%', width: `${size}px`, height: `${size}px` }}
     >
       <svg

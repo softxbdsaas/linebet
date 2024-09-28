@@ -6,7 +6,7 @@ import { Navigation, Autoplay } from "swiper/modules";
 import Image from "next/image";
 const SlotHero = () => {
   return (
-    <div className="relative w-full overflow-hidden pt-2 pb-6">
+    <div className="relative w-full overflow-hidden pt-2 pb-2 md:pb-6">
       {/* Swiper Slider */}
       <Swiper
         navigation={{

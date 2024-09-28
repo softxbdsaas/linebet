@@ -13,13 +13,14 @@ const RegisterModal = () => {
   const [bonusSelect, setBonusSelect] = useState("betting");
   const { registerModal } = useSelector((state) => state.registerModal);
   const dispatch = useDispatch();
+  console.log(registerModal);
   return (
     <>
       {registerModal ? (
         <Modal>
           <div className="flex items-start gap-1">
             {/* bonus level  */}
-            <div className="-full sm:w-[350px]">
+            <div className=" hidden lg:block sm:w-[350px]">
               <div className="rounded bg-white w-full sm:w-[350px] overflow-hidden space-y-1">
                 {/* betting bonus  */}
                 <div
@@ -90,7 +91,7 @@ const RegisterModal = () => {
               </div>
             </div>
             {/* Registration form  */}
-            <div className="w-full max-w-[700px] relative">
+            <div className="w-full max-w-[800px] relative  mx-4 md:mx-0  max-h-screen overflow-y-auto selectBarScroll rounded bg-white">
               {/* close modal icons */}
 
               <div
@@ -100,7 +101,7 @@ const RegisterModal = () => {
                 <IoClose className="text-[20px]" />
               </div>
               {/* register  box  */}
-              <div className=" bg-white p-2  sm:p-4 rounded">
+              <div className=" bg-white p-2  sm:p-4 ">
                 <div>
                   <h1 className="text-[16px] md:text-[20px] py-2 uppercase text-center font-semibold text-[#000]">
                     Registration{" "}

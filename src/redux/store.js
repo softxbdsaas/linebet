@@ -3,6 +3,9 @@ import registerSlice from "./features/registerSlice";
 import storage from "redux-persist/lib/storage";
 import { persistReducer, persistStore } from "redux-persist";
 import authSlice from "./features/authSlice";
+import loginSlice from "./features/loginSlice";
+import LeftRightToggleSlice from "./features/LeftRightToggleSlice";
+import mobileMenuSlice from "./features/mobileMenuSlice";
 const persistConfig = {
   key: "root",
   storage,
@@ -11,19 +14,23 @@ const persistConfig = {
 const persistedAuth = persistReducer(persistConfig, authSlice);
 const rootReducer = {
   registerModal: registerSlice,
+  loginModal: loginSlice,
   auth: persistedAuth,
+  leftRightToggle: LeftRightToggleSlice,
+  mobileMenuToggle: mobileMenuSlice,
 };
 
 const isClient = typeof window !== "undefined";
-//  store 
+//  store
 export const store = configureStore({
   reducer: rootReducer,
-  middleware: (getDefaultMiddleware) => getDefaultMiddleware({
-    serializableCheck: {
-      ignoredActions: ["persist/PERSIST"],
-      ignoredActionPaths: ["register", "rehydrate"],
-      ignoredPaths: ["meta.arg.originalArgs"],
-    },
-  }).concat(),
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: ["persist/PERSIST"],
+        ignoredActionPaths: ["register", "rehydrate"],
+        ignoredPaths: ["meta.arg.originalArgs"],
+      },
+    }).concat(),
 });
 export const persistor = isClient ? persistStore(store) : null;
