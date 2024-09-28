@@ -4,12 +4,12 @@
 
 @layer base {
   :root {
-    --color-primary-base: #2C0C5A;
-    --color-primary-muted: #1A0736;
-    --color-light-base: #7C2EEB;
-    --color-light-muted: #E3D1FB;
+    --color-primary-base: #2c0c5a;
+    --color-primary-muted: #1a0736;
+    --color-light-base: #7c2eeb;
+    --color-light-muted: #e3d1fb;
     --color-button-base: #431881;
-    --color-shape-base: #E3D1FB;
+    --color-shape-base: #e3d1fb;
     --color-danger-base: #ce3426;
     --color-active-base: #61d17d;
     --color-button-muted: #431881;
@@ -18,7 +18,7 @@
     --color-modal-muted: #23401cad;
     --color-gray-base: #e0e0e0;
     --color-slot_dark-base: #141b1f;
-    --color-slot_dark-muted: #262B31;
+    --color-slot_dark-muted: #262b31;
     --color-slot_active-base: #90c533;
   }
 }
@@ -35,6 +35,20 @@ body {
   .text-balance {
     text-wrap: balance;
   }
+}
+
+/* global tailwind css  */
+
+@layer components {
+  .global-label {
+    @apply before:content-[''] after:content-[''] !rounded overflow-hidden text-black-base pointer-events-none absolute left-0 -top-2 flex h-full w-full select-none text-[14px] font-normal leading-tight text-gray-400 transition-all before:pointer-events-none before:mt-[6.5px] before:mr-2 before:box-border before:block before:h-1.5 before:w-2.5 before:transition-all;
+    @apply after:mt-[6.5px] after:ml-2 after:box-border after:block after:h-1 after:w-2.5 after:flex-grow after:border-t after:border-r z-40 after:transition-all peer-placeholder-shown:text-[14px] peer-placeholder-shown:leading-[4.7] peer-placeholder-shown:text-[#000000] peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent;
+    @apply peer-focus:text-[12px] peer-focus:leading-tight peer-focus:text-black-base peer-focus:before:border-t-[2px] peer-focus:before:border-l-[2px] peer-focus:before:!border-[#61d17d] peer-focus:after:border-t-[2px] peer-focus:after:border-r-[2px] peer-focus:after:!border-[#61d17d] peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-[#61d17d];
+  }
+  .global-input {
+    @apply w-full h-full pl-[14px] pr-[30px] pt-[8px] pb-[18px] rounded overflow-hidden text-black-base font-sans text-[14px] font-normal transition-all bg-transparent border text-gray-700 outline-0 placeholder-shown:border placeholder-shown:border-[#000000] placeholder-shown:border-t-[#000000] focus:border-[2px] focus:border-[#61d17d] focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-gray-50;
+  }
+  
 }
 
 /* className="swiper-pagination-bullet swiper-pagination-bullet-active" */
@@ -93,3 +107,19 @@ body {
 }
 
 /* input filed css   */
+
+.gamesSlider::-webkit-scrollbar {
+  width: 4px;
+}
+.gamesSlider::-webkit-scrollbar-track {
+  background: #e3d1fb;
+}
+.gamesSlider::-webkit-scrollbar-thumb {
+  background-color: #2c0c5a;
+  border-radius: 10px;
+}
+
+.footerPartner::-webkit-scrollbar {
+  width: 0px;
+  height: 0px;
+}

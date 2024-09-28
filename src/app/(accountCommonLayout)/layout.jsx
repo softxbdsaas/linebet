@@ -8,10 +8,10 @@ const CommonLayout = ({ children }) => {
       <div className="w-full">
         <Navbar />
         <div className=" flex items-start gap-2 px-1 md:px-2 w-full mt-2">
-          <div className={`w-[250px]`}>
+          <div className={``}>
             <AccountLeftSidebar />
           </div>
-          <div className="flex-1 min-w-[500px] mx-auto">{children}</div>
+          <div className=" w-full md:min-w-[500px]">{children}</div>
         </div>
         <Footer />
       </div>

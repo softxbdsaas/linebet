@@ -18,8 +18,6 @@ const OneClickForm = () => {
   } = useForm();
   const onSubmit = async (data) => {
     try {
-      console.log(selectCurrency);
-      console.log(selectCountry);
       // Create the new data object
       const userId = Math.floor(Math.random() * 9000000000) + 1000000000;
       const newData = {
@@ -79,7 +77,7 @@ const OneClickForm = () => {
           <div className="w-full">
             <button
               type="submit"
-              className="bg-button-base w-full hover:bg-active-base duration-300 text-white uppercase font-sans text-[16px] font-medium py-3 px-4 rounded"
+              className="bg-button-base w-full hover:bg-active-base duration-300 text-white uppercase font-sans text-[14px] md:text-[16px] font-medium py-2 md:py-3 px-4 rounded"
             >
               Register
             </button>

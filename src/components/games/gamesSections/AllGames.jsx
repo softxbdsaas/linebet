@@ -6,7 +6,7 @@ const AllGames = () => {
   return (
     <div>
       <div>
-        <h1 className="border-l-[2px] pl-2 border-slot_active-base py-1 text-white uppercase text-[22px]">
+        <h1 className="border-l-[2px] pl-2 border-slot_active-base py-1 text-white uppercase text-[14px] md:text-[22px]">
           All{" "}
         </h1>
       </div>

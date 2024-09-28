@@ -5,17 +5,102 @@ import SelectOptionsAndSearch from "../ui/inputs/SelectOptionsAndSearch";
 import SelectCurrencyAndSearch from "../ui/inputs/SelectCurrencyAndSearch";
 import SelectCityAndSearch from "../ui/inputs/SelectCityAndSearch";
 import { FaEyeSlash } from "react-icons/fa";
+import Swal from "sweetalert2";
+import { userInfo } from "@/redux/features/authSlice";
+import { useDispatch } from "react-redux";
+import { registerToggle } from "@/redux/features/registerSlice";
 const EmailForm = () => {
   const [activePassword, setActivePassword] = useState(false);
+  const [selectCity, setSelectCity] = useState();
   const [selectCountry, setSelectCountry] = useState();
   const [selectCurrency, setSelectCurrency] = useState();
+  const [loading, setLoading] = useState(false);
   const {
     register,
     handleSubmit,
     watch,
     formState: { errors },
   } = useForm();
-  const onSubmit = (data) => console.log(data);
+
+  const dispatch = useDispatch();
+  const onSubmit = async (data) => {
+    try {
+      // Destructure form data
+      const {
+        email,
+        password,
+        confirmPassword,
+        city,
+        promo,
+        firstName,
+        lastName,
+        phone_number,
+      } = data;
+
+      if (confirmPassword != password) {
+        Swal.fire({
+          title: "Error",
+          text: "Passwords do not match!",
+          icon: "error",
+          confirmButtonText: "Try Again",
+        });
+
+        return;
+      }
+
+      const newData = {
+        email,
+        password,
+        country: selectCountry?.countryname,
+        city,
+        currency: selectCurrency?.currency,
+        promo,
+        name: firstName + " " + lastName,
+        phoneNumber: phone_number,
+      };
+      setLoading(true);
+
+      // Make the POST request to your API
+      const response = await fetch("https://express-auth-wheat.vercel.app/api/auth/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newData),
+      });
+
+      const result = await response.json();
+      // Handle success or error based on response
+      if (response.ok) {
+        setLoading(false);
+        dispatch(userInfo(result?.user)); // Call your submit function
+        Swal.fire({
+          title: "Success",
+          text: "Registration successful!",
+          icon: "success",
+          confirmButtonText: "OK",
+        });
+        dispatch(registerToggle());
+        window.location.replace("/office/account");
+      } else {
+        setLoading(false);
+        Swal.fire({
+          title: "Error",
+          text: result.message || "Something went wrong!",
+          icon: "error",
+          confirmButtonText: "Try Again",
+        });
+      }
+    } catch (error) {
+      setLoading(false);
+      Swal.fire({
+        title: "Error",
+        text: "There was an issue with the request.",
+        icon: "error",
+        confirmButtonText: "OK",
+      });
+    }
+  };
 
   return (
     <div className="pt-6 pb-4">
@@ -29,8 +114,8 @@ const EmailForm = () => {
           </div>
           <div>
             <SelectCityAndSearch
-              selectCurrency={selectCurrency}
-              setSelectCurrency={setSelectCurrency}
+              selectCity={selectCity}
+              setSelectCity={setSelectCity}
             />
           </div>
         </div>
@@ -43,7 +128,7 @@ const EmailForm = () => {
         <div className="grid sm:grid-cols-2 gap-4 items-start py-3">
           <div className="relative w-full  text-black-base max-w-full">
             <input
-              {...register("email", { required: "email is  required" })}
+              {...register("email", { required: "Email is  required" })}
               type="text"
               className="w-full h-full pl-[14px] rounded overflow-hidden text-black-base pr-[30px] pt-[8px] pb-[18px] font-sans text-[14px] font-normal transition-all bg-transparent border  peer   text-blue-gray-700 outline outline-0 placeholder-shown:border placeholder-shown:border-[#000000] placeholder-shown:border-t-[#000000] focus:border-[2px] focus:border-[#61d17d] focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
               placeholder
@@ -55,6 +140,13 @@ const EmailForm = () => {
             >
               Email
             </label>
+            <div>
+              {errors.email && (
+                <p role="alert" className="text-[12px] text-red-600">
+                  {errors.email?.message}
+                </p>
+              )}
+            </div>
           </div>
 
           <div className="relative w-full  text-black-base max-w-full">
@@ -107,7 +199,7 @@ const EmailForm = () => {
           {/* password  */}
           <div className="relative w-full  text-black-base max-w-full">
             <input
-              {...register("password")}
+              {...register("password", { required: "password is required" })}
               type={`${activePassword ? " text" : "password"}`}
               className="w-full h-full pl-[14px] rounded overflow-hidden text-black-base pr-[30px] pt-[8px] pb-[18px] font-sans text-[14px] font-normal transition-all bg-transparent border  peer   text-blue-gray-700 outline outline-0 placeholder-shown:border placeholder-shown:border-[#000000] placeholder-shown:border-t-[#000000] focus:border-[2px] focus:border-[#61d17d] focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
               placeholder
@@ -125,10 +217,19 @@ const EmailForm = () => {
             >
               <FaEyeSlash className="text-[18px] font-normal" />
             </span>
+            <div>
+              {errors.password && (
+                <p role="alert" className="text-[12px] text-red-600">
+                  {errors.password?.message}
+                </p>
+              )}
+            </div>
           </div>
           <div className="relative w-full  text-black-base max-w-full">
             <input
-              {...register("re-enter-password")}
+              {...register("confirmPassword", {
+                required: "confirmPassword is required",
+              })}
               type={`${activePassword ? " text" : "password"}`}
               className="w-full h-full pl-[14px] rounded overflow-hidden text-black-base pr-[30px] pt-[8px] pb-[18px] font-sans text-[14px] font-normal transition-all bg-transparent border  peer   text-blue-gray-700 outline outline-0 placeholder-shown:border placeholder-shown:border-[#000000] placeholder-shown:border-t-[#000000] focus:border-[2px] focus:border-[#61d17d] focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
               placeholder
@@ -146,13 +247,20 @@ const EmailForm = () => {
             >
               <FaEyeSlash className="text-[18px] font-normal" />
             </span>
+            <div>
+              {errors.confirmPassword && (
+                <p role="alert" className="text-[12px] text-red-600">
+                  {errors.confirmPassword?.message}
+                </p>
+              )}
+            </div>
           </div>
 
           {/* prome code  */}
 
           <div className="relative w-full  text-black-base max-w-full">
             <input
-              {...register("lastName")}
+              {...register("promo")}
               type="text"
               className="w-full h-full pl-[14px] rounded overflow-hidden text-black-base pr-[30px] pt-[8px] pb-[18px] font-sans text-[14px] font-normal transition-all bg-transparent border  peer   text-blue-gray-700 outline outline-0 placeholder-shown:border placeholder-shown:border-[#000000] placeholder-shown:border-t-[#000000] focus:border-[2px] focus:border-[#61d17d] focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
               placeholder
@@ -168,10 +276,11 @@ const EmailForm = () => {
           {/* submit button  */}
           <div className="w-full">
             <button
+              disabled={loading}
               type="submit"
-              className="bg-button-base w-full hover:bg-active-base duration-300 text-white uppercase font-sans text-[16px] font-medium py-3 px-4 rounded"
+            className="bg-button-base w-full hover:bg-active-base duration-300 text-white uppercase font-sans text-[14px] md:text-[16px] font-medium py-2 md:py-3 px-4 rounded"
             >
-              Register
+              {loading ? "Loading..." : "Registration"}
             </button>
           </div>
         </div>

@@ -7,8 +7,8 @@ const GamesCard = ({ item }) => {
     <div className=" group relative w-full border border-black-base cursor-pointer">
       <div className=" w-full">
         <Image
-          width={600}
-          height={350}
+          width={250}
+          height={250}
           className=" w-full"
           src={item?.image}
           alt="image"

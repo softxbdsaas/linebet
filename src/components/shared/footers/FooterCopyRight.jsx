@@ -9,9 +9,9 @@ import Link from "next/link";
 const FooterCopyRight = () => {
   return (
     <div className="">
-      <div className="grid grid-cols-5  items-center gap-2">
-        <div className="col-span-3 h-full">
-          <div className="bg-primary-base flex flex-col justify-center  rounded p-4 h-full w-full py-2 ">
+      <div className="grid  grid-cols-1 xl:grid-cols-5  items-center gap-2">
+        <div className="  xl:col-span-3 h-full">
+          <div className="bg-primary-base  text-center sm:text-start flex flex-col justify-center  rounded p-4 h-full w-full py-2 ">
             <div>
               <p className="text-[10px] sm:text-[12px] font-normal ">
                 Copyright © 2019 - 2024 «mybet27».
@@ -24,8 +24,8 @@ const FooterCopyRight = () => {
             </div>
           </div>
         </div>
-        <div className=" col-span-2 h-full">
-          <div className=" grid grid-cols-2 items-center gap-2 h-auto">
+        <div className=" xl:col-span-2 h-full">
+          <div className=" grid sm:grid-cols-2 items-center gap-2 h-auto">
             <div className="px-4 bg-primary-base rounded h-full">
               <div className="flex items-center justify-center h-full gap-4">
                 <MdOutlineSupportAgent className="text-[48px]" />

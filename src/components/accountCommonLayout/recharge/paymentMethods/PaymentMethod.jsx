@@ -23,7 +23,7 @@ const PaymentMethod = () => {
             </div>
           </div>
           {/* warning message  */}
-          <div className="text-black-base flex items-center gap-4  bg-gray-base px-2 py-4  mt-5 pb-2">
+          <div className="text-black-base flex items-start md:items-center gap-4  bg-gray-base px-2 py-4  mt-5 pb-2">
             <div>
               <RiErrorWarningFill className="text-white-base  text-[25px] md:text-[40px]  " />
             </div>
@@ -31,8 +31,8 @@ const PaymentMethod = () => {
           </div>
         </div>
         {/* payment system  */}
-        <div className="flex items-start gap-2 mt-5">
-          <div className=" w-[350px]">
+        <div className="flex flex-col  lg:flex-row items-start gap-8 lg:gap-4 mt-5">
+          <div className="w-full lg:w-[350px]">
             <PaymentMethodsMenu />
           </div>
           <div className=" w-full">

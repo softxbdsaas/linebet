@@ -3,8 +3,6 @@
 import { useRouter } from "next/navigation";
 import { useEffect, useState, useRef } from "react";
 import { createPortal } from "react-dom";
-import { IoCloseSharp } from "react-icons/io5";
-
 const Modal = ({ children }) => {
   const [mounted, setMounted] = useState(false); // Track if the component has mounted
   const modalRef = useRef(null);

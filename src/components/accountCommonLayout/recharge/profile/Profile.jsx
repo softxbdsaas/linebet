@@ -19,7 +19,7 @@ const Profile = () => {
               ? user?.email
               : user?.phoneNumber
               ? user?.phoneNumber
-              : user?.userId}{" "}
+              : user?.userName}{" "}
           </p>
         </div>
         <div>

@@ -5,7 +5,7 @@ import { FaRegStar } from "react-icons/fa6";
 
 const MatchCard = () => {
   return (
-    <div className="border-b border-light-muted  p-4 max-w-xs cursor-pointer bg-white hover:bg-[#d8e8d498] ">
+    <div className="border-b border-light-muted w-full p-4 max-w-xs cursor-pointer bg-white hover:bg-[#d8e8d498] ">
       {/* Match Header */}
       <div className="flex items-center justify-between">
         <div className="flex items-center space-x-2">

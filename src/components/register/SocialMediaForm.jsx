@@ -27,8 +27,10 @@ const SocialMediaForm = () => {
             />
           </div>
           <div>
-            <SelectCurrencyAndSearch selectCurrency={selectCurrency}
-              setSelectCurrency={setSelectCurrency} />
+            <SelectCurrencyAndSearch
+              selectCurrency={selectCurrency}
+              setSelectCurrency={setSelectCurrency}
+            />
           </div>
           <div className="relative w-full  text-black-base max-w-full">
             <input
@@ -49,7 +51,7 @@ const SocialMediaForm = () => {
           <div className="w-full">
             <button
               type="submit"
-              className="bg-button-base w-full hover:bg-active-base duration-300 text-white uppercase font-sans text-[16px] font-medium py-3 px-4 rounded"
+              className="bg-button-base w-full hover:bg-active-base duration-300 text-white uppercase font-sans text-[14px] md:text-[16px] font-medium py-2 md:py-3 px-4 rounded"
             >
               Register
             </button>
