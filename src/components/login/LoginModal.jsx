@@ -91,248 +91,124 @@ export default function LoginModal() {
   return (
     <>
       {loginModal ? (
-        <div className=" hidden  md:block">
-          <div className=" fixed   sm:w-[400px] z-20   md:top-[68px] rounded">
-            <div className="flex justify-center items-center p-4 bg-white   w-full  rounded">
-              <div
-                onClick={() => dispatch(loginToggle())}
-                className=" text-black-base  hover:text-red-400 absolute  cursor-pointer duration-300  right-2 top-2"
-              >
-                <IoClose className="text-[20px]" />
-              </div>
-              <div className="w-full max-full  rounded  pt-5">
-                <form onSubmit={handleSubmit(onSubmit)}>
-                  <div className="mb-6">
-                    <input
-                      type="text"
-                      id="emailOrID"
-                      {...register("emailOrID", {
-                        required: "Email or ID is required.",
-                      })}
-                      placeholder="E-mail or ID"
-                      className={`w-full px-4 py-2  border border-gray-500 ${
-                        errors.emailOrID ? "border-red-500" : ""
-                      } rounded focus:border-[#7C2EEB]  focus: text-black-base`}
-                    />
-                    {errors.emailOrID && (
-                      <p className="mt-1 text-sm text-red-500">
-                        {errors.emailOrID.message}
-                      </p>
-                    )}
-                  </div>
-
-                  <div className="mb-6">
-                    <div className="relative">
+        <div className="fixed  left-0 top-0 w-full h-full grid place-items-center bg-slate-800/50 backdrop-blur-sm z-[500]">
+          <div className=" flex justify-center  items-center">
+            <div className=" rounded relative">
+              <div className="flex justify-center items-center p-4 bg-white   w-full  rounded">
+                <div
+                  onClick={() => dispatch(loginToggle())}
+                  className=" text-black-base  hover:text-red-400 absolute  cursor-pointer duration-300  right-2 top-2"
+                >
+                  <IoClose className="text-[20px]" />
+                </div>
+                <div className="w-full max-full rounded  pt-5">
+                  <form onSubmit={handleSubmit(onSubmit)}>
+                    <div className="mb-6">
                       <input
-                        type={activePassword ? "text" : "password"}
-                        id="password"
-                        {...register("password", {
-                          required: "Password is required.",
+                        type="text"
+                        id="emailOrID"
+                        {...register("emailOrID", {
+                          required: "Email or ID is required.",
                         })}
-                        placeholder="Password"
-                        className={`w-full px-4 py-2 border border-gray-500 ${
-                          errors.password ? "border-red-500" : "border-gray-300"
+                        placeholder="E-mail or ID"
+                        className={`w-full px-4 py-2  border border-gray-500 ${
+                          errors.emailOrID ? "border-red-500" : ""
                         } rounded focus:border-[#7C2EEB]  focus: text-black-base`}
                       />
-                      <button
-                        type="button"
-                        className="absolute inset-y-0 right-0 px-3 py-2 text-black-base"
-                        onClick={() => setActivePassword(!activePassword)}
-                      >
-                        {activePassword ? "🙈" : "👁️"}
-                      </button>
-                    </div>
-                    {errors.password && (
-                      <p className="mt-1 text-sm text-red-500">
-                        {errors.password.message}
-                      </p>
-                    )}
-                  </div>
-
-                  <div className="flex items-center justify-between mb-6">
-                    <div className="flex items-center">
-                      <input
-                        type="checkbox"
-                        id="remember"
-                        className="w-4 h-4 text-green-500 border-gray-300 rounded focus:ring-green-500"
-                        {...register("remember")}
-                      />
-                      <label
-                        className="ml-2 text-sm text-gray-700"
-                        htmlFor="remember"
-                      >
-                        Remember
-                      </label>
+                      {errors.emailOrID && (
+                        <p className="mt-1 text-sm text-red-500">
+                          {errors.emailOrID.message}
+                        </p>
+                      )}
                     </div>
 
-                    <a
-                      href="#"
-                      className="text-sm text-green-500 hover:underline"
-                    >
-                      Forgot your password?
-                    </a>
-                  </div>
-
-                  <button
-                    disabled={loading}
-                    type="submit"
-                    className="w-full px-4 py-2 text-white bg-primary-base rounded hover:bg-light-base focus:outline-none focus:bg-green-600"
-                  >
-                    {loading ? "Loading..." : " LOG IN"}
-                  </button>
-
-                  <p className="mt-6 text-center text-sm text-gray-600">
-                    You can log in to the website via:
-                  </p>
-
-                  <div className="mt-4 flex justify-center space-x-4">
-                    <div className="hover:bg-light-base p-2 bg-light-muted hover:text-white text-black-base  rounded-full">
-                      <FaGoogle className="text-xl   cursor-pointer" />
-                    </div>
-                    <div className="hover:bg-light-base bg-light-muted text-black-base hover:text-white p-2 rounded-full">
-                      <FaApple className="text-xl  cursor-pointer" />
-                    </div>
-                    <div className="hover:bg-light-base bg-light-muted text-black-base hover:text-white p-2 rounded-full">
-                      <FaTwitter className="text-xl  cursor-pointer" />
-                    </div>
-                    <div className="hover:bg-light-base bg-light-muted text-black-base hover:text-white p-2 rounded-full">
-                      <FaTelegram className="text-xl  cursor-pointer" />
-                    </div>
-                    <div className="hover:bg-light-base bg-light-muted text-black-base hover:text-white p-2 rounded-full">
-                      <FaLine className="text-xl  cursor-pointer" />
-                    </div>
-                    <div className="hover:bg-light-base bg-light-muted text-black-base hover:text-white p-2 rounded-full">
-                      <FaTwitch className="text-xl  cursor-pointer" />
-                    </div>
-                  </div>
-                </form>
-              </div>
-            </div>
-          </div>
-        </div>
-      ) : null}
-
-      {loginModal ? (
-        <div className="!md:hidden">
-          <div className="fixed md:relative  left-0 top-0 w-full h-full grid place-items-center bg-slate-800/50 backdrop-blur-sm z-[500]">
-            <div className=" md:hidden">
-              <div className=" rounded relative">
-                <div className="flex justify-center items-center p-4 bg-white   w-full  rounded">
-                  <div
-                    onClick={() => dispatch(loginToggle())}
-                    className=" text-black-base  hover:text-red-400 absolute  cursor-pointer duration-300  right-2 top-2"
-                  >
-                    <IoClose className="text-[20px]" />
-                  </div>
-                  <div className="w-full max-full rounded  pt-5">
-                    <form onSubmit={handleSubmit(onSubmit)}>
-                      <div className="mb-6">
+                    <div className="mb-6">
+                      <div className="relative">
                         <input
-                          type="text"
-                          id="emailOrID"
-                          {...register("emailOrID", {
-                            required: "Email or ID is required.",
+                          type={activePassword ? "text" : "password"}
+                          id="password"
+                          {...register("password", {
+                            required: "Password is required.",
                           })}
-                          placeholder="E-mail or ID"
-                          className={`w-full px-4 py-2  border border-gray-500 ${
-                            errors.emailOrID ? "border-red-500" : ""
+                          placeholder="Password"
+                          className={`w-full px-4 py-2 border border-gray-500 ${
+                            errors.password
+                              ? "border-red-500"
+                              : "border-gray-300"
                           } rounded focus:border-[#7C2EEB]  focus: text-black-base`}
                         />
-                        {errors.emailOrID && (
-                          <p className="mt-1 text-sm text-red-500">
-                            {errors.emailOrID.message}
-                          </p>
-                        )}
-                      </div>
-
-                      <div className="mb-6">
-                        <div className="relative">
-                          <input
-                            type={activePassword ? "text" : "password"}
-                            id="password"
-                            {...register("password", {
-                              required: "Password is required.",
-                            })}
-                            placeholder="Password"
-                            className={`w-full px-4 py-2 border border-gray-500 ${
-                              errors.password
-                                ? "border-red-500"
-                                : "border-gray-300"
-                            } rounded focus:border-[#7C2EEB]  focus: text-black-base`}
-                          />
-                          <button
-                            type="button"
-                            className="absolute inset-y-0 right-0 px-3 py-2 text-black-base"
-                            onClick={() => setActivePassword(!activePassword)}
-                          >
-                            {activePassword ? "🙈" : "👁️"}
-                          </button>
-                        </div>
-                        {errors.password && (
-                          <p className="mt-1 text-sm text-red-500">
-                            {errors.password.message}
-                          </p>
-                        )}
-                      </div>
-
-                      <div className="flex items-center justify-between mb-6">
-                        <div className="flex items-center">
-                          <input
-                            type="checkbox"
-                            id="remember"
-                            className="w-4 h-4 text-green-500 border-gray-300 rounded focus:ring-green-500"
-                            {...register("remember")}
-                          />
-                          <label
-                            className="ml-2 text-sm text-gray-700"
-                            htmlFor="remember"
-                          >
-                            Remember
-                          </label>
-                        </div>
-
-                        <a
-                          href="#"
-                          className="text-sm text-green-500 hover:underline"
+                        <button
+                          type="button"
+                          className="absolute inset-y-0 right-0 px-3 py-2 text-black-base"
+                          onClick={() => setActivePassword(!activePassword)}
                         >
-                          Forgot your password?
-                        </a>
+                          {activePassword ? "🙈" : "👁️"}
+                        </button>
+                      </div>
+                      {errors.password && (
+                        <p className="mt-1 text-sm text-red-500">
+                          {errors.password.message}
+                        </p>
+                      )}
+                    </div>
+
+                    <div className="flex items-center justify-between mb-6">
+                      <div className="flex items-center">
+                        <input
+                          type="checkbox"
+                          id="remember"
+                          className="w-4 h-4 text-primary-base border-gray-300 rounded focus:ring-green-500"
+                          {...register("remember")}
+                        />
+                        <label
+                          className="ml-2 text-sm text-primary-base"
+                          htmlFor="remember"
+                        >
+                          Remember
+                        </label>
                       </div>
 
-                      <button
-                        disabled={loading}
-                        type="submit"
-                        className="w-full px-4 py-2 text-white bg-primary-base rounded hover:bg-light-base focus:outline-none focus:bg-green-600"
+                      <a
+                        href="#"
+                        className="text-sm text-primary-base hover:underline"
                       >
-                        {loading ? "Loading..." : " LOG IN"}
-                      </button>
+                        Forgot your password?
+                      </a>
+                    </div>
 
-                      <p className="mt-6 text-center text-sm text-gray-600">
-                        You can log in to the website via:
-                      </p>
+                    <button
+                      disabled={loading}
+                      type="submit"
+                      className="w-full px-4 py-2 text-white bg-primary-base rounded hover:bg-light-base focus:outline-none focus:bg-green-600"
+                    >
+                      {loading ? "Loading..." : " LOG IN"}
+                    </button>
 
-                      <div className="mt-4 flex justify-center space-x-4">
-                        <div className="hover:bg-light-base p-2 bg-light-muted hover:text-white text-black-base  rounded-full">
-                          <FaGoogle className="text-xl   cursor-pointer" />
-                        </div>
-                        <div className="hover:bg-light-base bg-light-muted text-black-base hover:text-white p-2 rounded-full">
-                          <FaApple className="text-xl  cursor-pointer" />
-                        </div>
-                        <div className="hover:bg-light-base bg-light-muted text-black-base hover:text-white p-2 rounded-full">
-                          <FaTwitter className="text-xl  cursor-pointer" />
-                        </div>
-                        <div className="hover:bg-light-base bg-light-muted text-black-base hover:text-white p-2 rounded-full">
-                          <FaTelegram className="text-xl  cursor-pointer" />
-                        </div>
-                        <div className="hover:bg-light-base bg-light-muted text-black-base hover:text-white p-2 rounded-full">
-                          <FaLine className="text-xl  cursor-pointer" />
-                        </div>
-                        <div className="hover:bg-light-base bg-light-muted text-black-base hover:text-white p-2 rounded-full">
-                          <FaTwitch className="text-xl  cursor-pointer" />
-                        </div>
+                    <p className="mt-6 text-center text-sm text-gray-600">
+                      You can log in to the website via:
+                    </p>
+
+                    <div className="mt-4 flex justify-center space-x-4">
+                      <div className="hover:bg-light-base p-2 bg-light-muted hover:text-white text-black-base  rounded-full">
+                        <FaGoogle className="text-xl   cursor-pointer" />
                       </div>
-                    </form>
-                  </div>
+                      <div className="hover:bg-light-base bg-light-muted text-black-base hover:text-white p-2 rounded-full">
+                        <FaApple className="text-xl  cursor-pointer" />
+                      </div>
+                      <div className="hover:bg-light-base bg-light-muted text-black-base hover:text-white p-2 rounded-full">
+                        <FaTwitter className="text-xl  cursor-pointer" />
+                      </div>
+                      <div className="hover:bg-light-base bg-light-muted text-black-base hover:text-white p-2 rounded-full">
+                        <FaTelegram className="text-xl  cursor-pointer" />
+                      </div>
+                      <div className="hover:bg-light-base bg-light-muted text-black-base hover:text-white p-2 rounded-full">
+                        <FaLine className="text-xl  cursor-pointer" />
+                      </div>
+                      <div className="hover:bg-light-base bg-light-muted text-black-base hover:text-white p-2 rounded-full">
+                        <FaTwitch className="text-xl  cursor-pointer" />
+                      </div>
+                    </div>
+                  </form>
                 </div>
               </div>
             </div>

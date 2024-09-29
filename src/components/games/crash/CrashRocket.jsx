@@ -7,9 +7,9 @@ const CrashRocket = () => {
   return (
     <>
       <div>
-        <div className=" w-full  max-h-[500px]  rounded-[20px] overflow-hidden">
+        <div className=" w-full max-h-[500px]  rounded-[20px] overflow-hidden">
           <Image
-            className="w-full object-cover rounded"
+            className="w-full object-contain rounded"
             width={1000}
             height={400}
             src={
@@ -19,8 +19,8 @@ const CrashRocket = () => {
           />
         </div>
         {/* CrashHistory  */}
-        <div className="grid grid-cols-3 gap-2 mt-4">
-          <div className=" col-span-2">
+        <div className="grid  xl:grid-cols-2 2xl:grid-cols-3 gap-2 mt-4">
+          <div className=" hidden xl:block  2xl:col-span-2">
             <CrashHistory />
           </div>
           <div>

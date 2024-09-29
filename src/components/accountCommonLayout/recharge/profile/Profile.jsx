@@ -1,6 +1,5 @@
 "use client";
 import CircleProgress from "@/components/ui/progress/ProfileProgress";
-import Image from "next/image";
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 
@@ -12,14 +11,16 @@ const Profile = () => {
     <div className=" bg-primary-base rounded">
       <div className="bg-light-base p-2  flex justify-between items-center gap-3">
         <div>
-          <h1 className="text-[16px] tracking-wider font-semibold">Shamim</h1>
+          <h1 className="text-[16px] tracking-wider capitalize font-semibold">
+            {user?.name ? user?.name : "unknown name"}
+          </h1>
           <p className="text-[12px] text-light-muted">
             {" "}
             {user?.email
               ? user?.email
               : user?.phoneNumber
               ? user?.phoneNumber
-              : user?.userName}{" "}
+              : user?.userName}
           </p>
         </div>
         <div>

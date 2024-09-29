@@ -10,6 +10,7 @@ import { registerToggle } from "@/redux/features/registerSlice";
 const OneClickForm = () => {
   const [selectCountry, setSelectCountry] = useState();
   const [selectCurrency, setSelectCurrency] = useState();
+  const [isLoading, setIsLoading] = useState(false);
   const dispatch = useDispatch();
   const {
     register,
@@ -18,11 +19,24 @@ const OneClickForm = () => {
   } = useForm();
   const onSubmit = async (data) => {
     try {
+      setIsLoading(true);
       // Create the new data object
-      const userId = Math.floor(Math.random() * 9000000000) + 1000000000;
+      const response = await fetch(
+        "https://express-auth-wheat.vercel.app/api/auth/one-click",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({}),
+        }
+      );
+
+      const result = await response.json();
+
+      const userIfo = result?.user;
       const newData = {
-        ...data,
-        userId,
+        ...userIfo,
         country: selectCountry,
         currency: selectCurrency,
       };
@@ -30,11 +44,31 @@ const OneClickForm = () => {
       // If confirmed, submit the form
       dispatch(userInfo(newData)); // Call your submit function
       MySwal.fire("Submitted!", " Registration success", "success");
-      dispatch(registerToggle());
-      window.location.replace("/office/account");
+      setIsLoading(false);
+      MySwal.fire({
+        title: "Your UserId And Password",
+        text: `Your UserId :${userIfo?.userName} and Password :${result?.password}`,
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes , I got it!",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          setIsLoading(false);
+          dispatch(registerToggle());
+          window.location.replace("/office/account");
+          MySwal.fire({
+            title: "success",
+            text: "One  click Register success",
+            icon: "success",
+            confirmButtonText: "ok",
+          });
+        }
+      });
     } catch (error) {
       // Handle errors
-      console.error("Error:", error);
+      setIsLoading(false);
       MySwal.fire(
         "Error!",
         "Something went wrong during form submission.",
@@ -76,10 +110,11 @@ const OneClickForm = () => {
 
           <div className="w-full">
             <button
+              disabled={isLoading}
               type="submit"
               className="bg-button-base w-full hover:bg-active-base duration-300 text-white uppercase font-sans text-[14px] md:text-[16px] font-medium py-2 md:py-3 px-4 rounded"
             >
-              Register
+              {isLoading ? "Loading..." : "Register"}
             </button>
           </div>
         </div>
