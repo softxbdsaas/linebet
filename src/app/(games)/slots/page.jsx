@@ -11,11 +11,11 @@ const page = () => {
         <GamesHeader />
         <SlotHero />
         {/* games sections  */}
-        <div className=" flex  items-start gap-4">
-          <div className=" hidden  md:block w-[450px]">
+        <div className="flex items-start gap-4">
+          <div className="hidden md:block w-[450px]">
             <LeftSiteBar />
           </div>
-          <div className=" md:my-3 flex-1 w-full md:min-w-[500px]  mx-auto">
+          <div className="md:my-3 flex-1 w-full md:min-w-[500px]  mx-auto">
             <ShowGames />
           </div>
         </div>

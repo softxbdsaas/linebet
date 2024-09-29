@@ -5,7 +5,7 @@ import ReduxProvider from "@/components/reduxProvider/ReduxProvider";
 import MobileMenu from "@/components/shared/mobileMenus/MobileMenu";
 import MobileFooter from "@/components/shared/footers/MobileFooter";
 import MobileAccountSidebar from "@/components/shared/sidebars/accountLeftSidebar/MobileAccountSidebar";
-
+import NextAuthSessionProvider from "@/components/auth/NextAuthSessionProvider";
 const roboto = Roboto({ subsets: ["latin"], weight: ["400", "700"] });
 
 export const metadata = {
@@ -18,13 +18,15 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={`${roboto.className} antialiased`}>
         <ReduxProvider>
-          {children}
-          {/* Modal root for portals */}
-          <div id="modal-root-content" />
-          <ToastContainer />
-          <MobileMenu />
-          <MobileFooter />
-          <MobileAccountSidebar />
+          <NextAuthSessionProvider>
+            {children}
+            {/* Modal root for portals */}
+            <div id="modal-root-content" />
+            <ToastContainer />
+            <MobileMenu />
+            <MobileFooter />
+            <MobileAccountSidebar />
+          </NextAuthSessionProvider>
         </ReduxProvider>
       </body>
     </html>
