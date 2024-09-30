@@ -13,7 +13,6 @@ const RegisterModal = () => {
   const [bonusSelect, setBonusSelect] = useState("betting");
   const { registerModal } = useSelector((state) => state.registerModal);
   const dispatch = useDispatch();
-  console.log(registerModal);
   return (
     <>
       {registerModal ? (

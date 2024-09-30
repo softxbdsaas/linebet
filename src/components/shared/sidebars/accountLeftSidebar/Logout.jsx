@@ -1,6 +1,9 @@
 "use client";
 import { MySwal } from "@/components/ui/toast/SweetAlert";
+import { authKey } from "@/constants/authKey";
 import { userInfo } from "@/redux/features/authSlice";
+import { removeCookie } from "@/utils/cookies-info";
+import Cookies from "js-cookie";
 import { useRouter } from "next/navigation";
 import React from "react";
 import { HiLogout } from "react-icons/hi";
@@ -10,7 +13,7 @@ import Swal from "sweetalert2";
 const Logout = () => {
   const dispatch = useDispatch();
   const router = useRouter();
-  const logout = () => {
+  const logout = async () => {
     // Trigger a SweetAlert confirmation before logging out
     MySwal.fire({
       title: "Are you sure?",
@@ -22,8 +25,9 @@ const Logout = () => {
       confirmButtonText: "Yes, log out!",
     }).then((result) => {
       if (result.isConfirmed) {
-        dispatch(userInfo()); // Reset user info in Redux
-        router.push("/");
+        removeCookie("access-token");
+        dispatch(userInfo());
+        window.location.replace("/");
         Swal.fire({
           title: "success",
           text: "Logout success",
@@ -40,7 +44,9 @@ const Logout = () => {
       className="shadow py-2 flex items-center bg-light-base mx-2 rounded-[10px] mt-20 justify-center gap-1 cursor-pointer"
     >
       <HiLogout className="text-[16px]" />
-      <p className="text-white text-[14px] md:text-[18px] font-medium">Log out</p>
+      <p className="text-white text-[14px] md:text-[18px] font-medium">
+        Log out
+      </p>
     </div>
   );
 };

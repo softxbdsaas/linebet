@@ -52,7 +52,7 @@ const CrashHistory = () => {
                   }
                   alt={"image"}
                 ></Image>
-                <p class=" text-center text-[18px] font-medium text-white/60">
+                <p className=" text-center text-[18px] font-medium text-white/60">
                   {`You haven't placed any bets yet`}
                 </p>
               </div>

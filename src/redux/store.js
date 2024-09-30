@@ -6,6 +6,7 @@ import authSlice from "./features/authSlice";
 import loginSlice from "./features/loginSlice";
 import LeftRightToggleSlice from "./features/LeftRightToggleSlice";
 import mobileMenuSlice from "./features/mobileMenuSlice";
+import { baseApi } from "./api/baseApi";
 const persistConfig = {
   key: "root",
   storage,
@@ -13,6 +14,7 @@ const persistConfig = {
 
 const persistedAuth = persistReducer(persistConfig, authSlice);
 const rootReducer = {
+  [baseApi.reducerPath]: baseApi.reducer,
   registerModal: registerSlice,
   loginModal: loginSlice,
   auth: persistedAuth,
@@ -31,6 +33,6 @@ export const store = configureStore({
         ignoredActionPaths: ["register", "rehydrate"],
         ignoredPaths: ["meta.arg.originalArgs"],
       },
-    }).concat(),
+    }).concat(baseApi.middleware),
 });
 export const persistor = isClient ? persistStore(store) : null;

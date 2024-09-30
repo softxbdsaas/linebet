@@ -68,13 +68,16 @@ const NavbarRightSite = () => {
             <MdOutlineKeyboardArrowDown className="text-[20px] text-white" />
           </div>
           {/* users box  */}
-          <Link
-            href={"/office/account"}
-            className="bg-light-base hidden md:flex pr-1 pl-2 cursor-pointer py-[6px]  items-center rounded"
-          >
-            <FaRegUser className="text-[16px] text-white" />
-            <MdOutlineKeyboardArrowDown className="text-[20px] text-white" />
-          </Link>
+          {user ? (
+            <Link
+              href={"/office/account"}
+              className="bg-light-base hidden md:flex pr-1 pl-2 cursor-pointer py-[6px]  items-center rounded"
+            >
+              <FaRegUser className="text-[16px] text-white" />
+              <MdOutlineKeyboardArrowDown className="text-[20px] text-white" />
+            </Link>
+          ) : null}
+
           {/* setting  options  */}
 
           <NavbarWebsiteSetting />
