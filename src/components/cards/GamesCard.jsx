@@ -18,7 +18,7 @@ const GamesCard = ({ item }) => {
         <div className="bg-[#0000007a]  absolute  top-0 flex justify-center items-center w-full  h-full">
           <div className=" flex items-center gap-2">
             <div>
-              <div class=" border-transparent h-[60px] w-[60px] animate-spin rounded-full border-[3px] border-t-shape-base border-b-shape-base"></div>
+              <div className=" border-transparent h-[60px] w-[60px] animate-spin rounded-full border-[3px] border-t-shape-base border-b-shape-base"></div>
             </div>
           </div>
           <div className="absolute flex justify-center items-center h-full w-full">
@@ -26,7 +26,7 @@ const GamesCard = ({ item }) => {
           </div>
         </div>
         <div className=" absolute top-0 flex justify-center items-center h-full    w-full">
-          <div class=" border-transparent h-[74px] w-[74px] animate-spin  rotate-180  rounded-full border-[3px] border-t-white border-b-white"></div>
+          <div className=" border-transparent h-[74px] w-[74px] animate-spin  rotate-180  rounded-full border-[3px] border-t-white border-b-white"></div>
         </div>
       </div>
     </div>

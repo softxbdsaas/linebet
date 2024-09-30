@@ -8,9 +8,9 @@ const HomeMobileForTab = () => {
       <div className=" flex justify-between gap-1 ">
         <div className=" w-full flex items-center justify-center  cursor-pointer  bg-primary-base rounded relative px-3 py-1">
           <p className=" w-full text-center uppercase text-[14px]">Live</p>
-          <span class=" relative flex h-2 w-2  -mt-3  -ml-2">
-            <span class="animate-ping absolute inline-flex h-full w-full   rounded-full bg-active-base opacity-75"></span>
-            <span class="relative inline-flex rounded-full h-2 w-2 bg-active-base "></span>
+          <span className=" relative flex h-2 w-2  -mt-3  -ml-2">
+            <span className="animate-ping absolute inline-flex h-full w-full   rounded-full bg-active-base opacity-75"></span>
+            <span className="relative inline-flex rounded-full h-2 w-2 bg-active-base "></span>
           </span>
         </div>
         <div className="w-full flex cursor-pointer items-center justify-center bg-primary-base rounded px-3 py-1">

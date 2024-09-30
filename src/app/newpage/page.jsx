@@ -1,7 +1,7 @@
 // app/page.js or app/somepage/page.js
-'use client';
+"use client";
 
-import { signIn, signOut, useSession } from 'next-auth/react';
+import { signIn, signOut, useSession } from "next-auth/react";
 
 export default function Page() {
   const { data: session } = useSession();
@@ -16,9 +16,9 @@ export default function Page() {
   }
 
   return (
-    <div className=' flex justify-between  mx-10 py-3'>
-      <button onClick={() => signIn('google')}>Sign in with Google</button>
-      <button onClick={() => signIn('twitter')}>Sign in with X</button>
+    <div className=" flex justify-between  mx-10 py-3">
+      <button onClick={() => signIn("google")}>Sign in with Google</button>
+      <button onClick={() => signIn("twitter")}>Sign in with X</button>
     </div>
   );
 }

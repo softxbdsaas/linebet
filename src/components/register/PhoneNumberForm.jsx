@@ -38,7 +38,7 @@ const PhoneNumberForm = () => {
       );
 
       const result = await response.json();
-      console.log(result);
+     
       // Handle success or error based on response
       if (response.ok) {
         setLoading(false);
