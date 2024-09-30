@@ -9,7 +9,15 @@ const authApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: ["users"],
     }),
+    updateProfile: builder.mutation({
+      query: (data) => ({
+        url: "/api/auth/update-profile-info",
+        method: "PUT",
+        data: data,
+      }),
+      providesTags: ["users"],
+    }),
   }),
 });
 
-export const { useGetUserInfoQuery } = authApi;
+export const { useGetUserInfoQuery, useUpdateProfileMutation } = authApi;

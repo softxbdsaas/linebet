@@ -1,20 +1,93 @@
 "use client";
+import {
+  useGetUserInfoQuery,
+  useUpdateProfileMutation,
+} from "@/redux/api/authApi";
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { IoLockClosed } from "react-icons/io5";
+import UploadNIDImage from "./UploadNIDImage";
+import Swal from "sweetalert2";
 
 const AccountForm = () => {
   const [activePassword, setActivePassword] = useState(false);
-
+  const { data: userInfo } = useGetUserInfoQuery();
+  console.log(userInfo);
+  const [frontend, setFrontend] = useState(
+    userInfo?.data?.profileURL
+      ? userInfo?.data?.INDFrontendImage
+      : "https://archive.org/download/placeholder-image/placeholder-image.jpg"
+  );
+  const [indBackend, setIndBackend] = useState(
+    userInfo?.data?.profileURL
+      ? userInfo?.data?.INDBackendImage
+      : "https://archive.org/download/placeholder-image/placeholder-image.jpg"
+  );
+  const [updateProfile, { isLoading }] = useUpdateProfileMutation();
   const {
     register,
     handleSubmit,
+    setValue,
     formState: { errors },
   } = useForm();
   const onSubmit = async (data) => {
-    console.log(data);
+    try {
+      const newData = {
+        userName: data.userName,
+        phoneNumber: data.phoneNumber,
+        email: data?.email,
+        address: data?.address,
+        INDFrontendImage: frontend,
+        INDBackendImage: indBackend,
+        dateOfBirth: data?.dateOfBirth,
+        identityNumber: data?.identityNumber,
+        name: data?.firstName,
+        country: data?.country,
+      };
+
+      const res = await updateProfile(newData).unwrap();
+      if (res?.status == true) {
+        Swal.fire({
+          title: "Success",
+          text: res?.message,
+          icon: "success",
+          confirmButtonText: "Okay",
+        });
+        setValue("userName", data.userName);
+        setValue("phoneNumber", data.phoneNumber);
+        setValue("email", data?.email);
+        setValue("email", data?.email);
+        setValue("firstName", data?.firstName);
+        setValue("createAt", data?.createAt);
+        setValue("address", data?.address);
+      }
+    } catch (error) {
+      Swal.fire({
+        title: "Error",
+        text: error.message || "Something went wrong!",
+        icon: "error",
+        confirmButtonText: "Try Again",
+      });
+    }
   };
+
+  useEffect(() => {
+    if (userInfo) {
+      setValue("userName", userInfo?.data?.userName);
+      setValue("phoneNumber", userInfo?.data?.phoneNumber);
+      setValue("email", userInfo?.data?.email);
+      setValue("email", userInfo?.data?.email);
+      setValue("firstName", userInfo?.data?.name);
+      setValue("createAt", userInfo?.data?.createAt);
+      setValue("identityNumber", userInfo?.data?.identityNumber);
+      setValue("address", userInfo?.data?.address);
+      setValue("dateOfBirth", userInfo?.data?.dateOfBirth);
+      setFrontend(userInfo?.data?.INDFrontendImage);
+      setIndBackend(userInfo?.data?.INDBackendImage);
+    }
+  }, [userInfo, setValue]);
+
   return (
     <>
       <div className="">
@@ -31,7 +104,7 @@ const AccountForm = () => {
                     <div>
                       <div className="relative w-full  text-black-base max-w-full">
                         <input
-                          {...register("text")}
+                          {...register("userName")}
                           type={`text`}
                           className="peer global-input"
                           placeholder
@@ -46,8 +119,9 @@ const AccountForm = () => {
                     <div className="relative w-full  text-black-base max-w-full">
                       <input
                         {...register("password")}
-                        type={`text`}
+                        type={`password`}
                         className="peer global-input"
+                        value={23423423}
                         placeholder
                       />
                       <label className="global-label">Password</label>
@@ -58,15 +132,12 @@ const AccountForm = () => {
                     {/* Registration date  */}
                     <div className="relative w-full  text-black-base max-w-full">
                       <input
-                        {...register("text")}
-                        type={`text`}
+                        {...register("createAt")}
+                        type={`date`}
                         className="peer global-input"
                         placeholder
                       />
                       <label className="global-label">Registration date</label>
-                      <span className=" absolute right-2 cursor-pointer top-4">
-                        <IoLockClosed className="text-[18px] font-normal" />
-                      </span>
                     </div>
                   </div>
                 </div>
@@ -79,7 +150,9 @@ const AccountForm = () => {
                     <div>
                       <div className="relative w-full  text-black-base max-w-full">
                         <input
-                          {...register("text")}
+                          {...register("phoneNumber", {
+                            required: "Please enter a phone number",
+                          })}
                           type={`text`}
                           className="peer global-input"
                           placeholder
@@ -93,7 +166,12 @@ const AccountForm = () => {
 
                     <div className="relative w-full  text-black-base max-w-full">
                       <input
-                        {...register("email")}
+                        {...register("email", {
+                          required: "Please enter a valid email address",
+                          pattern:
+                            /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/,
+                          message: "Please enter a valid email address",
+                        })}
                         type={`email`}
                         className="peer global-input"
                       />
@@ -132,35 +210,23 @@ const AccountForm = () => {
 
                   <div className="relative w-full  text-black-base max-w-full">
                     <input
-                      {...register("first-name")}
-                      type={`first-name`}
+                      {...register("firstName")}
+                      type={`firstName`}
                       className="peer global-input"
                       placeholder
                     />
                     <label className="global-label">First name</label>
                   </div>
-                  {/* Registration date  */}
+
+                  {/* Place of birth  */}
                   <div className="relative w-full  text-black-base max-w-full">
                     <input
-                      {...register("date")}
+                      {...register("dateOfBirth")}
                       type={`date`}
                       className="peer global-input"
                       placeholder
                     />
-                    <label className="global-label">Registration date</label>
-                  </div>
-                  {/* Place of birth  */}
-                  <div className="relative w-full  text-black-base max-w-full">
-                    <input
-                      {...register("placeOfBirth")}
-                      type={`text`}
-                      className="peer global-input"
-                      placeholder
-                    />
                     <label className="global-label">Place of birth</label>
-                    <span className=" absolute right-2 cursor-pointer top-4">
-                      <IoLockClosed className="text-[18px] font-normal" />
-                    </span>
                   </div>
                   {/* Type of document  */}
                   <div className="relative w-full  text-black-base max-w-full">
@@ -185,16 +251,6 @@ const AccountForm = () => {
                     />
                     <label className="global-label">Document number</label>
                   </div>
-                  {/* Document issue date */}
-                  <div className="relative w-full  text-black-base max-w-full">
-                    <input
-                      {...register("documentNumber")}
-                      type={`text`}
-                      className="peer global-input"
-                      placeholder
-                    />
-                    <label className="global-label">Document issue date</label>
-                  </div>
 
                   {/* Document issue date */}
                   <div className="relative w-full  text-black-base max-w-full">
@@ -218,10 +274,39 @@ const AccountForm = () => {
                       Permanent registered address
                     </label>
                   </div>
+                  <div className="relative w-full  text-black-base max-w-full">
+                    <input
+                      {...register("identityNumber")}
+                      type={`text`}
+                      className="peer global-input"
+                      placeholder
+                    />
+                    <label className="global-label">NID Number</label>
+                  </div>
+                </div>
+
+                <div className=" py-3">
+                  <label className="text-[14px] font-medium">
+                    IND Frontend
+                  </label>
+                  <UploadNIDImage
+                    profileImageUrl={frontend}
+                    setProfileImageUrl={setFrontend}
+                  />
+                </div>
+                <div className=" py-3">
+                  <label className="text-[14px] font-medium">IND Backend</label>
+                  <UploadNIDImage
+                    profileImageUrl={indBackend}
+                    setProfileImageUrl={setIndBackend}
+                  />
                 </div>
                 <div className="mt-3">
-                  <button className="w-full rounded bg-button-base text-white text-center py-3  uppercase">
-                    save
+                  <button
+                    disabled={isLoading}
+                    className="w-full rounded bg-button-base text-white text-center py-3  uppercase"
+                  >
+                    {isLoading ? " Loading.." : "Save"}
                   </button>
                 </div>
               </div>
