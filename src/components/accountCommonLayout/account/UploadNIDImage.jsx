@@ -55,10 +55,10 @@ const UploadNIDImage = ({ profileImageUrl, setProfileImageUrl }) => {
             width={250}
             height={250}
             src={profileImageUrl}
-            alt="profile"
+            alt="NID for profile image"
           />
         )}
-        <label className="bg-white absolute z-30 border-2 p-1 border-blue-600 rounded-full bottom-1 right-3 cursor-pointer">
+        <label className="bg-white absolute z-30 border-2 p-1 border-gray-200 rounded-full bottom-1 right-2 cursor-pointer">
           <AiFillEdit size={15} />
           <input type="file" className="hidden" onChange={handleFileChange} />
         </label>

@@ -9,7 +9,7 @@ const Profile = () => {
   const totalSteps = 5;
   return (
     <div className=" bg-primary-base rounded">
-      <div className="bg-light-base p-2  flex justify-between items-center gap-3">
+      <div className="bg-light-base p-2  flex justify-between flex-wrap items-center gap-3">
         <div>
           <h1 className="text-[16px] tracking-wider capitalize font-semibold">
             {user?.name ? user?.name : "unknown name"}

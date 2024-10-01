@@ -7,6 +7,8 @@ import Swal from "sweetalert2";
 import { userInfo } from "@/redux/features/authSlice";
 import { useDispatch } from "react-redux";
 import { registerToggle } from "@/redux/features/registerSlice";
+import Cookies from "js-cookie";
+import { authKey } from "@/constants/authKey";
 const PhoneNumberForm = () => {
   const [selectCurrency, setSelectCurrency] = useState();
   const [verifyPhoneNumberStatus, setVerifyPhoneNumberStatus] = useState();
@@ -26,22 +28,23 @@ const PhoneNumberForm = () => {
       setLoading(true);
 
       // Make the POST request to your API
-      const response = await fetch(
-        "https://express-auth-wheat.vercel.app/api/auth/register",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(newData),
-        }
-      );
+      const response = await fetch("https://express-auth-wheat.vercel.app/api/auth/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newData),
+      });
 
       const result = await response.json();
-     
+
       // Handle success or error based on response
       if (response.ok) {
         setLoading(false);
+        Cookies.set(authKey, result?.token, {
+          expires: process.env.JWT_EXPIRES,
+          path: "/",
+        });
         dispatch(userInfo(result?.user)); // Call your submit function
         Swal.fire({
           title: "Success",

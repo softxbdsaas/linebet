@@ -1,7 +1,9 @@
 "use client";
+import { authKey } from "@/constants/authKey";
 import { userInfo } from "@/redux/features/authSlice";
 import { loginToggle } from "@/redux/features/loginSlice";
-import { useEffect, useRef, useState } from "react";
+import Cookies from "js-cookie";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import {
   FaGoogle,
@@ -28,36 +30,44 @@ export default function LoginModal() {
     try {
       // Make the POST request to your API
       setLoading(true);
-      const newData = {
-        email: null,
-        password: data.password,
+      const trimmedData = {
+        emailOrID: data.emailOrID.trim(),
+        password: data.password.trim(),
       };
 
-      if (/\S+@\S+\.\S+/.test(data.emailOrID)) {
+      // Make the POST request to your API
+      setLoading(true);
+      const newData = {
+        email: null,
+        password: trimmedData.password,
+      };
+
+      if (/\S+@\S+\.\S+/.test(trimmedData.emailOrID)) {
         // If the username matches the email pattern
-        newData.email = data.emailOrID;
+        newData.email = trimmedData.emailOrID;
       } else {
         // Otherwise, treat it as an ID
-        newData.userName = data.emailOrID;
+        newData.userName = trimmedData.emailOrID;
       }
 
       // Now, newData will have either email or id populated
 
-      const response = await fetch(
-        "https://express-auth-wheat.vercel.app/api/auth/login",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(newData),
-        }
-      );
+      const response = await fetch("https://express-auth-wheat.vercel.app/api/auth/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newData),
+      });
 
       const result = await response.json();
 
       if (result.status == true) {
         setLoading(false);
+        Cookies.set(authKey, result?.token, {
+          expires: process.env.JWT_EXPIRES,
+          path: "/",
+        });
         dispatch(userInfo(result?.user)); // Call your submit function
         Swal.fire({
           title: "Success",

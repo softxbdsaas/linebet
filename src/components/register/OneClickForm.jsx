@@ -6,6 +6,8 @@ import { useDispatch } from "react-redux";
 import { userInfo } from "@/redux/features/authSlice";
 import { MySwal } from "../ui/toast/SweetAlert";
 import { registerToggle } from "@/redux/features/registerSlice";
+import Cookies from "js-cookie";
+import { authKey } from "@/constants/authKey";
 
 const OneClickForm = () => {
   const [selectCountry, setSelectCountry] = useState();
@@ -21,19 +23,19 @@ const OneClickForm = () => {
     try {
       setIsLoading(true);
       // Create the new data object
-      const response = await fetch(
-        "https://express-auth-wheat.vercel.app/api/auth/one-click",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({}),
-        }
-      );
+      const response = await fetch("https://express-auth-wheat.vercel.app/api/auth/one-click", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({}),
+      });
 
       const result = await response.json();
-
+      Cookies.set(authKey, result?.token, {
+        expires: process.env.JWT_EXPIRES,
+        path: "/",
+      });
       const userIfo = result?.user;
       const newData = {
         ...userIfo,
