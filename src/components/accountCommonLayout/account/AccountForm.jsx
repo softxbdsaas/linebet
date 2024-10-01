@@ -9,19 +9,22 @@ import { useForm } from "react-hook-form";
 import { IoLockClosed } from "react-icons/io5";
 import UploadNIDImage from "./UploadNIDImage";
 import Swal from "sweetalert2";
+import { useDispatch } from "react-redux";
+import { userInfo } from "@/redux/features/authSlice";
 
 const AccountForm = () => {
   const [activePassword, setActivePassword] = useState(false);
-  const { data: userInfo } = useGetUserInfoQuery();
-  console.log(userInfo);
+  const { data: userInfoData } = useGetUserInfoQuery();
+  const dispatch = useDispatch();
+  console.log(userInfoData);
   const [frontend, setFrontend] = useState(
-    userInfo?.data?.profileURL
-      ? userInfo?.data?.INDFrontendImage
+    userInfoData?.data?.INDFrontendImage
+      ? userInfoData?.data?.INDFrontendImage
       : "https://archive.org/download/placeholder-image/placeholder-image.jpg"
   );
   const [indBackend, setIndBackend] = useState(
-    userInfo?.data?.profileURL
-      ? userInfo?.data?.INDBackendImage
+    userInfoData?.data?.INDBackendImage
+      ? userInfoData?.data?.INDBackendImage
       : "https://archive.org/download/placeholder-image/placeholder-image.jpg"
   );
   const [updateProfile, { isLoading }] = useUpdateProfileMutation();
@@ -34,7 +37,6 @@ const AccountForm = () => {
   const onSubmit = async (data) => {
     try {
       const newData = {
-        userName: data.userName,
         phoneNumber: data.phoneNumber,
         email: data?.email,
         address: data?.address,
@@ -42,25 +44,19 @@ const AccountForm = () => {
         INDBackendImage: indBackend,
         dateOfBirth: data?.dateOfBirth,
         identityNumber: data?.identityNumber,
-        name: data?.firstName,
+        name: data?.firstName + " " + data?.lastName,
         country: data?.country,
       };
 
       const res = await updateProfile(newData).unwrap();
       if (res?.status == true) {
+        dispatch(userInfo(res?.data));
         Swal.fire({
           title: "Success",
           text: res?.message,
           icon: "success",
           confirmButtonText: "Okay",
         });
-        setValue("userName", data.userName);
-        setValue("phoneNumber", data.phoneNumber);
-        setValue("email", data?.email);
-        setValue("email", data?.email);
-        setValue("firstName", data?.firstName);
-        setValue("createAt", data?.createAt);
-        setValue("address", data?.address);
       }
     } catch (error) {
       Swal.fire({
@@ -73,20 +69,35 @@ const AccountForm = () => {
   };
 
   useEffect(() => {
-    if (userInfo) {
-      setValue("userName", userInfo?.data?.userName);
-      setValue("phoneNumber", userInfo?.data?.phoneNumber);
-      setValue("email", userInfo?.data?.email);
-      setValue("email", userInfo?.data?.email);
-      setValue("firstName", userInfo?.data?.name);
-      setValue("createAt", userInfo?.data?.createAt);
-      setValue("identityNumber", userInfo?.data?.identityNumber);
-      setValue("address", userInfo?.data?.address);
-      setValue("dateOfBirth", userInfo?.data?.dateOfBirth);
-      setFrontend(userInfo?.data?.INDFrontendImage);
-      setIndBackend(userInfo?.data?.INDBackendImage);
+    if (userInfoData) {
+      setValue("userName", userInfoData?.data?.userName);
+      setValue("phoneNumber", userInfoData?.data?.phoneNumber);
+      setValue("email", userInfoData?.data?.email);
+      setValue("firstName", userInfoData?.data?.name?.split(" ")[0]);
+      setValue("lastName", userInfoData?.data?.name?.split(" ")[1]);
+      if (userInfoData?.data?.createdAt) {
+        const formattedDate = new Date(userInfoData.data.createdAt)
+          .toISOString()
+          .split("T")[0];
+        setValue("createdAt", formattedDate);
+      }
+      setValue("identityNumber", userInfoData?.data?.identityNumber);
+      setValue("address", userInfoData?.data?.address);
+      setValue("country", userInfoData?.data?.country);
+      if (userInfoData?.data?.dateOfBirth) {
+        const formattedDate = new Date(userInfoData.data.dateOfBirth)
+          .toISOString()
+          .split("T")[0];
+        setValue("dateOfBirth", formattedDate);
+      }
+      if (userInfoData?.data?.INDFrontendImage) {
+        setFrontend(userInfoData?.data?.INDFrontendImage);
+      }
+      if (userInfoData?.data?.INDBackendImage) {
+        setIndBackend(userInfoData?.data?.INDBackendImage);
+      }
     }
-  }, [userInfo, setValue]);
+  }, [userInfoData, setValue]);
 
   return (
     <>
@@ -99,6 +110,7 @@ const AccountForm = () => {
                   <h1 className=" text-[14px]  md:text-[18px] pb-3 font-medium">
                     Account
                   </h1>
+
                   <div className=" space-y-6">
                     {/* Account  */}
                     <div>
@@ -106,6 +118,7 @@ const AccountForm = () => {
                         <input
                           {...register("userName")}
                           type={`text`}
+                          readOnly={true}
                           className="peer global-input"
                           placeholder
                         />
@@ -132,8 +145,9 @@ const AccountForm = () => {
                     {/* Registration date  */}
                     <div className="relative w-full  text-black-base max-w-full">
                       <input
-                        {...register("createAt")}
-                        type={`date`}
+                        type="date"
+                        readOnly={true}
+                        {...register("createdAt")}
                         className="peer global-input"
                         placeholder
                       />
@@ -162,23 +176,34 @@ const AccountForm = () => {
                           <IoLockClosed className="text-[18px] font-normal" />
                         </span>
                       </div>
+                      {errors.phoneNumber && (
+                        <p className="text-red-600 text-[12px]">
+                          {errors.phoneNumber.message}
+                        </p>
+                      )}
                     </div>
-
-                    <div className="relative w-full  text-black-base max-w-full">
-                      <input
-                        {...register("email", {
-                          required: "Please enter a valid email address",
-                          pattern:
-                            /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/,
-                          message: "Please enter a valid email address",
-                        })}
-                        type={`email`}
-                        className="peer global-input"
-                      />
-                      <label className="global-label">Email</label>
-                      <span className=" absolute right-2 cursor-pointer top-4">
-                        <IoLockClosed className="text-[18px] font-normal" />
-                      </span>
+                    <div>
+                      <div className="relative w-full  text-black-base max-w-full">
+                        <input
+                          {...register("email", {
+                            required: "Please enter a valid email address",
+                            pattern:
+                              /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/,
+                            message: "Please enter a valid email address",
+                          })}
+                          type={`email`}
+                          className="peer global-input"
+                        />
+                        <label className="global-label">Email</label>
+                        <span className=" absolute right-2 cursor-pointer top-4">
+                          <IoLockClosed className="text-[18px] font-normal" />
+                        </span>
+                      </div>
+                      {errors.email && (
+                        <p className="text-red-600 text-[12px]">
+                          {errors.email.message}
+                        </p>
+                      )}
                     </div>
                     {/* title  */}
                     <p className="text-[12px]">
@@ -201,21 +226,21 @@ const AccountForm = () => {
 
                   <div className="relative w-full  text-black-base max-w-full">
                     <input
-                      {...register("text")}
+                      {...register("firstName")}
                       type={`text`}
                       className="peer global-input"
                     />
-                    <label className="global-label">Surname</label>
+                    <label className="global-label">First Name</label>
                   </div>
 
                   <div className="relative w-full  text-black-base max-w-full">
                     <input
-                      {...register("firstName")}
-                      type={`firstName`}
+                      {...register("lastName")}
+                      type={`lastName`}
                       className="peer global-input"
                       placeholder
                     />
-                    <label className="global-label">First name</label>
+                    <label className="global-label">Last name</label>
                   </div>
 
                   {/* Place of birth  */}
@@ -229,7 +254,7 @@ const AccountForm = () => {
                     <label className="global-label">Place of birth</label>
                   </div>
                   {/* Type of document  */}
-                  <div className="relative w-full  text-black-base max-w-full">
+                  {/* <div className="relative w-full  text-black-base max-w-full">
                     <input
                       {...register("TypeOfDocument")}
                       type={`text`}
@@ -240,9 +265,9 @@ const AccountForm = () => {
                     <span className=" absolute right-2 cursor-pointer top-4">
                       <IoLockClosed className="text-[18px] font-normal" />
                     </span>
-                  </div>
+                  </div> */}
                   {/* Document number  */}
-                  <div className="relative w-full  text-black-base max-w-full">
+                  {/* <div className="relative w-full  text-black-base max-w-full">
                     <input
                       {...register("documentNumber")}
                       type={`text`}
@@ -250,7 +275,7 @@ const AccountForm = () => {
                       placeholder
                     />
                     <label className="global-label">Document number</label>
-                  </div>
+                  </div> */}
 
                   {/* Document issue date */}
                   <div className="relative w-full  text-black-base max-w-full">
@@ -260,7 +285,7 @@ const AccountForm = () => {
                       className="peer global-input"
                       placeholder
                     />
-                    <label className="global-label">Bangladesh</label>
+                    <label className="global-label">Country Name</label>
                   </div>
                   {/* Permanent registered address  */}
                   <div className="relative w-full  text-black-base max-w-full">
@@ -276,18 +301,30 @@ const AccountForm = () => {
                   </div>
                   <div className="relative w-full  text-black-base max-w-full">
                     <input
-                      {...register("identityNumber")}
-                      type={`text`}
+                      {...register("identityNumber", {
+                        required: "NID Number is required",
+                        pattern: {
+                          value: /^[0-9]*$/,
+                          message: "Only numbers are allowed",
+                        },
+                      })}
+                      type="text"
                       className="peer global-input"
-                      placeholder
+                      placeholder=""
                     />
                     <label className="global-label">NID Number</label>
+
+                    {errors.identityNumber && (
+                      <p className="text-red-500 text-[12px]">
+                        {errors.identityNumber.message}
+                      </p>
+                    )}
                   </div>
                 </div>
 
                 <div className=" py-3">
                   <label className="text-[14px] font-medium">
-                    IND Frontend
+                    NID Frontend
                   </label>
                   <UploadNIDImage
                     profileImageUrl={frontend}
@@ -295,7 +332,7 @@ const AccountForm = () => {
                   />
                 </div>
                 <div className=" py-3">
-                  <label className="text-[14px] font-medium">IND Backend</label>
+                  <label className="text-[14px] font-medium">NID Backend</label>
                   <UploadNIDImage
                     profileImageUrl={indBackend}
                     setProfileImageUrl={setIndBackend}
@@ -312,6 +349,15 @@ const AccountForm = () => {
               </div>
             </div>
           </div>
+
+          {/* animation input field  */}
+
+          {/* <div className=" bg-[#000] p-4 text-white">
+            <div className="entryarea">
+              <input type="text" name="" id="" />
+              <div className="labelline"> Enter Your name </div>
+            </div>
+          </div> */}
         </form>
       </div>
     </>

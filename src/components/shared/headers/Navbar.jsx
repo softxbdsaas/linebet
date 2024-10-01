@@ -9,20 +9,22 @@ import Link from "next/link";
 import { useDispatch, useSelector } from "react-redux";
 import { userInfo } from "@/redux/features/authSlice";
 import { useGetUserInfoQuery } from "@/redux/api/authApi";
+import Cookies from "js-cookie";
+import { authKey } from "@/constants/authKey";
 const Navbar = () => {
   const { user } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
   const { data: userInfoData, error } = useGetUserInfoQuery();
-  console.log(userInfoData);
+  const accessToken = Cookies.get(authKey);
   useEffect(() => {
     const loginUser = async () => {
-      if (userInfoData && !user?.userName) {
+      if (userInfoData && !user?.userName && accessToken) {
         const newData = userInfoData?.data;
         dispatch(userInfo(newData));
       }
     };
     loginUser();
-  }, [userInfoData, dispatch, user]);
+  }, [userInfoData, dispatch, user, accessToken]);
 
   return (
     <div className="py-2 sticky top-0 w-full z-[200] px-1 md:px-2 bg-primary-muted">

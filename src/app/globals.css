@@ -48,7 +48,6 @@ body {
   .global-input {
     @apply w-full h-full pl-[14px] pr-[30px] pt-[8px] pb-[18px] rounded overflow-hidden text-black-base font-sans text-[14px] font-normal transition-all bg-transparent border text-gray-700 outline-0 placeholder-shown:border placeholder-shown:border-[#000000] placeholder-shown:border-t-[#000000] focus:border-[2px] focus:border-[#61d17d] focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-gray-50;
   }
-  
 }
 
 /* className="swiper-pagination-bullet swiper-pagination-bullet-active" */
@@ -122,4 +121,45 @@ body {
 .footerPartner::-webkit-scrollbar {
   width: 0px;
   height: 0px;
+}
+
+/* animation css and input field  */
+
+.entryarea {
+  position: relative;
+  height: 80px;
+  line-height: 80px;
+}
+
+.entryarea input[type="text"] {
+  position: absolute;
+  width: 100%;
+  padding: 0 30px;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  line-height: 80px;
+  border: 2px solid #fff;
+  background: transparent;
+  z-index: 1111;
+}
+.entryarea .labelline {
+  position: absolute;
+  font-size: 16px;
+  padding: 0 25px;
+  margin: 0 20px;
+  background-color: #141b1f;
+  transition: 0.2 s ease;
+}
+.entryarea input:focus,
+.entryarea input:valid {
+  color: #fff;
+  border: 3px solid #61d17d;
+}
+
+.entryarea input:focus + .labelline,
+.entryarea input:valid + .labelline {
+  color: #61d17d;
+   height: 30px;
+   
 }

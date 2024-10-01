@@ -9,6 +9,8 @@ import Swal from "sweetalert2";
 import { userInfo } from "@/redux/features/authSlice";
 import { useDispatch } from "react-redux";
 import { registerToggle } from "@/redux/features/registerSlice";
+import Cookies from "js-cookie";
+import { authKey } from "@/constants/authKey";
 const EmailForm = () => {
   const [activePassword, setActivePassword] = useState(false);
   const [selectCity, setSelectCity] = useState();
@@ -73,6 +75,10 @@ const EmailForm = () => {
       // Handle success or error based on response
       if (response.ok) {
         setLoading(false);
+        Cookies.set(authKey, result?.token, {
+          expires: process.env.JWT_EXPIRES,
+          path: "/",
+        });
         dispatch(userInfo(result?.user)); // Call your submit function
         Swal.fire({
           title: "Success",

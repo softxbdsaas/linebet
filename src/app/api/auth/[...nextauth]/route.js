@@ -15,7 +15,7 @@ export const authOptions = {
       clientSecret: process.env.TWITTER_CLIENT_SECRET,
     }),
   ],
-  secret: process.env.NEXTAUTH_SECRET,
+
   session: {
     strategy: "jwt",
   },
@@ -28,7 +28,7 @@ export const authOptions = {
       };
 
       const response = await fetch(
-        "http://localhost:5000/api/auth/social-media-login",
+        "https://express-auth-wheat.vercel.app/api/auth/social-media-login",
         {
           method: "POST",
           headers: {
@@ -51,6 +51,7 @@ export const authOptions = {
       }
     },
   },
+  secret: process.env.NEXTAUTH_SECRET,
 };
 
 const handler = NextAuth(authOptions);
