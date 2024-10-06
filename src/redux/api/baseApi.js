@@ -4,5 +4,5 @@ export const baseApi = createApi({
   reducerPath: "baseApi",
   baseQuery: axiosBaseQuery({ baseUrl: `${process.env.NEXT_PUBLIC_API_URL}` }),
   endpoints: () => ({}),
-  tagTypes: ["users"],
+  tagTypes: ["users","banners"],
 });

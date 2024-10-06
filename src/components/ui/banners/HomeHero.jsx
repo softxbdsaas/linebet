@@ -1,12 +1,32 @@
 "use client";
+import { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import { Pagination, Navigation, Autoplay } from "swiper/modules";
 import Image from "next/image";
 import { IoIosArrowForward } from "react-icons/io";
-import { banners } from "../../../../public/database/banners";
+import axios from "axios";
 const HomeHero = () => {
+  const [banners, setBanners] = useState([]);
+
+  // Fetch banners from the API
+  useEffect(() => {
+    const fetchBanners = async () => {
+      try {
+        const response = await axios.get(
+          "http://127.0.0.1:8000/api/auth/banners"
+        );
+        setBanners(response?.data?.data); // Assuming response.data is an array of banner objects
+      } catch (error) {
+        console.error("Error fetching banners:", error);
+      }
+    };
+
+    fetchBanners();
+  }, []);
+  console.log(banners);
+
   return (
     <div className="relative w-full overflow-hidden">
       {/* Swiper Slider */}
@@ -35,7 +55,7 @@ const HomeHero = () => {
                 width={908}
                 height={248}
                 src={
-                  "https://i.ibb.co.com/qBn42G4/5ac1ebbab9aaf721996820983fcfd51a2-1.png"
+                  process.env.NEXT_PUBLIC_IMAGE_URL + "/images/" + banner?.name
                 }
                 alt="image"
               />
