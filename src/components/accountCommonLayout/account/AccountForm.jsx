@@ -70,8 +70,8 @@ const AccountForm = () => {
 
   useEffect(() => {
     if (userInfoData) {
-      setValue("userName", userInfoData?.data?.userName);
-      setValue("phoneNumber", userInfoData?.data?.phoneNumber);
+      setValue("userName", userInfoData?.data?.user_name);
+      setValue("phoneNumber", userInfoData?.data?.phone_umber);
       setValue("email", userInfoData?.data?.email);
       setValue("firstName", userInfoData?.data?.name?.split(" ")[0]);
       setValue("lastName", userInfoData?.data?.name?.split(" ")[1]);
@@ -81,24 +81,24 @@ const AccountForm = () => {
           .split("T")[0];
         setValue("createdAt", formattedDate);
       }
-      setValue("identityNumber", userInfoData?.data?.identityNumber);
+      setValue("identityNumber", userInfoData?.data?.identity_number);
       setValue("address", userInfoData?.data?.address);
       setValue("country", userInfoData?.data?.country);
-      if (userInfoData?.data?.dateOfBirth) {
-        const formattedDate = new Date(userInfoData.data.dateOfBirth)
+      if (userInfoData?.data?.date_of_birth) {
+        const formattedDate = new Date(userInfoData.data.date_of_birth)
           .toISOString()
           .split("T")[0];
         setValue("dateOfBirth", formattedDate);
       }
-      if (userInfoData?.data?.INDFrontendImage) {
-        setFrontend(userInfoData?.data?.INDFrontendImage);
+      if (userInfoData?.data?.nid_frontend_image) {
+        setFrontend(userInfoData?.data?.nid_frontend_image);
       }
-      if (userInfoData?.data?.INDBackendImage) {
-        setIndBackend(userInfoData?.data?.INDBackendImage);
+      if (userInfoData?.data?.nid_backend_image) {
+        setIndBackend(userInfoData?.data?.nid_backend_image);
       }
     }
   }, [userInfoData, setValue]);
-
+console.log(userInfoData)
   return (
     <>
       <div className="">

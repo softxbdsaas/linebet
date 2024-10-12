@@ -11,19 +11,25 @@ import { useDispatch } from "react-redux";
 import { registerToggle } from "@/redux/features/registerSlice";
 import Cookies from "js-cookie";
 import { authKey } from "@/constants/authKey";
+import {
+  useRegisterForEmailMutation,
+  useRegisterMutation,
+} from "@/redux/api/authApi";
 const EmailForm = () => {
   const [activePassword, setActivePassword] = useState(false);
   const [selectCity, setSelectCity] = useState();
   const [selectCountry, setSelectCountry] = useState();
   const [selectCurrency, setSelectCurrency] = useState();
-  const [loading, setLoading] = useState(false);
+
   const {
     register,
     handleSubmit,
     watch,
     formState: { errors },
   } = useForm();
+  const [registerForEmail, { loading, error }] = useRegisterForEmailMutation();
 
+  console.log(error, ":ddddddddddd");
   const dispatch = useDispatch();
   const onSubmit = async (data) => {
     try {
@@ -39,72 +45,67 @@ const EmailForm = () => {
         phone_number,
       } = data;
 
-      if (confirmPassword != password) {
+      // Validate passwords match
+      if (confirmPassword !== password) {
         Swal.fire({
           title: "Error",
           text: "Passwords do not match!",
           icon: "error",
           confirmButtonText: "Try Again",
         });
-
         return;
       }
 
+      // Prepare the data to send
       const newData = {
         email,
         password,
-        country: selectCountry?.countryname,
-        city,
-        currency: selectCurrency?.currency,
+        country: selectCountry?.countryname || "", // Provide a default or empty string
+        city: selectCity?.name || "", // Provide a default or empty string
+        currency: selectCurrency?.currency || "", // Provide a default or empty string
         promo,
-        name: firstName + " " + lastName,
-        phoneNumber: phone_number,
+        name: `${firstName} ${lastName}`,
+        phone_number: phone_number,
       };
-      setLoading(true);
+      console.log(newData);
+      const result = await registerForEmail(newData).unwrap();
+      console.log(result);
 
-      // Make the POST request to your API
-      const response = await fetch("https://express-auth-wheat.vercel.app/api/auth/register", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(newData),
-      });
-
-      const result = await response.json();
-      // Handle success or error based on response
-      if (response.ok) {
-        setLoading(false);
-        Cookies.set(authKey, result?.token, {
-          expires: process.env.JWT_EXPIRES,
-          path: "/",
-        });
-        dispatch(userInfo(result?.user)); // Call your submit function
-        Swal.fire({
-          title: "Success",
-          text: "Registration successful!",
-          icon: "success",
-          confirmButtonText: "OK",
-        });
-        dispatch(registerToggle());
-        window.location.replace("/office/account");
-      } else {
-        setLoading(false);
+      // Check for API response
+      if (!result.status == true) {
         Swal.fire({
           title: "Error",
           text: result.message || "Something went wrong!",
           icon: "error",
           confirmButtonText: "Try Again",
         });
+
+        return; // Exit early
       }
+
+      // Handle successful response
+      Cookies.set(authKey, result?.data?.token?.access_token, {
+        expires: result?.data?.token?.expires_in,
+        path: "/",
+      });
+      dispatch(userInfo(result?.data?.user));
+      Swal.fire({
+        title: "Success",
+        text: "Registration successful!",
+        icon: "success",
+        confirmButtonText: "OK",
+      });
+      dispatch(registerToggle());
+      window.location.replace("/office/account");
     } catch (error) {
-      setLoading(false);
+      console.error("Unexpected Error:", error); // Log unexpected errors
       Swal.fire({
         title: "Error",
-        text: "There was an issue with the request.",
+        text: error?.message || "An unexpected error occurred!",
         icon: "error",
         confirmButtonText: "OK",
       });
+    } finally {
     }
   };
 
@@ -284,7 +285,7 @@ const EmailForm = () => {
             <button
               disabled={loading}
               type="submit"
-            className="bg-button-base w-full hover:bg-active-base duration-300 text-white uppercase font-sans text-[14px] md:text-[16px] font-medium py-2 md:py-3 px-4 rounded"
+              className="bg-button-base w-full hover:bg-active-base duration-300 text-white uppercase font-sans text-[14px] md:text-[16px] font-medium py-2 md:py-3 px-4 rounded"
             >
               {loading ? "Loading..." : "Registration"}
             </button>

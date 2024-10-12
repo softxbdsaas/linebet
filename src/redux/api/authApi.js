@@ -4,20 +4,32 @@ const authApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     getUserInfo: builder.query({
       query: (id) => ({
-        url: `/api/auth/get-info`,
+        url: `/auth/profile`,
         method: "GET",
       }),
       invalidatesTags: ["users"],
     }),
     updateProfile: builder.mutation({
       query: (data) => ({
-        url: "/api/auth/update-profile-info",
+        url: "/auth/update-profile-info",
         method: "PUT",
         data: data,
+      }),
+      providesTags: ["users"],
+    }),
+    registerForEmail: builder.mutation({
+      query: (data) => ({
+        url: "/auth/register",
+        method: "POST",
+        body: data,
       }),
       providesTags: ["users"],
     }),
   }),
 });
 
-export const { useGetUserInfoQuery, useUpdateProfileMutation } = authApi;
+export const {
+  useGetUserInfoQuery,
+  useUpdateProfileMutation,
+  useRegisterForEmailMutation,
+} = authApi;

@@ -20,7 +20,7 @@ const NavbarRightSite = () => {
   const { user } = useSelector((state) => state.auth);
   return (
     <div className="flex items-center gap-2 relative">
-      {user?.userName ? (
+      {user?.user_name ? (
         <>
           <div className="  flex   md:hidden items-center gap-2  ">
             <button className="px-3 py-[5px] bg-light-base rounded text-[14px]">

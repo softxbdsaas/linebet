@@ -23,20 +23,23 @@ const OneClickForm = () => {
     try {
       setIsLoading(true);
       // Create the new data object
-      const response = await fetch("https://express-auth-wheat.vercel.app/api/auth/one-click", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({}),
-      });
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/api/auth/one-click`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({}),
+        }
+      );
 
       const result = await response.json();
-      Cookies.set(authKey, result?.token, {
-        expires: process.env.JWT_EXPIRES,
+      Cookies.set(authKey, result?.data?.token?.access_token, {
+        expires: result?.data?.token?.expires_in,
         path: "/",
       });
-      const userIfo = result?.user;
+      const userIfo = result?.data?.user;
       const newData = {
         ...userIfo,
         country: selectCountry,
@@ -49,7 +52,7 @@ const OneClickForm = () => {
       setIsLoading(false);
       MySwal.fire({
         title: "Your UserId And Password",
-        text: `Your UserId :${userIfo?.userName} and Password :${result?.password}`,
+        text: `Your UserId :${result?.data?.userName} and Password :${result?.data?.password}`,
         icon: "warning",
         showCancelButton: true,
         confirmButtonColor: "#3085d6",

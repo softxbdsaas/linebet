@@ -4,7 +4,7 @@ const bannerApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     getAllBanners: builder.query({
       query: (id) => ({
-        url: `/api/auth/banners`,
+        url: `/auth/banners`,
         method: "GET",
       }),
       invalidatesTags: ["banners"],
