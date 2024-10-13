@@ -29,7 +29,7 @@ const UploadNIDImage = ({ profileImageUrl, setProfileImageUrl }) => {
       if (!res.ok) throw new Error("Failed to upload image");
 
       const data = await res.json(); // Assuming your API returns some data
-
+       console.log(data)
       // Update image URL if necessary
       setProfileImageUrl(data.path); // Adjust based on your API response
 

@@ -3,7 +3,6 @@ import { setCookie } from "@/utils/cookies-info";
 import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import TwitterProvider from "next-auth/providers/twitter";
-import { cookies } from "next/headers";
 export const authOptions = {
   providers: [
     GoogleProvider({

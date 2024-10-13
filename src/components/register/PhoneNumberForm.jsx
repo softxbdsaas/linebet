@@ -23,12 +23,12 @@ const PhoneNumberForm = () => {
     try {
       const newData = {
         currency: selectCurrency?.currency,
-        phoneNumber: verifyPhoneNumberStatus?.phoneNumber,
+        phone_number: verifyPhoneNumberStatus?.phoneNumber,
       };
       setLoading(true);
 
       // Make the POST request to your API
-      const response = await fetch("https://express-auth-wheat.vercel.app/api/auth/register", {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/auth/register`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -41,11 +41,11 @@ const PhoneNumberForm = () => {
       // Handle success or error based on response
       if (response.ok) {
         setLoading(false);
-        Cookies.set(authKey, result?.token, {
-          expires: process.env.JWT_EXPIRES,
+        Cookies.set(authKey, result?.data?.token?.access_token, {
+          expires: result?.data?.token?.expires_in,
           path: "/",
         });
-        dispatch(userInfo(result?.user)); // Call your submit function
+        dispatch(userInfo(result?.data?.user)); // Call your submit function
         Swal.fire({
           title: "Success",
           text: "Registration successful!",
@@ -73,6 +73,7 @@ const PhoneNumberForm = () => {
       });
     }
   };
+  console.log(verifyPhoneNumberStatus, loading)
 
   return (
     <div className="pt-6 pb-4">

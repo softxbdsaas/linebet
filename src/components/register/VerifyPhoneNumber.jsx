@@ -60,16 +60,17 @@ const VerifyPhoneNumber = ({ setVerifyPhoneNumberStatus }) => {
       setIsLoading(true);
       // Make the POST request to your API
       const response = await fetch(
-        "https://express-auth-wheat.vercel.app/api/auth/verify-phone",
+        `${process.env.NEXT_PUBLIC_API_URL}/api/auth/verify-token`,
         {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ phoneNumber }),
+          body: JSON.stringify({ phone_number: phoneNumber }),
         }
       );
       const result = await response.json();
+      console.log(result);
       if (response.ok) {
         setIsLoading(false);
         startCountdown();
@@ -131,20 +132,20 @@ const VerifyPhoneNumber = ({ setVerifyPhoneNumberStatus }) => {
         setIsLoading(true);
         // Make the POST request to your API
         const response = await fetch(
-          "https://express-auth-wheat.vercel.app/api/auth/verify-otp",
+          `${process.env.NEXT_PUBLIC_API_URL}/api/auth/verify-token/4`,
           {
-            method: "POST",
+            method: "PUT",
             headers: {
               "Content-Type": "application/json",
             },
-            body: JSON.stringify({ phoneNumber, otp }),
+            body: JSON.stringify({ phone_number: phoneNumber, otp }),
           }
         );
         const result = await response.json();
-    
+
         if (response.ok) {
           setIsLoading(false);
-          setVerifyPhoneNumberStatus(result?.verifyInfo);
+          setVerifyPhoneNumberStatus(result?.data?.verifyInfo);
           Swal.fire({
             title: "Success",
             text: `${result?.message}`,
