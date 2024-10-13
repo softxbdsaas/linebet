@@ -15,16 +15,16 @@ import { userInfo } from "@/redux/features/authSlice";
 const AccountForm = () => {
   const [activePassword, setActivePassword] = useState(false);
   const { data: userInfoData } = useGetUserInfoQuery();
+
   const dispatch = useDispatch();
-  console.log(userInfoData);
   const [frontend, setFrontend] = useState(
-    userInfoData?.data?.INDFrontendImage
-      ? userInfoData?.data?.INDFrontendImage
+    userInfoData?.data?.nid_frontend_image
+      ? userInfoData?.data?.nid_frontend_image
       : "https://archive.org/download/placeholder-image/placeholder-image.jpg"
   );
   const [indBackend, setIndBackend] = useState(
-    userInfoData?.data?.INDBackendImage
-      ? userInfoData?.data?.INDBackendImage
+    userInfoData?.data?.nid_backend_image
+      ? userInfoData?.data?.nid_backend_image
       : "https://archive.org/download/placeholder-image/placeholder-image.jpg"
   );
   const [updateProfile, { isLoading }] = useUpdateProfileMutation();
@@ -37,18 +37,19 @@ const AccountForm = () => {
   const onSubmit = async (data) => {
     try {
       const newData = {
-        phoneNumber: data.phoneNumber,
+        phone_number: data.phone_number,
         email: data?.email,
         address: data?.address,
-        INDFrontendImage: frontend,
-        INDBackendImage: indBackend,
-        dateOfBirth: data?.dateOfBirth,
-        identityNumber: data?.identityNumber,
+        nid_frontend_image: frontend,
+        nid_backend_image: indBackend,
+        date_of_birth:  "2025-02-07",
+        identity_number: data?.identity_number,
         name: data?.firstName + " " + data?.lastName,
         country: data?.country,
       };
 
       const res = await updateProfile(newData).unwrap();
+      console.log(res);
       if (res?.status == true) {
         dispatch(userInfo(res?.data));
         Swal.fire({
@@ -59,6 +60,7 @@ const AccountForm = () => {
         });
       }
     } catch (error) {
+      console.log(error);
       Swal.fire({
         title: "Error",
         text: error.message || "Something went wrong!",
@@ -71,24 +73,24 @@ const AccountForm = () => {
   useEffect(() => {
     if (userInfoData) {
       setValue("userName", userInfoData?.data?.user_name);
-      setValue("phoneNumber", userInfoData?.data?.phone_umber);
+      setValue("phone_number", userInfoData?.data?.phone_number);
       setValue("email", userInfoData?.data?.email);
       setValue("firstName", userInfoData?.data?.name?.split(" ")[0]);
       setValue("lastName", userInfoData?.data?.name?.split(" ")[1]);
-      if (userInfoData?.data?.createdAt) {
-        const formattedDate = new Date(userInfoData.data.createdAt)
+      if (userInfoData?.data?.created_at) {
+        const formattedDate = new Date(userInfoData.data.created_at)
           .toISOString()
           .split("T")[0];
-        setValue("createdAt", formattedDate);
+        setValue("created_at", formattedDate);
       }
-      setValue("identityNumber", userInfoData?.data?.identity_number);
+      setValue("identity_number", userInfoData?.data?.identity_number);
       setValue("address", userInfoData?.data?.address);
       setValue("country", userInfoData?.data?.country);
       if (userInfoData?.data?.date_of_birth) {
-        const formattedDate = new Date(userInfoData.data.date_of_birth)
+        const formattedDate = new Date(userInfoData?.data?.date_of_birth)
           .toISOString()
           .split("T")[0];
-        setValue("dateOfBirth", formattedDate);
+        setValue("date_of_birth", formattedDate);
       }
       if (userInfoData?.data?.nid_frontend_image) {
         setFrontend(userInfoData?.data?.nid_frontend_image);
@@ -98,7 +100,7 @@ const AccountForm = () => {
       }
     }
   }, [userInfoData, setValue]);
-console.log(userInfoData)
+
   return (
     <>
       <div className="">
@@ -147,7 +149,7 @@ console.log(userInfoData)
                       <input
                         type="date"
                         readOnly={true}
-                        {...register("createdAt")}
+                        {...register("created_at")}
                         className="peer global-input"
                         placeholder
                       />
@@ -164,7 +166,7 @@ console.log(userInfoData)
                     <div>
                       <div className="relative w-full  text-black-base max-w-full">
                         <input
-                          {...register("phoneNumber", {
+                          {...register("phone_number", {
                             required: "Please enter a phone number",
                           })}
                           type={`text`}
@@ -176,9 +178,9 @@ console.log(userInfoData)
                           <IoLockClosed className="text-[18px] font-normal" />
                         </span>
                       </div>
-                      {errors.phoneNumber && (
+                      {errors.phone_number && (
                         <p className="text-red-600 text-[12px]">
-                          {errors.phoneNumber.message}
+                          {errors.phone_number.message}
                         </p>
                       )}
                     </div>
@@ -244,15 +246,16 @@ console.log(userInfoData)
                   </div>
 
                   {/* Place of birth  */}
-                  <div className="relative w-full  text-black-base max-w-full">
+                  <div className="relative w-full text-black-base max-w-full">
                     <input
-                      {...register("dateOfBirth")}
-                      type={`date`}
+                      {...register("date_of_birth")}
+                      type="date"
                       className="peer global-input"
-                      placeholder
+                      placeholder="YYYY-MM-DD"
                     />
-                    <label className="global-label">Place of birth</label>
+                    <label className="global-label">Date of birth</label>
                   </div>
+
                   {/* Type of document  */}
                   {/* <div className="relative w-full  text-black-base max-w-full">
                     <input
@@ -301,7 +304,7 @@ console.log(userInfoData)
                   </div>
                   <div className="relative w-full  text-black-base max-w-full">
                     <input
-                      {...register("identityNumber", {
+                      {...register("identity_number", {
                         required: "NID Number is required",
                         pattern: {
                           value: /^[0-9]*$/,
@@ -314,9 +317,9 @@ console.log(userInfoData)
                     />
                     <label className="global-label">NID Number</label>
 
-                    {errors.identityNumber && (
+                    {errors.identity_number && (
                       <p className="text-red-500 text-[12px]">
-                        {errors.identityNumber.message}
+                        {errors.identity_number.message}
                       </p>
                     )}
                   </div>

@@ -29,7 +29,6 @@ const EmailForm = () => {
   } = useForm();
   const [registerForEmail, { loading, error }] = useRegisterForEmailMutation();
 
-  console.log(error, ":ddddddddddd");
   const dispatch = useDispatch();
   const onSubmit = async (data) => {
     try {

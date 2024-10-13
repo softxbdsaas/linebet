@@ -1,5 +1,6 @@
 "use client";
 import { authKey } from "@/constants/authKey";
+import { useLoginMutation } from "@/redux/api/authApi";
 import { userInfo } from "@/redux/features/authSlice";
 import { loginToggle } from "@/redux/features/loginSlice";
 import Cookies from "js-cookie";
@@ -25,7 +26,9 @@ export default function LoginModal() {
   const [loading, setLoading] = useState(false);
   const { loginModal } = useSelector((state) => state.loginModal);
   const [activePassword, setActivePassword] = useState(false);
+  const [login,error] = useLoginMutation();
   const dispatch = useDispatch();
+  console.log(error)
   const onSubmit = async (data) => {
     try {
       // Make the POST request to your API
@@ -36,7 +39,7 @@ export default function LoginModal() {
       };
 
       // Make the POST request to your API
-      setLoading(true);
+      // setLoading(true);
       const newData = {
         email: null,
         password: trimmedData.password,
@@ -47,28 +50,31 @@ export default function LoginModal() {
         newData.email = trimmedData.emailOrID;
       } else {
         // Otherwise, treat it as an ID
-        newData.userName = trimmedData.emailOrID;
+        newData.user_name = trimmedData.emailOrID;
       }
 
       // Now, newData will have either email or id populated
 
-      const response = await fetch("https://express-auth-wheat.vercel.app/api/auth/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(newData),
-      });
-
-      const result = await response.json();
-
+      // const response = await fetch(
+      //   `${process.env.NEXT_PUBLIC_API_URL}/api/auth/login`,
+      //   {
+      //     method: "POST",
+      //     headers: {
+      //       "Content-Type": "application/json",
+      //     },
+      //     body: JSON.stringify(newData),
+      //   }
+      // );
+  
+      const result = await login(newData).unwrap();
+       console.log(result)
       if (result.status == true) {
         setLoading(false);
-        Cookies.set(authKey, result?.token, {
-          expires: process.env.JWT_EXPIRES,
+        Cookies.set(authKey, result?.data?.token?.access_token, {
+          expires: result?.data?.token?.expires_in,
           path: "/",
         });
-        dispatch(userInfo(result?.user)); // Call your submit function
+        dispatch(userInfo(result?.data?.user)); // Call your submit function
         Swal.fire({
           title: "Success",
           text: "Login successful!",
