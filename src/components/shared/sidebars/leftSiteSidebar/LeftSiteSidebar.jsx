@@ -14,7 +14,7 @@ const LeftSiteSidebar = () => {
   const toggleActionClick = () => {
     dispatch(desktopLeftToggle());
   };
-  const { desktopLeft } = useSelector((stats) => stats.leftRightToggle);
+  const { desktopLeft } = useSelector((state) => state.leftRightToggle);
   return (
     <div
       className={`${

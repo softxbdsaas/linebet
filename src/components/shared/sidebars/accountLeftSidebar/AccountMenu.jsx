@@ -10,7 +10,7 @@ const AccountMenu = () => {
       <div className="pt-2">
         <ul className="space-y-1">
           <Link
-            href={"/office/account"}
+            href={"/office/recharge"}
             className="py-[6px] border-l-[2px] bg-light-base px-2 border-active-base  flex justify-between items-center gap-1"
           >
             <div className=" flex items-center gap-1">
@@ -47,7 +47,7 @@ const AccountMenu = () => {
             </div>
           </Link>
           <Link
-            href={"/office/account"}
+            href={"/office/transaction-history"}
             className="py-[6px] px-2 hover:bg-light-base duration-200  flex justify-between items-center gap-1"
           >
             <div className=" flex items-center gap-1">

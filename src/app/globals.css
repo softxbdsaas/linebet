@@ -41,12 +41,10 @@ body {
 
 @layer components {
   .global-label {
-    @apply before:content-[''] after:content-[''] !rounded overflow-hidden text-black-base pointer-events-none absolute left-0 -top-2 flex h-full w-full select-none text-[14px] font-normal leading-tight text-gray-400 transition-all before:pointer-events-none before:mt-[6.5px] before:mr-2 before:box-border before:block before:h-1.5 before:w-2.5 before:transition-all;
-    @apply after:mt-[6.5px] after:ml-2 after:box-border after:block after:h-1 after:w-2.5 after:flex-grow after:border-t after:border-r z-40 after:transition-all peer-placeholder-shown:text-[14px] peer-placeholder-shown:leading-[4.7] peer-placeholder-shown:text-[#000000] peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent;
-    @apply peer-focus:text-[12px] peer-focus:leading-tight peer-focus:text-black-base peer-focus:before:border-t-[2px] peer-focus:before:border-l-[2px] peer-focus:before:!border-[#61d17d] peer-focus:after:border-t-[2px] peer-focus:after:border-r-[2px] peer-focus:after:!border-[#61d17d] peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-[#61d17d];
+    @apply text-sm absolute -top-2  bg-white px-1 left-2;
   }
   .global-input {
-    @apply w-full h-full pl-[14px] pr-[30px] pt-[8px] pb-[18px] rounded overflow-hidden text-black-base font-sans text-[14px] font-normal transition-all bg-transparent border text-gray-700 outline-0 placeholder-shown:border placeholder-shown:border-[#000000] placeholder-shown:border-t-[#000000] focus:border-[2px] focus:border-[#61d17d] focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-gray-50;
+    @apply w-full block border border-[#646963] focus:border-[1.5px] focus:border-[#61d17d] px-2 py-[10px] rounded outline-none;
   }
 }
 
@@ -124,42 +122,51 @@ body {
 }
 
 /* animation css and input field  */
-
 .entryarea {
   position: relative;
-  height: 80px;
-  line-height: 80px;
+  height: 47px;
+  line-height: 45px;
 }
 
-.entryarea input[type="text"] {
+.entryarea .animationInputBox {
   position: absolute;
   width: 100%;
-  padding: 0 30px;
-  border: none;
+  padding: 0 5px;
   outline: none;
-  font-size: 16px;
-  line-height: 80px;
-  border: 2px solid #fff;
+  border: none;
+  font-size: 14px;
+  line-height: 45px;
+  border: 1px solid #d4d4d486;
+  color: black;
   background: transparent;
-  z-index: 1111;
-}
-.entryarea .labelline {
-  position: absolute;
-  font-size: 16px;
-  padding: 0 25px;
-  margin: 0 20px;
-  background-color: #141b1f;
-  transition: 0.2 s ease;
-}
-.entryarea input:focus,
-.entryarea input:valid {
-  color: #fff;
-  border: 3px solid #61d17d;
+  border-radius: 8px;
+  z-index: 1; /* Changed to 1 for layering */
 }
 
-.entryarea input:focus + .labelline,
-.entryarea input:valid + .labelline {
+.entryarea .labelline {
+  position: absolute;
+  font-size: 14px;
+  padding: 0 5px;
+  margin: 0 20px;
+  color: black;
+  background-color: white;
+  transition: 0.2s ease;
+  pointer-events: none; /* Prevent label from blocking input */
+}
+
+.entryarea .animationInputBox:focus,
+.entryarea .animationInputBox:valid {
+  color: black;
+  border: 2px solid #61d17d;
+}
+
+/* Float the label when the input is focused or has a value */
+
+.animationInputBox:focus ~ .labelline,
+.animationInputBox:not(:placeholder-shown) {
   color: #61d17d;
-   height: 30px;
-   
+  height: 30px;
+  line-height: 30px;
+  transform: translate(-10px, -14px) scale(0.88);
+  z-index: 1; /* Changed to 1 for layering */
 }

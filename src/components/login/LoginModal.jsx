@@ -67,7 +67,6 @@ export default function LoginModal() {
       // );
   
       const result = await login(newData).unwrap();
-       console.log(result)
       if (result.status == true) {
         setLoading(false);
         Cookies.set(authKey, result?.data?.token?.access_token, {
