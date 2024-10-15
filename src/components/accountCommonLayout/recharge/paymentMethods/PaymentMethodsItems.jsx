@@ -1,14 +1,24 @@
+"use client";
 import React from "react";
 import PaymentItemsComponent from "./PaymentItemsComponent";
 
-const PaymentMethodsItems = () => {
+const PaymentMethodsItems = ({ paymentTypes, showPaymentMethods }) => {
   return (
-    <div  className=" space-y-3">
-      <PaymentItemsComponent title={"recommended methods"} />
-      <PaymentItemsComponent title={"All methods"} />
-      <PaymentItemsComponent title={"e-wallets"} />
-      <PaymentItemsComponent title={"payment systems"} />
-      <PaymentItemsComponent title={"bank transfer"} />
+    <div className=" space-y-3">
+      {showPaymentMethods == 0 ? (
+        paymentTypes?.map((paymentTypes, index) => (
+          <PaymentItemsComponent
+            key={index}
+            paymentMethod={paymentTypes?.payment_methods}
+            title={paymentTypes?.name}
+          />
+        ))
+      ) : (
+        <PaymentItemsComponent
+          paymentMethod={showPaymentMethods?.payment_methods}
+          title={showPaymentMethods?.name}
+        />
+      )}
     </div>
   );
 };

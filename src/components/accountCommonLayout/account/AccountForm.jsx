@@ -42,14 +42,13 @@ const AccountForm = () => {
         address: data?.address,
         nid_frontend_image: frontend,
         nid_backend_image: indBackend,
-        date_of_birth:  "2025-02-07",
+        date_of_birth: data?.date_of_birth,
         identity_number: data?.identity_number,
         name: data?.firstName + " " + data?.lastName,
         country: data?.country,
       };
 
       const res = await updateProfile(newData).unwrap();
-      console.log(res);
       if (res?.status == true) {
         dispatch(userInfo(res?.data));
         Swal.fire({
@@ -60,7 +59,7 @@ const AccountForm = () => {
         });
       }
     } catch (error) {
-      console.log(error);
+  
       Swal.fire({
         title: "Error",
         text: error.message || "Something went wrong!",
@@ -135,7 +134,7 @@ const AccountForm = () => {
                       <input
                         {...register("password")}
                         type={`password`}
-                        className="peer global-input"
+                        className="global-input"
                         value={23423423}
                         placeholder
                       />
@@ -170,6 +169,7 @@ const AccountForm = () => {
                             required: "Please enter a phone number",
                           })}
                           type={`text`}
+                          readOnly={userInfoData?.data?.phone_number}
                           className="peer global-input"
                           placeholder
                         />
@@ -194,6 +194,7 @@ const AccountForm = () => {
                             message: "Please enter a valid email address",
                           })}
                           type={`email`}
+                          readOnly={userInfoData?.data?.email}
                           className="peer global-input"
                         />
                         <label className="global-label">Email</label>
@@ -302,7 +303,7 @@ const AccountForm = () => {
                       Permanent registered address
                     </label>
                   </div>
-                  <div className="relative w-full  text-black-base max-w-full">
+                  <div className="relative w-full text-black-base max-w-full">
                     <input
                       {...register("identity_number", {
                         required: "NID Number is required",
@@ -354,13 +355,6 @@ const AccountForm = () => {
           </div>
 
           {/* animation input field  */}
-
-          {/* <div className=" bg-[#000] p-4 text-white">
-            <div className="entryarea">
-              <input type="text" name="" id="" />
-              <div className="labelline"> Enter Your name </div>
-            </div>
-          </div> */}
         </form>
       </div>
     </>

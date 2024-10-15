@@ -31,7 +31,7 @@ const authApi = baseApi.injectEndpoints({
       query: (data) => ({
         url: "/auth/register",
         method: "POST",
-        body: data,
+        data: data, // Fixed here
       }),
       providesTags: ["users"],
     }),

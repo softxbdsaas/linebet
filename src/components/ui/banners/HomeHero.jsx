@@ -25,7 +25,6 @@ const HomeHero = () => {
 
     fetchBanners();
   }, []);
-  console.log(banners);
 
   return (
     <div className="relative w-full overflow-hidden">

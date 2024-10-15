@@ -1,9 +1,17 @@
-import React from "react";
+"use client";
+import React, { useState } from "react";
 import { RiErrorWarningFill } from "react-icons/ri";
 import PaymentMethodsMenu from "./PaymentMethodsMenu";
 import PaymentMethodsItems from "./PaymentMethodsItems";
+import {
+  useGetAllPaymentMethodsQuery,
+  useGetPaymentTypeQuery,
+} from "@/redux/api/paymentApi";
 
 const PaymentMethod = () => {
+  const { data } = useGetPaymentTypeQuery();
+  const { data: getAllPaymentMethods } = useGetAllPaymentMethodsQuery();
+  const [showPaymentMethods, setShowPaymentMethods] = useState(0);
   return (
     <div className="bg-light-muted p-2">
       <div className=" bg-white p-2 md:p-4 ">
@@ -33,10 +41,13 @@ const PaymentMethod = () => {
         {/* payment system  */}
         <div className="flex flex-col  lg:flex-row items-start gap-8 lg:gap-4 mt-5">
           <div className="w-full lg:w-[350px]">
-            <PaymentMethodsMenu />
+            <PaymentMethodsMenu  setShowPaymentMethods={setShowPaymentMethods}
+              getAllPaymentMethods={getAllPaymentMethods?.data}
+              paymentTypes={data?.data}
+            />
           </div>
           <div className=" w-full">
-            <PaymentMethodsItems />
+            <PaymentMethodsItems showPaymentMethods={showPaymentMethods} paymentTypes={data?.data} />
           </div>
         </div>
       </div>
