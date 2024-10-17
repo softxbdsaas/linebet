@@ -7,7 +7,7 @@ import { userInfo } from "@/redux/features/authSlice";
 import { MySwal } from "../ui/toast/SweetAlert";
 import { registerToggle } from "@/redux/features/registerSlice";
 import Cookies from "js-cookie";
-import { authKey } from "@/constants/authKey";
+import { authKey, cookiesExpires } from "@/constants/authKey";
 
 const OneClickForm = () => {
   const [selectCountry, setSelectCountry] = useState();
@@ -36,9 +36,11 @@ const OneClickForm = () => {
 
       const result = await response.json();
       Cookies.set(authKey, result?.data?.token?.access_token, {
-        expires: result?.data?.token?.expires_in,
+        expires: cookiesExpires, // Set the cookie to expire in 10 days
+        secure: process.env.NODE_ENV === "production", // Secure flag for production
         path: "/",
       });
+
       const userIfo = result?.data?.user;
       const newData = {
         ...userIfo,
@@ -104,10 +106,7 @@ const OneClickForm = () => {
               className="global-input"
               placeholder
             />
-            <label
-              className="global-label">
-              Prome code (if you have one)
-            </label>
+            <label className="global-label">Prome code (if you have one)</label>
           </div>
 
           <div className="w-full">

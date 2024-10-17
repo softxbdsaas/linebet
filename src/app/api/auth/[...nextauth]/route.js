@@ -1,4 +1,5 @@
 // app/api/auth/[...nextauth]/route.js
+import { authKey } from "@/constants/authKey";
 import { setCookie } from "@/utils/cookies-info";
 import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
@@ -39,7 +40,7 @@ export const authOptions = {
 
       const result = await response.json();
       if (result.status == true) {
-        setCookie("access-token", result.token, {
+        setCookie(authKey, result.token, {
           httpOnly: true,
           secure: process.env.NODE_ENV === "production", // Use secure cookies in production
           expires: new Date(Date.now() + 60 * 60 * 1000), // 1 hour expiration
