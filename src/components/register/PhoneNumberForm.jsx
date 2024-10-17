@@ -8,7 +8,7 @@ import { userInfo } from "@/redux/features/authSlice";
 import { useDispatch } from "react-redux";
 import { registerToggle } from "@/redux/features/registerSlice";
 import Cookies from "js-cookie";
-import { authKey } from "@/constants/authKey";
+import { authKey, cookiesExpires } from "@/constants/authKey";
 const PhoneNumberForm = () => {
   const [selectCurrency, setSelectCurrency] = useState();
   const [verifyPhoneNumberStatus, setVerifyPhoneNumberStatus] = useState();
@@ -44,9 +44,11 @@ const PhoneNumberForm = () => {
       if (response.ok) {
         setLoading(false);
         Cookies.set(authKey, result?.data?.token?.access_token, {
-          expires: result?.data?.token?.expires_in,
+          expires: cookiesExpires, // Set the cookie to expire in 10 days
+          secure: process.env.NODE_ENV === "production", // Secure flag for production
           path: "/",
         });
+  
         dispatch(userInfo(result?.data?.user)); // Call your submit function
         Swal.fire({
           title: "Success",

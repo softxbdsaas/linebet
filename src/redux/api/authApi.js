@@ -1,3 +1,4 @@
+import { tagTypes } from "../tag-types";
 import { baseApi } from "./baseApi";
 
 const authApi = baseApi.injectEndpoints({
@@ -7,7 +8,7 @@ const authApi = baseApi.injectEndpoints({
         url: `/auth/profile`,
         method: "GET",
       }),
-      invalidatesTags: ["users"],
+      invalidatesTags: [tagTypes.user],
     }),
     updateProfile: builder.mutation({
       query: (data) => ({
@@ -15,8 +16,18 @@ const authApi = baseApi.injectEndpoints({
         method: "PUT",
         data,
       }),
-      providesTags: ["users"],
+      providesTags: [tagTypes.user],
     }),
+
+    //  fetch better balance query
+    getBetterBalance: builder.query({
+      query: () => ({
+        url: "/auth/get-single-better-balance",
+        method: "GET",
+      }),
+      providesTags: [tagTypes.user],
+    }),
+
     // login
     login: builder.mutation({
       query: (data) => ({
@@ -24,7 +35,7 @@ const authApi = baseApi.injectEndpoints({
         method: "POST",
         data: data,
       }),
-      providesTags: ["users"],
+      providesTags: [tagTypes.user],
     }),
 
     registerForEmail: builder.mutation({
@@ -33,7 +44,7 @@ const authApi = baseApi.injectEndpoints({
         method: "POST",
         data: data, // Fixed here
       }),
-      providesTags: ["users"],
+      providesTags: [tagTypes.user],
     }),
   }),
 });
@@ -43,4 +54,5 @@ export const {
   useUpdateProfileMutation,
   useRegisterForEmailMutation,
   useLoginMutation,
+  useGetBetterBalanceQuery,
 } = authApi;

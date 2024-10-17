@@ -7,7 +7,7 @@ const TransactionHistory = () => {
   const [activeTransaction, setActiveTransaction] = useState(false);
   return (
     <>
-      <div className=" bg-[#EBF2E9] rounded p-2 md:p-4">
+      <div className=" bg-[#EBF2E9] rounded p-1 sm:p-2 md:p-4">
         <div className="text-black-base">
           <h1 className=" text-xl md:text-2xl  font-medium">
             Transaction history

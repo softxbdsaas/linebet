@@ -1,3 +1,4 @@
+import { tagTypes } from "../tag-types";
 import { baseApi } from "./baseApi";
 
 const bannerApi = baseApi.injectEndpoints({
@@ -7,7 +8,7 @@ const bannerApi = baseApi.injectEndpoints({
         url: `/auth/banners`,
         method: "GET",
       }),
-      invalidatesTags: ["banners"],
+      invalidatesTags: [tagTypes.withdraws],
     }),
   }),
 });

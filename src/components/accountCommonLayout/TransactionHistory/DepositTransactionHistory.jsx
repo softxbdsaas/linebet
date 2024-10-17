@@ -4,8 +4,16 @@ import React from "react";
 import Moment from "react-moment";
 
 const DepositTransactionHistory = () => {
-  const { data } = useGetAllDepositRequestQuery();
-  console.log(data);
+  const { data, isLoading } = useGetAllDepositRequestQuery();
+
+  if (isLoading) {
+    return (
+      <div className=" bg-white rounded mt-5 min-h-[75vh] flex justify-center items-center gap-2 text-black-base">
+        {" "}
+        <p>Loading...</p>{" "}
+      </div>
+    );
+  }
   return (
     <>
       <div className=" bg-white rounded mt-5 min-h-[75vh]">
@@ -37,15 +45,17 @@ const DepositTransactionHistory = () => {
 
                     <td className="px-6 py-2  text-center  ">
                       {/* Display the created_at time in a human-readable format */}
-                      <Moment
-                        className="text-sm"
-                        format="yyyy-mm-d hh:mm:ss A"
-                        date={tx.created_at}
-                      />{" "}
-                      <br />
-                      <span className=" text-xs  px-1">
-                        {<Moment fromNow>{tx.created_at}</Moment>}
-                      </span>
+                      <div  className=" min-w-[200px]">
+                        <Moment
+                          className="text-sm"
+                          format="yyyy-mm-d hh:mm:ss A"
+                          date={tx.created_at}
+                        />{" "}
+                        <br />
+                        <span className=" text-xs  px-1">
+                          {<Moment fromNow>{tx.created_at}</Moment>}
+                        </span>
+                      </div>
                     </td>
 
                     <td className="px-4 py-2">
