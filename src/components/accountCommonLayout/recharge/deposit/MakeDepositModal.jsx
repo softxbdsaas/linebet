@@ -40,6 +40,9 @@ const MakeDepositModal = ({ activeModal, setActiveModal }) => {
     }
   };
 
+  
+
+
   return (
     <div className=" max-w-[600px] md:min-w-[400px] relative  mx-auto bg-white text-black-base p-2 md:p-4 rounded ">
       <IoClose

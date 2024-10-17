@@ -15,7 +15,7 @@ const HomeHero = () => {
     const fetchBanners = async () => {
       try {
         const response = await axios.get(
-          "http://127.0.0.1:8000/api/auth/banners"
+          `${process.env.NEXT_PUBLIC_API_URL}/api/auth/banners`
         );
         setBanners(response?.data?.data); // Assuming response.data is an array of banner objects
       } catch (error) {

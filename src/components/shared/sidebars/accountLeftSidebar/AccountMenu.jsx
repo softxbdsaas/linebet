@@ -1,3 +1,4 @@
+"use client";
 import Link from "next/link";
 import React from "react";
 import { BsCurrencyDollar } from "react-icons/bs";
@@ -20,16 +21,7 @@ const AccountMenu = () => {
             <RiErrorWarningFill className="text-danger-base" />
           </Link>
           <Link
-            href={"/office/recharge"}
-            className="py-[6px] px-2 hover:bg-light-base duration-200  flex justify-between items-center gap-1"
-          >
-            <div className=" flex items-center gap-1">
-              <BsCurrencyDollar />
-              <p className="text-[14px] font-medium">Withdraw funds</p>
-            </div>
-          </Link>
-          <Link
-            href={"/office/account"}
+            href={"/office/withdrawals"}
             className="py-[6px] px-2 hover:bg-light-base duration-200  flex justify-between items-center gap-1"
           >
             <div className=" flex items-center gap-1">

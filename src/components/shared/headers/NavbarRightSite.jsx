@@ -14,10 +14,13 @@ import LanguageSetting from "./LanguageSetting";
 import { loginToggle } from "@/redux/features/loginSlice";
 import LoginModal from "@/components/login/LoginModal";
 import { mobileAccountMenuToggle } from "@/redux/features/mobileMenuSlice";
+import { useGetBetterBalanceQuery } from "@/redux/api/authApi";
 
 const NavbarRightSite = () => {
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.auth);
+  const { data } = useGetBetterBalanceQuery();
+  console.log(data);
   return (
     <div className="flex items-center gap-2 relative">
       {user?.user_name ? (
@@ -55,6 +58,14 @@ const NavbarRightSite = () => {
       <LoginModal />
       <div className="  hidden lg:block">
         <div className="flex items-center gap-4">
+          {user?.user_name && (
+            <div className="bg-light-base text-center  px-2 py-[1px]  rounded relative">
+              <p className="text-[10px] leading-[15px]">Main Balance </p>
+              <p className="text-[11px] text-start -translate-y-1"> {data?.data?.balance} </p>
+
+            </div>
+          )}
+
           {/* gift box  */}
           <div className="bg-light-base  p-2 rounded relative">
             <FaGift className="text-[16px] text-white " />

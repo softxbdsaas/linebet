@@ -1,27 +1,26 @@
 "use client";
 import React, { useState } from "react";
 import { RiErrorWarningFill } from "react-icons/ri";
-import PaymentMethodsMenu from "./PaymentMethodsMenu";
-import PaymentMethodsItems from "./PaymentMethodsItems";
 import {
   useGetAllPaymentMethodsQuery,
   useGetPaymentTypeQuery,
 } from "@/redux/api/paymentApi";
+import WithdrawMethodsMenu from "./WithdrawMethodsMenu";
+import WithdrawMethodsItems from "./WithdrawMethodsItems";
 import { useSelector } from "react-redux";
 
-const PaymentMethod = () => {
+const WithdrawPaymentMethods = () => {
   const { data } = useGetPaymentTypeQuery();
   const { data: getAllPaymentMethods } = useGetAllPaymentMethodsQuery();
   const [showPaymentMethods, setShowPaymentMethods] = useState(0);
   const { user } = useSelector((state) => state.auth);
-
   return (
     <div className="bg-light-muted p-2">
       <div className=" bg-white p-2 md:p-4 ">
         <div>
           <div className="text-black-base b px-2">
             <h1 className="text-[16px] md:text-[22px] font-medium ">
-              Account {user?.user_name}{" "}
+              Account {user?.user_name}
             </h1>
             <p className="text-[12px]  md:text-[14px] font-normal py-1">
               Select payment method to top up your account:
@@ -44,14 +43,14 @@ const PaymentMethod = () => {
         {/* payment system  */}
         <div className="flex flex-col  lg:flex-row items-start gap-8 lg:gap-4 mt-5">
           <div className="w-full lg:w-[350px]">
-            <PaymentMethodsMenu
+            <WithdrawMethodsMenu
               setShowPaymentMethods={setShowPaymentMethods}
               getAllPaymentMethods={getAllPaymentMethods?.data}
               paymentTypes={data?.data}
             />
           </div>
           <div className=" w-full">
-            <PaymentMethodsItems
+            <WithdrawMethodsItems
               showPaymentMethods={showPaymentMethods}
               paymentTypes={data?.data}
             />
@@ -62,4 +61,4 @@ const PaymentMethod = () => {
   );
 };
 
-export default PaymentMethod;
+export default WithdrawPaymentMethods;

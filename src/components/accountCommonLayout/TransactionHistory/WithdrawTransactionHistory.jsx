@@ -1,11 +1,19 @@
 "use client";
-import { useGetAllWithdrawRequestQuery } from "@/redux/api/paymentApi";
+import { useGetAllWithdrawRequestQuery } from "@/redux/api/withdrawalsApi";
 import React from "react";
 import Moment from "react-moment";
 
 const WithdrawTransactionHistory = () => {
-  const { data } = useGetAllWithdrawRequestQuery();
-  console.log(data);
+  const { data, isLoading } = useGetAllWithdrawRequestQuery();
+
+  if (isLoading) {
+    return (
+      <div className=" bg-white rounded mt-5 min-h-[75vh] flex justify-center items-center gap-2 text-black-base">
+        {" "}
+        <p>Loading...</p>{" "}
+      </div>
+    );
+  }
   return (
     <>
       <div className=" bg-white rounded mt-5 min-h-[75vh]">
@@ -17,7 +25,7 @@ const WithdrawTransactionHistory = () => {
                   <th className="px-4 text-start py-3 ">
                     Gateway | Transaction
                   </th>
-                  <th className="px-4 py-2 text-center">Initiated</th>
+                  <th className="px-4 py-2 text-center  ">Initiated</th>
                   <th className="px-4 py-2">User</th>
                   <th className="px-4 py-2">Amount</th>
                   <th className="px-4 py-2">Status</th>
@@ -36,16 +44,18 @@ const WithdrawTransactionHistory = () => {
                     </td>
 
                     <td className="px-6 py-2  text-center  ">
-                      {/* Display the created_at time in a human-readable format */}
-                      <Moment
-                        className="text-sm"
-                        format="yyyy-mm-d hh:mm:ss A"
-                        date={tx.created_at}
-                      />{" "}
-                      <br />
-                      <span className=" text-xs  px-1">
-                        {<Moment fromNow>{tx.created_at}</Moment>}
-                      </span>
+                      <div className="min-w-[200px]">
+                        {/* Display the created_at time in a human-readable format */}
+                        <Moment
+                          className="text-sm"
+                          format="yyyy-mm-d hh:mm:ss A"
+                          date={tx.created_at}
+                        />{" "}
+                        <br />
+                        <span className=" text-xs  px-1">
+                          {<Moment fromNow>{tx.created_at}</Moment>}
+                        </span>
+                      </div>
                     </td>
 
                     <td className="px-4 py-2">

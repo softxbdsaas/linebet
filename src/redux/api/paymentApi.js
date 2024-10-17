@@ -1,3 +1,4 @@
+import { tagTypes } from "../tag-types";
 import { baseApi } from "./baseApi";
 
 const paymentApi = baseApi.injectEndpoints({
@@ -8,7 +9,7 @@ const paymentApi = baseApi.injectEndpoints({
         method: "POST",
         data: data,
       }),
-      invalidatesTags: ["payments"],
+      invalidatesTags: [tagTypes.payments],
     }),
 
     getPaymentType: builder.query({
@@ -16,7 +17,7 @@ const paymentApi = baseApi.injectEndpoints({
         url: "/payment/get-all-payment-types-for-client",
         method: "GET",
       }),
-      providesTags: ["payments"],
+      providesTags: [tagTypes.payments],
     }),
     //    get all payment methods
     getAllPaymentMethods: builder.query({
@@ -24,7 +25,7 @@ const paymentApi = baseApi.injectEndpoints({
         url: "/payment/get-all-payment-methods-for-client",
         method: "GET",
       }),
-      providesTags: ["payments"],
+      providesTags: [tagTypes.payments],
     }),
 
     getAllDepositRequest: builder.query({
@@ -32,16 +33,10 @@ const paymentApi = baseApi.injectEndpoints({
         url: "/deposit/get-single-better-by-all-better-deposit-request",
         method: "GET",
       }),
-      providesTags: ["payments"],
+      providesTags: [tagTypes.payments],
     }),
 
-    getAllWithdrawRequest: builder.query({
-      query: () => ({
-        url: "/deposit/get-single-better-by-all-better-withdraw-request",
-        method: "GET",
-      }),
-      providesTags: ["payments"],
-    }),
+
   }),
 });
 
@@ -50,5 +45,5 @@ export const {
   useGetAllPaymentMethodsQuery,
   useGetPaymentTypeQuery,
   useGetAllDepositRequestQuery,
-  useGetAllWithdrawRequestQuery,
+
 } = paymentApi;
