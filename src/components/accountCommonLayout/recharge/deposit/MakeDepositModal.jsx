@@ -21,9 +21,9 @@ const MakeDepositModal = ({ activeModal, setActiveModal }) => {
         number: activeModal?.number,
         payment_method: activeModal?.name,
       };
-      console.log(newData)
+      console.log(newData);
       const res = await createDeposit(newData).unwrap();
-      console.log(res)
+      console.log(res);
       if (res?.status == true) {
         MySwal.fire("Submitted!", "Deposit Request successfully", "success");
         setActiveModal({});
@@ -39,9 +39,6 @@ const MakeDepositModal = ({ activeModal, setActiveModal }) => {
       );
     }
   };
-
-  
-
 
   return (
     <div className=" max-w-[600px] md:min-w-[400px] relative  mx-auto bg-white text-black-base p-2 md:p-4 rounded ">
@@ -101,6 +98,31 @@ const MakeDepositModal = ({ activeModal, setActiveModal }) => {
                   {errors.amount && (
                     <p className="text-red-500 text-[12px]">
                       {errors.amount.message}
+                    </p>
+                  )}
+                </div>
+              </div>
+
+              <div className="flex items-start gap-3">
+                <h1 className="w-[150px]"> Mobile </h1>
+                <div className="relative w-full text-black-base max-w-full">
+                  <input
+                    {...register("sent_mobile", {
+                      required: "mobile  number is required",
+                      pattern: {
+                        value: /^[0-9]*$/, // Ensure only numbers are allowed
+                        message: "Only numbers are allowed",
+                      },
+                    })}
+                    type="text" // You can use "tel" if you want a numeric keypad on mobile
+                    inputMode="numeric" // Ensures numeric keyboard on mobile devices
+                    className="w-full outline-none border focus:border-light-base border-black-base px-2 placeholder:text-sm py-1 rounded"
+                    placeholder="01723XXXXXX"
+                  />
+
+                  {errors.sent_mobile && (
+                    <p className="text-red-500 text-[12px]">
+                      {errors.sent_mobile.message}
                     </p>
                   )}
                 </div>
