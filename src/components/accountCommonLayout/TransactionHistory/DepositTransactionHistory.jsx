@@ -1,5 +1,6 @@
 "use client";
 import { useGetAllDepositRequestQuery } from "@/redux/api/paymentApi";
+import Link from "next/link";
 import React from "react";
 import Moment from "react-moment";
 
@@ -101,9 +102,12 @@ const DepositTransactionHistory = () => {
                       </span>
                     </td>
                     <td className="px-4 py-2">
-                      <button className=" bg-light-base text-white duration-200  text-sm  py-1 px-2 rounded">
+                      <Link
+                        href={`/office/transaction-history/deposit/${tx?.txn_id}`}
+                        className=" bg-light-base text-white duration-200  text-sm  py-1 px-2 rounded"
+                      >
                         Details
-                      </button>
+                      </Link>
                     </td>
                   </tr>
                 ))}
