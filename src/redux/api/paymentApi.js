@@ -28,6 +28,7 @@ const paymentApi = baseApi.injectEndpoints({
       providesTags: [tagTypes.payments],
     }),
 
+    //  query fetched all deposit request
     getAllDepositRequest: builder.query({
       query: () => ({
         url: "/deposit/get-single-better-by-all-better-deposit-request",
@@ -36,7 +37,14 @@ const paymentApi = baseApi.injectEndpoints({
       providesTags: [tagTypes.payments],
     }),
 
-
+    //  query for   better deposit  by id
+    GetSingleBetterDepositById: builder.query({
+      query: (id) => ({
+        url: `/deposit/deposit-log-by-id/${id}`,
+        method: "GET",
+      }),
+      providesTags: [tagTypes.payments],
+    }),
   }),
 });
 
@@ -45,5 +53,5 @@ export const {
   useGetAllPaymentMethodsQuery,
   useGetPaymentTypeQuery,
   useGetAllDepositRequestQuery,
-
+  useGetSingleBetterDepositByIdQuery,
 } = paymentApi;
