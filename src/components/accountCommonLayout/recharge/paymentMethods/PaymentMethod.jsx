@@ -38,7 +38,7 @@ const PaymentMethod = () => {
             <div>
               <RiErrorWarningFill className="text-white-base  text-[25px] md:text-[40px]  " />
             </div>
-            <p className="text-[12px]  md:text-[14px] font-normal">{`বিকাশ, নগদ, রকেট এবং উপায় এর মাধ্যমে ডিপজিট যদি ২ ঘন্টার মধ্যে আপনার একাউন্ট অ্যাড না হয় তাহলে, ক্যাশ আউট এর স্ক্রিনশট এবং যাবতীয় সকল তথ্য প্রমান সহ উক্ত ই মেইল - (solution@pay-mybet27.com) এ যোগাযোগ করুন অথবা লাইভচ্যাট এ নিজের ডিপসিট বা উইথড্র সমস্যার কথা তুলে ধরুন । লেখার ফরমেট - Deposit: (মেথড এর নাম ) , User id: , Transaction id: , Client phone number: , Agent number: , Date: , Time: , Amount:। অথবা ব্যবহার করুন এই টেলিগ্রাম বোটঃ https://t.me/mybet27_Deposit_withdraw_bot ( দ্রুত সমাধান পাওয়ার জন্য একই সমস্যা বার বার পাঠানো থেকে বিরত থাকুন, বারবার পাঠালে আমাদের সমস্যা সমাধান করতে বরং বেশি সময় লাগে।`}</p>
+            <p className="text-[11px] sm:text-[12px]  md:text-[14px] font-normal">{`বিকাশ, নগদ, রকেট এবং উপায় এর মাধ্যমে ডিপজিট যদি ২ ঘন্টার মধ্যে আপনার একাউন্ট অ্যাড না হয় তাহলে, ক্যাশ আউট এর স্ক্রিনশট এবং যাবতীয় সকল তথ্য প্রমান সহ উক্ত ই মেইল - (solution@pay-mybet27.com) এ যোগাযোগ করুন অথবা লাইভচ্যাট এ নিজের ডিপসিট বা উইথড্র সমস্যার কথা তুলে ধরুন । লেখার ফরমেট - Deposit: (মেথড এর নাম ) , User id: , Transaction id: , Client phone number: , Agent number: , Date: , Time: , Amount:। অথবা ব্যবহার করুন এই টেলিগ্রাম বোটঃ https://t.me/mybet27_Deposit_withdraw_bot ( দ্রুত সমাধান পাওয়ার জন্য একই সমস্যা বার বার পাঠানো থেকে বিরত থাকুন, বারবার পাঠালে আমাদের সমস্যা সমাধান করতে বরং বেশি সময় লাগে।`}</p>
           </div>
         </div>
         {/* payment system  */}

@@ -5,7 +5,6 @@ import Moment from "react-moment";
 
 const WithdrawTransactionHistory = () => {
   const { data, isLoading } = useGetAllWithdrawRequestQuery();
-
   if (isLoading) {
     return (
       <div className=" bg-white rounded mt-5 min-h-[75vh] flex justify-center items-center gap-2 text-black-base">
@@ -21,13 +20,14 @@ const WithdrawTransactionHistory = () => {
           <div className="overflow-x-auto   rounded-lg ">
             <table className="min-w-full   ">
               <thead>
-                <tr className="text-sm bg-light-muted ">
+                <tr className="text-xs sm:text-sm bg-light-muted">
                   <th className="px-4 text-start py-3 ">
                     Gateway | Transaction
                   </th>
                   <th className="px-4 py-2 text-center  ">Initiated</th>
-                  <th className="px-4 py-2">User</th>
+                  <th className="px-4 py-2">Agent</th>
                   <th className="px-4 py-2">Amount</th>
+                  <th className="px-4 py-2">Mobile</th>
                   <th className="px-4 py-2">Status</th>
                   <th className="px-4 py-2">Action</th>
                 </tr>
@@ -39,20 +39,22 @@ const WithdrawTransactionHistory = () => {
                     className="text-center border-b  border-light-muted hover:bg-light-muted transition duration-150 ease-in-out"
                   >
                     <td className="px-4 text-start py-2">
-                      <p className={"text-blue"}>{tx.payment_method} </p>
+                      <p className={" text-sm md:text-base text-blue"}>
+                        {tx.payment_method}{" "}
+                      </p>
                       <p className={"text-xs"}> {tx.txn_id}</p>
                     </td>
 
                     <td className="px-6 py-2  text-center  ">
-                      <div className="min-w-[200px]">
-                        {/* Display the created_at time in a human-readable format */}
+                      {/* Display the created_at time in a human-readable format */}
+                      <div className=" min-w-[170px]">
                         <Moment
-                          className="text-sm"
+                          className="text-xs sm:text-sm"
                           format="yyyy-mm-d hh:mm:ss A"
                           date={tx.created_at}
                         />{" "}
                         <br />
-                        <span className=" text-xs  px-1">
+                        <span className="text-[10px] sm:text-xs  px-1">
                           {<Moment fromNow>{tx.created_at}</Moment>}
                         </span>
                       </div>
@@ -60,24 +62,32 @@ const WithdrawTransactionHistory = () => {
 
                     <td className="px-4 py-2">
                       <p className={" text-xs md:text-sm capitalize"}>
-                        {tx.better?.name ? tx.better?.name : "unknown name"}{" "}
+                        {tx?.agent?.name ? tx?.agent?.name : "unknown name"}{" "}
                       </p>
                       <span className={" text-xs md:text-sm text-blue"}>
-                        {tx.better?.email
-                          ? tx.better?.email
-                          : tx.better?.phone_number
-                          ? tx.better?.phone_number
-                          : tx.better?.user_name}
+                        {tx?.agent?.email
+                          ? tx?.agent?.email
+                          : tx?.agent?.phone_number
+                          ? tx?.agent?.phone_number
+                          : tx?.agent?.user_name}
                       </span>
                     </td>
                     <td className="px-4 py-2">
-                      <p className={" text-xs md:text-sm"}>{tx.amount} </p>
-                      <span className={" text-xs md:text-sm text-blue"}>
-                        {tx.total}
-                      </span>
+                      <p className={" text-xs md:text-sm"}>{tx?.amount} </p>
                     </td>
                     <td className="px-4 py-2">
-                      <span className="  rounded-full text-xs px-4 py-[2px]  ">
+                      <p className={" text-xs md:text-sm"}>{tx?.number} </p>
+                    </td>
+                    <td className="px-4 py-2">
+                      <span
+                        className={`                    ${
+                          tx?.status == 0
+                            ? "bg-light-base"
+                            : tx?.status == 1
+                            ? " bg-active-base"
+                            : "bg-danger-base"
+                        } rounded-full text-white text-xs px-4 py-[2px] `}
+                      >
                         {tx?.status == 0
                           ? "Pending"
                           : tx?.status == 1
@@ -86,7 +96,7 @@ const WithdrawTransactionHistory = () => {
                       </span>
                     </td>
                     <td className="px-4 py-2">
-                      <button className=" duration-200  text-sm  py-1 px-2 rounded">
+                      <button className=" bg-light-base text-white duration-200  text-sm  py-1 px-2 rounded">
                         Details
                       </button>
                     </td>

@@ -1,15 +1,22 @@
 "use client";
 import CircleProgress from "@/components/ui/progress/ProfileProgress";
+import { useGetBetterBalanceQuery } from "@/redux/api/authApi";
+import { mobileAccountMenuToggle } from "@/redux/features/mobileMenuSlice";
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 const Profile = () => {
   const { user } = useSelector((state) => state.auth);
   const [currentStep, setCurrentStep] = useState(1);
+  const { data } = useGetBetterBalanceQuery();
   const totalSteps = 5;
+  const dispatch = useDispatch();
   return (
     <div className=" bg-primary-base rounded">
-      <div className="bg-light-base p-2  flex justify-between flex-wrap items-center gap-3">
+      <div
+        onClick={() => dispatch(mobileAccountMenuToggle())}
+        className="bg-light-base p-2  flex justify-between flex-wrap items-center gap-3"
+      >
         <div>
           <h1 className="text-[16px] tracking-wider capitalize font-semibold">
             {user?.name ? user?.name : "unknown name"}
@@ -27,6 +34,7 @@ const Profile = () => {
           <CircleProgress currentStep={currentStep} totalSteps={totalSteps} />
         </div>
       </div>
+
       <div className=" space-y-2 p-2">
         <div className="flex justify-between items-center gap-2">
           <p className="text-[14px] font-normal">Bonus points</p>
@@ -34,7 +42,7 @@ const Profile = () => {
         </div>
         <div className="flex justify-between items-center gap-2">
           <p className="text-[14px] font-normal">Main account (BDT)</p>
-          <p className="text-[14px] font-normal">0</p>
+          <p className="text-[14px] font-normal">{data?.data?.balance}</p>
         </div>
       </div>
     </div>

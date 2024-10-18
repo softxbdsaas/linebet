@@ -1,17 +1,23 @@
+"use client";
+import { mobileAccountMenuToggle } from "@/redux/features/mobileMenuSlice";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import React from "react";
 import { BsCurrencyDollar } from "react-icons/bs";
-import { RiErrorWarningFill } from "react-icons/ri";
+import { useDispatch } from "react-redux";
 
 const ExtraMenu = () => {
+  const pathName = usePathname();
+  const dispatch = useDispatch();
   return (
     <div className="text-white mt-2">
       <h1 className="text-[14px] px-2 uppercase font-medium"> Extra</h1>
       <div className="pt-2">
         <ul className="space-y-1">
           <Link
+            onClick={() => dispatch(mobileAccountMenuToggle())}
             href={"/office/account"}
-            className="py-[6px] border-l-[2px] bg-light-base  px-2 border-active-base  flex justify-between items-center gap-1"
+            className="py-[6px]  px-2   flex justify-between items-center gap-1"
           >
             <div className=" flex items-center gap-1">
               <BsCurrencyDollar />
@@ -19,6 +25,7 @@ const ExtraMenu = () => {
             </div>
           </Link>
           <Link
+            onClick={() => dispatch(mobileAccountMenuToggle())}
             href={"/office/account"}
             className="py-[6px] px-2 hover:bg-light-base duration-200  flex justify-between items-center gap-1"
           >
@@ -27,7 +34,9 @@ const ExtraMenu = () => {
               <p className="text-[14px] font-medium">Casino VIP Cashback</p>
             </div>
           </Link>
+
           <Link
+            onClick={() => dispatch(mobileAccountMenuToggle())}
             href={"/office/account"}
             className="py-[6px] px-2 hover:bg-light-base duration-200  flex justify-between items-center gap-1"
           >
@@ -37,6 +46,7 @@ const ExtraMenu = () => {
             </div>
           </Link>
           <Link
+            onClick={() => dispatch(mobileAccountMenuToggle())}
             href={"/office/account"}
             className="py-[6px] px-2 hover:bg-light-base duration-200  flex justify-between items-center gap-1"
           >

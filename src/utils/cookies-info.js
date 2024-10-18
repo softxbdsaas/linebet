@@ -9,7 +9,6 @@ import { cookies } from "next/headers";
  */
 export const setCookie = (key, value, options = {}) => {
   const cookieStore = cookies();
-  console.log(key, value, options)
   // Prepare the cookie options
   const cookieOptions = {
     path: "/",

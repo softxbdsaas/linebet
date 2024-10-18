@@ -16,11 +16,11 @@ import LoginModal from "@/components/login/LoginModal";
 import { mobileAccountMenuToggle } from "@/redux/features/mobileMenuSlice";
 import { useGetBetterBalanceQuery } from "@/redux/api/authApi";
 
+
 const NavbarRightSite = () => {
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.auth);
   const { data } = useGetBetterBalanceQuery();
-  console.log(data);
   return (
     <div className="flex items-center gap-2 relative">
       {user?.user_name ? (
@@ -28,7 +28,7 @@ const NavbarRightSite = () => {
           <div className="  flex   md:hidden items-center gap-2  ">
             <button className="px-3 py-[5px] bg-light-base rounded text-[14px]">
               {" "}
-              0 BDT{" "}
+              {data?.data?.balance?.split(".")?.[0]} BDT{" "}
             </button>
             <button
               onClick={() => dispatch(mobileAccountMenuToggle())}
@@ -61,8 +61,10 @@ const NavbarRightSite = () => {
           {user?.user_name && (
             <div className="bg-light-base text-center  px-2 py-[1px]  rounded relative">
               <p className="text-[10px] leading-[15px]">Main Balance </p>
-              <p className="text-[11px] text-start -translate-y-1"> {data?.data?.balance} </p>
-
+              <p className="text-[11px] text-start -translate-y-1">
+                {" "}
+                {data?.data?.balance}{" "}
+              </p>
             </div>
           )}
 

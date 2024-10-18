@@ -1,17 +1,28 @@
+"use client";
+import { mobileAccountMenuToggle } from "@/redux/features/mobileMenuSlice";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import React from "react";
 import { BsCurrencyDollar } from "react-icons/bs";
 import { RiErrorWarningFill } from "react-icons/ri";
+import { useDispatch } from "react-redux";
 
 const ProfileMenu = () => {
+  const pathName = usePathname();
+  const dispatch = useDispatch();
   return (
     <div className="text-white mt-2">
       <h1 className="text-[14px] px-2 uppercase font-medium"> Profile</h1>
       <div className="pt-2">
         <ul className="space-y-1">
           <Link
+            onClick={() => dispatch(mobileAccountMenuToggle())}
             href={"/office/account"}
-            className="py-[6px] hover:bg-light-base duration-300 flex justify-between items-center gap-1"
+            className={` ${
+              pathName == "/office/account"
+                ? "bg-light-base border-danger-base  border-l-[2px]"
+                : "border-l-[2px] border-transparent"
+            } py-[6px] hover:bg-light-base hover:border-danger-base  hover:border-l-[2px]  px-2   flex justify-between duration-200 items-center gap-1`}
           >
             <div className=" flex items-center gap-1">
               <BsCurrencyDollar />
@@ -20,8 +31,13 @@ const ProfileMenu = () => {
             <RiErrorWarningFill className="text-danger-base" />
           </Link>
           <Link
-            href={"/office/account"}
-            className="py-[6px] hover:bg-light-base duration-300 flex justify-between items-center gap-1"
+            onClick={() => dispatch(mobileAccountMenuToggle())}
+            href={"/office/security"}
+            className={` ${
+              pathName == "/office/security"
+                ? "bg-light-base border-danger-base  border-l-[2px]"
+                : "border-l-[2px] border-transparent"
+            } py-[6px] hover:bg-light-base hover:border-danger-base  hover:border-l-[2px]  px-2   flex justify-between duration-200 items-center gap-1`}
           >
             <div className=" flex items-center gap-1">
               <BsCurrencyDollar />
@@ -30,8 +46,13 @@ const ProfileMenu = () => {
             <RiErrorWarningFill className="text-danger-base" />
           </Link>
           <Link
-            href={"/office/account"}
-            className="py-[6px] hover:bg-light-base duration-200  flex justify-between items-center gap-1"
+            onClick={() => dispatch(mobileAccountMenuToggle())}
+            href={"/office/setting"}
+            className={` ${
+              pathName == "/office/setting"
+                ? "bg-light-base border-danger-base  border-l-[2px]"
+                : "border-l-[2px] border-transparent"
+            } py-[6px] hover:bg-light-base hover:border-danger-base  hover:border-l-[2px]  px-2   flex justify-between duration-200 items-center gap-1`}
           >
             <div className=" flex items-center gap-1">
               <BsCurrencyDollar />

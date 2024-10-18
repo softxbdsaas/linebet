@@ -60,7 +60,6 @@ const MakeWithdrawals = ({ activeModal, setActiveModal }) => {
         MySwal.fire("Error!", res?.message, "error");
       }
     } catch (error) {
-      console.log(error);
       MySwal.fire(
         "Error!",
         "Something went wrong during form submission.",
@@ -70,7 +69,8 @@ const MakeWithdrawals = ({ activeModal, setActiveModal }) => {
   };
 
   return (
-    <div className="max-w-[600px] md:min-w-[400px] relative mx-auto bg-white text-black-base p-2 md:p-4 rounded">
+    <div className="max-w-[600px] md:min-w-[400px] relative sm:mx-auto bg-white text-black-base p-2 md:p-4 rounded mx-2">
+
       <IoClose
         onClick={() => setActiveModal({})}
         className="text-[18px] absolute right-2 top-2 hover:text-danger-base cursor-pointer"
@@ -89,11 +89,11 @@ const MakeWithdrawals = ({ activeModal, setActiveModal }) => {
           />
         </div>
 
-        <p className="text-sm md:text-base">
+        <p className="text-xs sm:text-sm md:text-base">
           Received Payment Method:
           <span className="ml-2 capitalize">{activeModal?.name}</span>
         </p>
-        <p className="text-base">
+        <p className="text-xs sm:text-sm md:text-base">
           Withdraw Range: (
           <span className="text-danger-base">
             {withdrawLockBalance?.data?.min}
@@ -104,7 +104,7 @@ const MakeWithdrawals = ({ activeModal, setActiveModal }) => {
           </span>{" "}
           ) TK
         </p>
-        <p className="text-base">
+        <p className="text-xs sm:text-sm md:text-base">
           Available Balance:
           <span className="text-active-base"> {availableBalance}</span> TK
         </p>
@@ -112,7 +112,7 @@ const MakeWithdrawals = ({ activeModal, setActiveModal }) => {
         <form onSubmit={handleSubmit(onSubmit)} className="mt-5">
           <div className="space-y-4">
             <div className="flex items-center gap-3">
-              <h1 className="w-[150px]">Amount</h1>
+              <h1 className="w-[100px]  sm:w-[150px] text-sm md:text-base">Amount</h1>
               <div className="relative w-full text-black-base max-w-full">
                 <input
                   {...register("amount", {
@@ -126,9 +126,9 @@ const MakeWithdrawals = ({ activeModal, setActiveModal }) => {
                       value < withdrawLockBalance?.data?.max ||
                       `Amount must be between ${withdrawLockBalance?.data?.min} and ${withdrawLockBalance?.data?.max}`,
                   })}
-                  type="text"
+                  type="number"
                   inputMode="numeric"
-                  className="w-full outline-none border focus:border-light-base border-black-base px-2 placeholder:text-sm py-1 rounded"
+                  className="w-full outline-none text-sm border focus:border-light-base border-black-base px-2 placeholder:text-sm py-2 rounded"
                   placeholder={` ${withdrawLockBalance?.data?.min} - ${withdrawLockBalance?.data?.max}`}
                 />
                 {errors.amount && (
@@ -140,15 +140,15 @@ const MakeWithdrawals = ({ activeModal, setActiveModal }) => {
             </div>
 
             <div className="flex items-center gap-3">
-              <h1 className="w-[150px]">Received Number</h1>
+              <h1 className="w-[100px]  sm:w-[150px] text-sm md:text-base">Received Number</h1>
               <div className="relative w-full text-black-base max-w-full">
                 <input
                   {...register("number", {
                     required: "Number is required",
                   })}
                   type="text"
-                  className="w-full outline-none border focus:border-light-base border-black-base px-2 placeholder:text-sm py-1 rounded"
-                  placeholder="01611784575"
+                  className="w-full outline-none text-sm   border focus:border-light-base border-black-base px-2 placeholder:text-sm py-2 rounded"
+                  placeholder="01611XXXXX"
                 />
                 {errors.number && (
                   <p className="text-red-500 text-[12px]">
@@ -160,7 +160,7 @@ const MakeWithdrawals = ({ activeModal, setActiveModal }) => {
             <div>
               <button
                 type="submit"
-                className="w-full px-4 py-2 text-white bg-primary-base uppercase rounded hover:bg-light-base focus:outline-none focus:bg-green-600"
+                className="w-full px-4 py-2 text-sm md:text-base text-white bg-primary-base uppercase rounded hover:bg-light-base focus:outline-none focus:bg-green-600"
               >
                 {isLoading ? "Loading..." : "Confirm"}
               </button>

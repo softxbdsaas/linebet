@@ -21,9 +21,7 @@ const MakeDepositModal = ({ activeModal, setActiveModal }) => {
         number: activeModal?.number,
         payment_method: activeModal?.name,
       };
-      console.log(newData);
       const res = await createDeposit(newData).unwrap();
-      console.log(res);
       if (res?.status == true) {
         MySwal.fire("Submitted!", "Deposit Request successfully", "success");
         setActiveModal({});
@@ -31,7 +29,6 @@ const MakeDepositModal = ({ activeModal, setActiveModal }) => {
         MySwal.fire("Error!", res?.message, "error");
       }
     } catch (error) {
-      console.log(error);
       MySwal.fire(
         "Error!",
         "Something went wrong during form submission.",
