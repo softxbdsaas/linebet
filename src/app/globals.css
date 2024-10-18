@@ -41,10 +41,10 @@ body {
 
 @layer components {
   .global-label {
-    @apply text-sm absolute -top-2  bg-white px-1 left-2;
+    @apply  text-xs md:text-sm absolute -top-2  bg-white px-1 left-2;
   }
   .global-input {
-    @apply w-full block border border-[#646963] focus:border-[1.5px] focus:border-[#61d17d] px-2 py-[10px] rounded outline-none;
+    @apply w-full text-xs md:text-sm block border border-[#646963] focus:border-[1.5px] focus:border-[#61d17d] px-2 py-[10px] rounded outline-none;
   }
 }
 

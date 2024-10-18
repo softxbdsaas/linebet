@@ -28,7 +28,6 @@ export default function LoginModal() {
   const [activePassword, setActivePassword] = useState(false);
   const [login,error] = useLoginMutation();
   const dispatch = useDispatch();
-  console.log(error)
   const onSubmit = async (data) => {
     try {
       // Make the POST request to your API

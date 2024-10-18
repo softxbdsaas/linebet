@@ -9,14 +9,14 @@ const TransactionHistory = () => {
     <>
       <div className=" bg-[#EBF2E9] rounded p-1 sm:p-2 md:p-4">
         <div className="text-black-base">
-          <h1 className=" text-xl md:text-2xl  font-medium">
+          <h1 className=" text-base sm:text-xl md:text-2xl  font-medium">
             Transaction history
           </h1>
           <p className="text-xs md:text-sm">
             Includes deposits, withdrawals and transfers of funds
           </p>
 
-          <div className="my-2">
+          <div className="mt-2">
             <div className=" flex items-center">
               <button
                 onClick={() => setActiveTransaction(false)}

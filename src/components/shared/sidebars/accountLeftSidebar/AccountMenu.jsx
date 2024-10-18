@@ -1,18 +1,28 @@
 "use client";
+import { mobileAccountMenuToggle } from "@/redux/features/mobileMenuSlice";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import React from "react";
 import { BsCurrencyDollar } from "react-icons/bs";
 import { RiErrorWarningFill } from "react-icons/ri";
+import { useDispatch } from "react-redux";
 
 const AccountMenu = () => {
+  const pathName = usePathname();
+  const dispatch = useDispatch();
   return (
     <div className="text-white">
       <h1 className="text-[14px] px-2 uppercase font-medium"> account</h1>
       <div className="pt-2">
         <ul className="space-y-1">
           <Link
-            href={"/office/recharge"}
-            className="py-[6px] border-l-[2px] bg-light-base px-2 border-active-base  flex justify-between items-center gap-1"
+            onClick={() => dispatch(mobileAccountMenuToggle())}
+            href={`/office/recharge`}
+            className={` ${
+              pathName == "/office/recharge"
+                ? "bg-light-base border-danger-base  border-l-[2px]"
+                : ""
+            } py-[6px] hover:bg-light-base hover:border-danger-base  hover:border-l-[2px]  px-2   flex justify-between duration-200 items-center gap-1`}
           >
             <div className=" flex items-center gap-1">
               <BsCurrencyDollar />
@@ -21,26 +31,40 @@ const AccountMenu = () => {
             <RiErrorWarningFill className="text-danger-base" />
           </Link>
           <Link
+            onClick={() => dispatch(mobileAccountMenuToggle())}
             href={"/office/withdrawals"}
-            className="py-[6px] px-2 hover:bg-light-base duration-200  flex justify-between items-center gap-1"
+            className={` ${
+              pathName == "/office/withdrawals"
+                ? "bg-light-base border-danger-base  border-l-[2px]"
+                : "border-l-[2px] border-transparent"
+            } py-[6px] hover:bg-light-base hover:border-danger-base  hover:border-l-[2px]  px-2   flex justify-between duration-200 items-center gap-1`}
           >
             <div className=" flex items-center gap-1">
               <BsCurrencyDollar />
               <p className="text-[14px] font-medium">Withdraw funds</p>
             </div>
           </Link>
-          <Link
+          {/* <Link
             href={"/office/account"}
-            className="py-[6px] px-2 hover:bg-light-base duration-200  flex justify-between items-center gap-1"
+            className={` ${
+              pathName == "/office/account"
+                ? "bg-light-base border-danger-base  border-l-[2px]"
+                : "border-l-[2px] border-transparent"
+            } py-[6px] hover:bg-light-base hover:border-danger-base  hover:border-l-[2px]  px-2   flex justify-between duration-200 items-center gap-1`}
           >
             <div className=" flex items-center gap-1">
               <BsCurrencyDollar />
               <p className="text-[14px] font-medium">Bet history</p>
             </div>
-          </Link>
+          </Link> */}
           <Link
+            onClick={() => dispatch(mobileAccountMenuToggle())}
             href={"/office/transaction-history"}
-            className="py-[6px] px-2 hover:bg-light-base duration-200  flex justify-between items-center gap-1"
+            className={` ${
+              pathName == "/office/transaction-history"
+                ? "bg-light-base border-danger-base  border-l-[2px]"
+                : "border-l-[2px] border-transparent"
+            } py-[6px] hover:bg-light-base hover:border-danger-base  hover:border-l-[2px]  px-2   flex justify-between duration-200 items-center gap-1`}
           >
             <div className=" flex items-center gap-1">
               <BsCurrencyDollar />
