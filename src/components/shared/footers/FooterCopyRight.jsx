@@ -33,7 +33,7 @@ const FooterCopyRight = () => {
                   <h1 className="uppercase text-[14px] font-semibold">
                     Support
                   </h1>
-                  <h1 className="text-[16px]">+44 20 4577 0803</h1>
+                  <h1 className="text-[16px]">4951234567</h1>
                 </div>
               </div>
             </div>

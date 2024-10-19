@@ -6,6 +6,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import { Pagination, Navigation, Autoplay } from "swiper/modules";
 import { banners } from "../../../../public/database/banners";
+import Link from "next/link";
 
 const MobileHomeHero = () => {
   return (
@@ -38,7 +39,7 @@ const MobileHomeHero = () => {
               key={index}
               className=" h-full shadow-[0_3px_10px_rgb(0,0,0,0.2)] p-[3px] bg-white text-black-base text-center  rounded-lg overflow-hidden"
             >
-              <div className=" h-ful">
+              <Link href={'/slots'} className=" h-ful">
                 <div className="w-full h-[75px] rounded-lg overflow-hidden">
                   <Image
                     className="w-full overflow-hidden  object-cover   h-full"
@@ -49,7 +50,7 @@ const MobileHomeHero = () => {
                   />
                 </div>
                 <p className="text-[10px] text-[#000] "> {banner?.name} </p>
-              </div>
+              </Link>
             </SwiperSlide>
           ))}
         </Swiper>

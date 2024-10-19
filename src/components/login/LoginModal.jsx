@@ -81,7 +81,7 @@ export default function LoginModal() {
           confirmButtonText: "OK",
         });
         dispatch(loginToggle());
-        window.location.replace("/office/account");
+        window.location.replace("");
       } else {
         setLoading(false);
         Swal.fire({

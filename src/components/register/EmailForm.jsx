@@ -89,7 +89,7 @@ const EmailForm = () => {
         });
 
         dispatch(registerToggle());
-        window.location.replace("/office/account");
+        window.location.replace("/");
       } else {
         // Changed to simply check for falsy value
         Swal.fire({

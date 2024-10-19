@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import { FaGift } from "react-icons/fa6";
 import { MdEmail } from "react-icons/md";
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
@@ -15,12 +15,18 @@ import { loginToggle } from "@/redux/features/loginSlice";
 import LoginModal from "@/components/login/LoginModal";
 import { mobileAccountMenuToggle } from "@/redux/features/mobileMenuSlice";
 import { useGetBetterBalanceQuery } from "@/redux/api/authApi";
-
+import { TbCurrencyDollar } from "react-icons/tb";
+import { RiUpload2Line } from "react-icons/ri";
+import { FaUser } from "react-icons/fa";
+import { CiSettings } from "react-icons/ci";
+import { IoCaretUp } from "react-icons/io5";
 
 const NavbarRightSite = () => {
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.auth);
   const { data } = useGetBetterBalanceQuery();
+  const [tooltipVisible, setTooltipVisible] = useState(false);
+
   return (
     <div className="flex items-center gap-2 relative">
       {user?.user_name ? (
@@ -35,7 +41,9 @@ const NavbarRightSite = () => {
               className="bg-light-base pr-1 pl-2 cursor-pointer py-[6px] flex items-center rounded"
             >
               <FaRegUser className="text-[16px] text-white" />
-              <MdOutlineKeyboardArrowDown className="text-[20px] text-white" />
+              <MdOutlineKeyboardArrowDown
+                className={`duration-300 text-[20px] text-white `}
+              />
             </button>
           </div>
         </>
@@ -82,13 +90,74 @@ const NavbarRightSite = () => {
           </div>
           {/* users box  */}
           {user ? (
-            <Link
-              href={"/office/account"}
-              className="bg-light-base hidden md:flex pr-1 pl-2 cursor-pointer py-[6px]  items-center rounded"
+            <div
+              onMouseEnter={() => setTooltipVisible(true)}
+              onMouseLeave={() => setTooltipVisible(false)}
+              className="bg-light-base relative hidden md:flex pr-1 pl-2 cursor-pointer py-[6px]  items-center rounded"
             >
               <FaRegUser className="text-[16px] text-white" />
-              <MdOutlineKeyboardArrowDown className="text-[20px] text-white" />
-            </Link>
+              <MdOutlineKeyboardArrowDown
+                className={` ${
+                  tooltipVisible == true ? "rotate-180" : ""
+                } duration-500 text-[20px] text-white `}
+              />
+
+              {tooltipVisible && (
+                <div className="absolute right-0 top-6 w-48  py-1  bg-transparent z-50 rounded shadow-lg">
+                  <div className="bg-white text-black-base  mt-4  relative">
+                    <div className="down absolute right-3">
+                      <IoCaretUp className="text-[20px] w-full   text-white -mt-[13px]   -pr-10 " />
+                    </div>
+
+                    <div className=" border-b border-light hover:bg-light-muted duration-200 flex items-center justify-center gap-1  p-2 ">
+                      <span className="h-5 w-5 flex-shrink-0 text-metal-500 transition duration-75">
+                        <TbCurrencyDollar className="text-base" />
+                      </span>
+                      <Link
+                        className=" flex-1 capitalize whitespace-nowrap text-[12px] md:text-sm font-medium"
+                        href={"/office/recharge"}
+                      >
+                        Deposit
+                      </Link>
+                    </div>
+                    <div className=" border-b border-light hover:bg-light-muted duration-200 flex items-center justify-center gap-1  p-2 ">
+                      <span className="h-5 w-5 flex-shrink-0 text-metal-500 transition duration-75">
+                        <RiUpload2Line className="text-base" />
+                      </span>
+                      <Link
+                        className=" flex-1 capitalize whitespace-nowrap text-[12px] md:text-sm font-medium"
+                        href={"/office/withdrawals"}
+                      >
+                        withdraw
+                      </Link>
+                    </div>
+                    <div className=" border-b border-light hover:bg-light-muted duration-200 flex items-center justify-center gap-1  p-2 ">
+                      <span className="h-5 w-5 flex-shrink-0 text-metal-500 transition duration-75">
+                        <FaUser className="text-base" />
+                      </span>
+                      <Link
+                        className=" flex-1 capitalize whitespace-nowrap text-[12px] md:text-sm font-medium"
+                        href={"/office/account"}
+                      >
+                        personal profile
+                      </Link>
+                    </div>
+
+                    <div className=" border-b border-light hover:bg-light-muted duration-200 flex items-center justify-center gap-1  p-2 ">
+                      <span className="h-5 w-5 flex-shrink-0 text-metal-500 transition duration-75">
+                        <CiSettings className="text-base" />
+                      </span>
+                      <Link
+                        className=" flex-1 capitalize whitespace-nowrap text-[12px] md:text-sm font-medium"
+                        href={"/"}
+                      >
+                        setting account
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
           ) : null}
 
           {/* setting  options  */}
