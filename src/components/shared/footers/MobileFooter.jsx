@@ -6,24 +6,27 @@ import { GiStickSplitting } from "react-icons/gi";
 import { FaUser } from "react-icons/fa";
 import { IoMenu } from "react-icons/io5";
 import Link from "next/link";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { mobileMenuToggle } from "@/redux/features/mobileMenuSlice";
+import { loginToggle } from "@/redux/features/loginSlice";
+import { TbCurrencyDollar } from "react-icons/tb";
 
 const MobileFooter = () => {
   const dispatch = useDispatch();
+  const { user } = useSelector((state) => state.auth);
   return (
     <>
       <div className="block lg:hidden   sticky  w-full bottom-0 bg-white text-black-base px-2 py-1 z-50">
         <div className=" text-black-base flex justify-between items-center">
           <Link
-            href={"/"}
+            href={"/slots"}
             className=" flex  flex-col justify-center items-center"
           >
             <IoTrophySharp className="text-[14px]" />
             <span className="text-[11px] font-normal">Sports</span>
           </Link>
           <Link
-            href={"/"}
+            href={"/allgamesentrance/crash"}
             className=" flex  flex-col justify-center items-center "
           >
             <FaFutbol className="text-[14px]" />
@@ -40,11 +43,27 @@ const MobileFooter = () => {
               Bet slip
             </span>
           </Link>
-          <div className=" flex  flex-col justify-center items-center ">
-            <FaUser className="text-[14px]" />
-            <span className="text-[11px] font-normal">Log in</span>
-          </div>
-          <div  onClick={()=>dispatch(mobileMenuToggle())} className=" flex cursor-pointer  flex-col justify-center items-center ">
+          {user?.user_name ? (
+            <Link
+              href={"/office/recharge"}
+              className=" flex  flex-col justify-center items-center "
+            >
+              <TbCurrencyDollar className="text-[14px]" />
+              <span className="text-[11px] font-normal">Deposit</span>
+            </Link>
+          ) : (
+            <div
+              onClick={() => dispatch(loginToggle())}
+              className=" flex  flex-col justify-center items-center "
+            >
+              <FaUser className="text-[14px]" />
+              <span className="text-[11px] font-normal">Log in</span>
+            </div>
+          )}
+          <div
+            onClick={() => dispatch(mobileMenuToggle())}
+            className=" flex cursor-pointer  flex-col justify-center items-center "
+          >
             <IoMenu className="text-[14px]" />
             <span className="text-[11px] font-normal">Menu</span>
           </div>

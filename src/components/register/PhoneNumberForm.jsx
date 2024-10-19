@@ -57,7 +57,7 @@ const PhoneNumberForm = () => {
           confirmButtonText: "OK",
         });
         dispatch(registerToggle());
-        window.location.replace("/office/account");
+        window.location.replace("/");
       } else {
         setLoading(false);
         Swal.fire({

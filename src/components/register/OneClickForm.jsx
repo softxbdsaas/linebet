@@ -64,7 +64,7 @@ const OneClickForm = () => {
         if (result.isConfirmed) {
           setIsLoading(false);
           dispatch(registerToggle());
-          window.location.replace("/office/account");
+          window.location.replace("/");
           MySwal.fire({
             title: "success",
             text: "One  click Register success",

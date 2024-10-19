@@ -37,7 +37,7 @@ const MobileCasinoSlider = () => {
             className="bg-white w-[120px] h-full text-black-base rounded"
           >
             <div>
-              <Link href={"/"} className=" block w-full">
+              <Link href={"/slots"} className=" block w-full">
                 <div className="w-full">
                   <Image
                     className="w-full h-[60px]"
