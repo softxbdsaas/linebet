@@ -11,10 +11,13 @@ import UploadNIDImage from "./UploadNIDImage";
 import Swal from "sweetalert2";
 import { useDispatch } from "react-redux";
 import { userInfo } from "@/redux/features/authSlice";
+import ChangePasswordModal from "./ChangePassword";
+import { MdEdit } from "react-icons/md";
 
 const AccountForm = () => {
   const [activePassword, setActivePassword] = useState(false);
   const { data: userInfoData } = useGetUserInfoQuery();
+  const [activeModal, setActiveModal] = useState(false);
 
   const dispatch = useDispatch();
   const [frontend, setFrontend] = useState(
@@ -59,7 +62,6 @@ const AccountForm = () => {
         });
       }
     } catch (error) {
-  
       Swal.fire({
         title: "Error",
         text: error.message || "Something went wrong!",
@@ -139,8 +141,11 @@ const AccountForm = () => {
                         placeholder
                       />
                       <label className="global-label">Password</label>
-                      <span className=" absolute right-2 cursor-pointer top-4">
-                        <IoLockClosed className="text-[18px] font-normal" />
+                      <span
+                        onClick={() => setActiveModal(!activeModal)}
+                        className=" absolute right-2 cursor-pointer top-4"
+                      >
+                        <MdEdit className="text-[18px] font-normal" />
                       </span>
                     </div>
                     {/* Registration date  */}
@@ -356,6 +361,11 @@ const AccountForm = () => {
 
           {/* animation input field  */}
         </form>
+
+        <ChangePasswordModal
+          activeModal={activeModal}
+          setActiveModal={setActiveModal}
+        />
       </div>
     </>
   );
