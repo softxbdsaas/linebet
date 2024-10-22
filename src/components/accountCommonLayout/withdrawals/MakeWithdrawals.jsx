@@ -3,7 +3,7 @@ import { MySwal } from "@/components/ui/toast/SweetAlert";
 import { useGetBetterBalanceQuery } from "@/redux/api/authApi";
 import { useGetWelcomeBonusHistoryQuery } from "@/redux/api/bonusApi";
 import {
-    useCreateWithdrawMutation,
+  useCreateWithdrawMutation,
   useGetAllPendingWithdrawRequestBySingleBetterQuery,
   useGetLockWithdrawQuery,
 } from "@/redux/api/withdrawalsApi";
@@ -46,13 +46,15 @@ const MakeWithdrawals = ({ activeModal, setActiveModal }) => {
     try {
       const newData = {
         ...data,
-        status:0,
+        status: 0,
         agent_by: activeModal?.agent_id,
         number: activeModal?.number,
         payment_method: activeModal?.name,
       };
-
+      console.log(newData);
+   
       const res = await createWithdraw(newData).unwrap();
+      console.log(res)
       if (res?.status == true) {
         MySwal.fire("Submitted!", "withdraw Request successfully", "success");
         setActiveModal({});
@@ -70,7 +72,6 @@ const MakeWithdrawals = ({ activeModal, setActiveModal }) => {
 
   return (
     <div className="max-w-[600px] md:min-w-[400px] relative sm:mx-auto bg-white text-black-base p-2 md:p-4 rounded mx-2">
-
       <IoClose
         onClick={() => setActiveModal({})}
         className="text-[18px] absolute right-2 top-2 hover:text-danger-base cursor-pointer"
@@ -112,7 +113,9 @@ const MakeWithdrawals = ({ activeModal, setActiveModal }) => {
         <form onSubmit={handleSubmit(onSubmit)} className="mt-5">
           <div className="space-y-4">
             <div className="flex items-center gap-3">
-              <h1 className="w-[100px]  sm:w-[150px] text-sm md:text-base">Amount</h1>
+              <h1 className="w-[100px]  sm:w-[150px] text-sm md:text-base">
+                Amount
+              </h1>
               <div className="relative w-full text-black-base max-w-full">
                 <input
                   {...register("amount", {
@@ -122,8 +125,8 @@ const MakeWithdrawals = ({ activeModal, setActiveModal }) => {
                       message: "Only numbers are allowed",
                     },
                     validate: (value) =>
-                      value > withdrawLockBalance?.data?.min-1 &&
-                      value < withdrawLockBalance?.data?.max ||
+                      (value > withdrawLockBalance?.data?.min - 1 &&
+                        value < withdrawLockBalance?.data?.max) ||
                       `Amount must be between ${withdrawLockBalance?.data?.min} and ${withdrawLockBalance?.data?.max}`,
                   })}
                   type="number"
@@ -140,7 +143,9 @@ const MakeWithdrawals = ({ activeModal, setActiveModal }) => {
             </div>
 
             <div className="flex items-center gap-3">
-              <h1 className="w-[100px]  sm:w-[150px] text-sm md:text-base">Received Number</h1>
+              <h1 className="w-[100px]  sm:w-[150px] text-sm md:text-base">
+                Received Number
+              </h1>
               <div className="relative w-full text-black-base max-w-full">
                 <input
                   {...register("number", {
