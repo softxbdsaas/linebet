@@ -20,7 +20,6 @@ import { RiUpload2Line } from "react-icons/ri";
 import { FaUser } from "react-icons/fa";
 import { CiSettings } from "react-icons/ci";
 import { IoCaretUp } from "react-icons/io5";
-
 const NavbarRightSite = () => {
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.auth);
@@ -64,6 +63,7 @@ const NavbarRightSite = () => {
         </>
       )}
       <LoginModal />
+     
       <div className="  hidden lg:block">
         <div className="flex items-center gap-4">
           {user?.user_name && (

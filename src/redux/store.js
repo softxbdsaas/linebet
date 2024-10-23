@@ -7,6 +7,7 @@ import loginSlice from "./features/loginSlice";
 import LeftRightToggleSlice from "./features/LeftRightToggleSlice";
 import mobileMenuSlice from "./features/mobileMenuSlice";
 import { baseApi } from "./api/baseApi";
+import  forgotPasswordSlice  from "./features/forgotPasswordSlice";
 const persistConfig = {
   key: "root",
   storage,
@@ -18,6 +19,7 @@ const rootReducer = {
   registerModal: registerSlice,
   loginModal: loginSlice,
   auth: persistedAuth,
+  forgot: forgotPasswordSlice,
   leftRightToggle: LeftRightToggleSlice,
   mobileMenuToggle: mobileMenuSlice,
 };

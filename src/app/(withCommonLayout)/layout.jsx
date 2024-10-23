@@ -1,4 +1,5 @@
 import RegisterModal from "@/components/register/RegisterModal";
+import ForgotModal from "@/components/settings/forgot/ForgotModal";
 import Footer from "@/components/shared/footers/Footer";
 import Navbar from "@/components/shared/headers/Navbar";
 import LeftSiteSidebar from "@/components/shared/sidebars/leftSiteSidebar/LeftSiteSidebar";
@@ -18,7 +19,9 @@ const CommonLayout = ({ children }) => {
           <RightSiteSidebar />
 
           <RegisterModal />
+          
         </div>
+        <ForgotModal />
         <Footer />
        
       </div>
