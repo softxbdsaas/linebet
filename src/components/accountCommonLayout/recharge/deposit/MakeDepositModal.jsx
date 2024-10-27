@@ -55,7 +55,7 @@ const MakeDepositModal = ({ activeModal, setActiveModal }) => {
               className="w-full h-[80px]  object-contain "
               width={120}
               height={120}
-              src={`${process.env.NEXT_PUBLIC_IMAGE_URL}/images/${activeModal?.photo}`}
+              src={`${process.env.NEXT_PUBLIC_IMAGE_URL}/public/images/${activeModal?.photo}`}
               alt="image"
             ></Image>
           </div>

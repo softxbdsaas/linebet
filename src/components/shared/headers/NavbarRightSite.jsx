@@ -20,11 +20,60 @@ import { RiUpload2Line } from "react-icons/ri";
 import { FaUser } from "react-icons/fa";
 import { CiSettings } from "react-icons/ci";
 import { IoCaretUp } from "react-icons/io5";
+import { IoMdLogOut } from "react-icons/io";
+import { MySwal } from "@/components/ui/toast/SweetAlert";
+import Swal from "sweetalert2";
+import { authKey } from "@/constants/authKey";
+import Cookies from "js-cookie";
+import { Sign_in_out } from "@/redux/features/authSlice";
+
 const NavbarRightSite = () => {
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.auth);
   const { data } = useGetBetterBalanceQuery();
   const [tooltipVisible, setTooltipVisible] = useState(false);
+  
+    const logoutUser = async () => {
+      // Trigger a SweetAlert confirmation before logging out
+      const result = await MySwal.fire({
+        title: "Are you sure?",
+        text: "You will be logged out.",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, log out!",
+      });
+  
+      if (result.isConfirmed) {
+        try {
+          // Remove the cookie
+  
+          // Clear the user information from Redux
+          Cookies.remove(authKey);
+          dispatch(Sign_in_out());
+          // Notify success using SweetAlert
+          await Swal.fire({
+            title: "Success",
+            text: "Logout success",
+            icon: "success",
+            confirmButtonText: "Ok",
+          });
+  
+          // Ensure everything is cleared before redirecting
+          window.location.replace("/");
+        } catch (error) {
+          // Handle error if logout fails
+          await Swal.fire({
+            title: "Error",
+            text: "Something went wrong during logout.",
+            icon: "error",
+            confirmButtonText: "Ok",
+          });
+        }
+      }
+    };
+  
 
   return (
     <div className="flex items-center gap-2 relative">
@@ -63,7 +112,7 @@ const NavbarRightSite = () => {
         </>
       )}
       <LoginModal />
-     
+
       <div className="  hidden lg:block">
         <div className="flex items-center gap-4">
           {user?.user_name && (
@@ -151,8 +200,16 @@ const NavbarRightSite = () => {
                         className=" flex-1 capitalize whitespace-nowrap text-[12px] md:text-sm font-medium"
                         href={"/"}
                       >
-                        setting account
+                        Setting account
                       </Link>
+                    </div>
+                    <div onClick={logoutUser} className=" border-b border-light hover:bg-light-muted duration-200 flex items-center  gap-1  p-2 ">
+                      <span className="h-5 w-5 flex-shrink-0 text-metal-500 transition duration-75">
+                        <IoMdLogOut className="text-base" />
+                      </span>
+                      <button className="capitalize whitespace-nowrap text-[12px] md:text-sm font-medium">
+                        Logout
+                      </button>
                     </div>
                   </div>
                 </div>
