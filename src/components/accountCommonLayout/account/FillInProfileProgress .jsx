@@ -1,6 +1,10 @@
+"use client";
+import { useGetUserInfoQuery } from "@/redux/api/authApi";
 import React from "react";
 import { FaGift } from "react-icons/fa6";
 const FillInProfileProgress = () => {
+  const { data: userInfoData } = useGetUserInfoQuery();
+
   return (
     <>
       <div className=" bg-white rounded mt-3">
@@ -13,14 +17,14 @@ const FillInProfileProgress = () => {
             </p>
             <div className=" bg-light-muted px-3 py-[6px] rounded text-[12px]  text-black-base  inline-block">
               {" "}
-              65%{" "}
+              {userInfoData?.data?.profile_completion}%{" "}
             </div>
           </div>
         </div>
         <div className="w-full bg-gray-200 rounded-full h-1  mt-1 md:mt-2">
           <div
             className="bg-light-base h-1 rounded-full"
-            style={{ width: `${65}%` }}
+            style={{ width: `${userInfoData?.data?.profile_completion}%` }}
           ></div>
         </div>
       </div>

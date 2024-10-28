@@ -3,6 +3,7 @@ import FillInProfileProgress from "./FillInProfileProgress ";
 import AccountForm from "./AccountForm";
 
 const PersonalProfile = () => {
+  
   return (
     <>
       <div className="bg-light-muted min-h-screen">

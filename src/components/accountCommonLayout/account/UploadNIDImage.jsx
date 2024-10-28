@@ -20,7 +20,7 @@ const UploadNIDImage = ({ profileImageUrl, setProfileImageUrl }) => {
 
     try {
       // Call your API to upload the image
-      const res = await fetch("https://s3.asianitinc.com/api/upload", {
+      const res = await fetch("https://s3.codexweaver.com/public/api/upload", {
         method: "POST",
         body: formData,
       });

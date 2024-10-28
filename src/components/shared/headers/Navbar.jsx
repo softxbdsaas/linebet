@@ -19,12 +19,13 @@ const Navbar = () => {
   useEffect(() => {
     const loginUser = async () => {
       if (userInfoData && !user?.userName && accessToken) {
-        const newData = userInfoData?.data;
+        const newData = userInfoData?.data?.user;
         dispatch(userInfo(newData));
       }
     };
     loginUser();
   }, [userInfoData, dispatch, user, accessToken]);
+
 
   return (
     <div className="py-2 sticky top-0 w-full z-[200] px-1 md:px-2 bg-primary-muted">

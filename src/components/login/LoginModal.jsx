@@ -17,6 +17,8 @@ import {
 import { IoClose } from "react-icons/io5";
 import { useDispatch, useSelector } from "react-redux";
 import Swal from "sweetalert2";
+import ForgotModal from "../settings/forgot/ForgotModal";
+import { forgotStatus } from "@/redux/features/forgotPasswordSlice";
 export default function LoginModal() {
   const {
     register,
@@ -26,7 +28,10 @@ export default function LoginModal() {
   const [loading, setLoading] = useState(false);
   const { loginModal } = useSelector((state) => state.loginModal);
   const [activePassword, setActivePassword] = useState(false);
-  const [login,error] = useLoginMutation();
+  const { forgot } = useSelector((state) => state.forgot);
+
+  const [login, error] = useLoginMutation();
+
   const dispatch = useDispatch();
   const onSubmit = async (data) => {
     try {
@@ -52,19 +57,6 @@ export default function LoginModal() {
         newData.user_name = trimmedData.emailOrID;
       }
 
-      // Now, newData will have either email or id populated
-
-      // const response = await fetch(
-      //   `${process.env.NEXT_PUBLIC_API_URL}/api/auth/login`,
-      //   {
-      //     method: "POST",
-      //     headers: {
-      //       "Content-Type": "application/json",
-      //     },
-      //     body: JSON.stringify(newData),
-      //   }
-      // );
-  
       const result = await login(newData).unwrap();
       if (result.status == true) {
         setLoading(false);
@@ -101,6 +93,11 @@ export default function LoginModal() {
         confirmButtonText: "OK",
       });
     }
+  };
+
+  const handleForgotPassword = () => {
+    dispatch(loginToggle());
+    dispatch(forgotStatus());
   };
 
   return (
@@ -183,12 +180,12 @@ export default function LoginModal() {
                         </label>
                       </div>
 
-                      <a
-                        href="#"
-                        className="text-sm text-primary-base hover:underline"
+                      <span
+                        onClick={handleForgotPassword}
+                        className="text-sm text-primary-base cursor-pointer hover:underline"
                       >
                         Forgot your password?
-                      </a>
+                      </span>
                     </div>
 
                     <button
@@ -230,6 +227,8 @@ export default function LoginModal() {
           </div>
         </div>
       ) : null}
+
+      <ForgotModal forgot={forgot}></ForgotModal>
     </>
   );
 }

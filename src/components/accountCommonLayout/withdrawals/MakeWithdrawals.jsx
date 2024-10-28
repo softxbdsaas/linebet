@@ -52,9 +52,9 @@ const MakeWithdrawals = ({ activeModal, setActiveModal }) => {
         payment_method: activeModal?.name,
       };
       console.log(newData);
-   
+
       const res = await createWithdraw(newData).unwrap();
-      console.log(res)
+      console.log(res);
       if (res?.status == true) {
         MySwal.fire("Submitted!", "withdraw Request successfully", "success");
         setActiveModal({});
@@ -85,7 +85,7 @@ const MakeWithdrawals = ({ activeModal, setActiveModal }) => {
             className="w-full h-[80px] object-contain"
             width={120}
             height={120}
-            src={`${process.env.NEXT_PUBLIC_IMAGE_URL}/images/${activeModal?.photo}`}
+            src={`${process.env.NEXT_PUBLIC_IMAGE_URL}/public/images/${activeModal?.photo}`}
             alt="image"
           />
         </div>
@@ -124,10 +124,6 @@ const MakeWithdrawals = ({ activeModal, setActiveModal }) => {
                       value: /^[0-9]*$/,
                       message: "Only numbers are allowed",
                     },
-                    validate: (value) =>
-                      (value > withdrawLockBalance?.data?.min - 1 &&
-                        value < withdrawLockBalance?.data?.max) ||
-                      `Amount must be between ${withdrawLockBalance?.data?.min} and ${withdrawLockBalance?.data?.max}`,
                   })}
                   type="number"
                   inputMode="numeric"

@@ -17,7 +17,7 @@ const WithdrawCard = ({ item }) => {
             className="w-full h-[80px]  object-contain "
             width={120}
             height={120}
-            src={`${process.env.NEXT_PUBLIC_IMAGE_URL}/images/${item?.photo}`}
+            src={`${process.env.NEXT_PUBLIC_IMAGE_URL}/public/images/${item?.photo}`}
             alt="image"
           ></Image>
         </div>

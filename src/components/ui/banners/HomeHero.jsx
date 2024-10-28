@@ -54,7 +54,7 @@ const HomeHero = () => {
                 width={908}
                 height={248}
                 src={
-                  process.env.NEXT_PUBLIC_IMAGE_URL + "/images/" + banner?.name
+                  process.env.NEXT_PUBLIC_IMAGE_URL + "/public/images/" + banner?.name
                 }
                 alt="image"
               />
