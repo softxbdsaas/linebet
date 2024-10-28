@@ -15,19 +15,18 @@ import ChangePasswordModal from "./ChangePassword";
 import { MdEdit } from "react-icons/md";
 
 const AccountForm = () => {
-  const [activePassword, setActivePassword] = useState(false);
   const { data: userInfoData } = useGetUserInfoQuery();
   const [activeModal, setActiveModal] = useState(false);
 
   const dispatch = useDispatch();
   const [frontend, setFrontend] = useState(
-    userInfoData?.data?.nid_frontend_image
-      ? userInfoData?.data?.nid_frontend_image
+    userInfoData?.data?.user?.nid_frontend_image
+      ? userInfoData?.data?.user?.nid_frontend_image
       : "https://archive.org/download/placeholder-image/placeholder-image.jpg"
   );
   const [indBackend, setIndBackend] = useState(
-    userInfoData?.data?.nid_backend_image
-      ? userInfoData?.data?.nid_backend_image
+    userInfoData?.data?.user?.nid_backend_image
+      ? userInfoData?.data?.user?.nid_backend_image
       : "https://archive.org/download/placeholder-image/placeholder-image.jpg"
   );
   const [updateProfile, { isLoading }] = useUpdateProfileMutation();
@@ -73,31 +72,31 @@ const AccountForm = () => {
 
   useEffect(() => {
     if (userInfoData) {
-      setValue("userName", userInfoData?.data?.user_name);
-      setValue("phone_number", userInfoData?.data?.phone_number);
-      setValue("email", userInfoData?.data?.email);
-      setValue("firstName", userInfoData?.data?.name?.split(" ")[0]);
-      setValue("lastName", userInfoData?.data?.name?.split(" ")[1]);
-      if (userInfoData?.data?.created_at) {
-        const formattedDate = new Date(userInfoData.data.created_at)
+      setValue("userName", userInfoData?.data?.user?.user_name);
+      setValue("phone_number", userInfoData?.data?.user?.phone_number);
+      setValue("email", userInfoData?.data?.user?.email);
+      setValue("firstName", userInfoData?.data?.user?.name?.split(" ")[0]);
+      setValue("lastName", userInfoData?.data?.user?.name?.split(" ")[1]);
+      if (userInfoData?.data?.user?.created_at) {
+        const formattedDate = new Date(userInfoData?.data?.user?.created_at)
           .toISOString()
           .split("T")[0];
         setValue("created_at", formattedDate);
       }
-      setValue("identity_number", userInfoData?.data?.identity_number);
-      setValue("address", userInfoData?.data?.address);
-      setValue("country", userInfoData?.data?.country);
-      if (userInfoData?.data?.date_of_birth) {
-        const formattedDate = new Date(userInfoData?.data?.date_of_birth)
+      setValue("identity_number", userInfoData?.data?.user?.identity_number);
+      setValue("address", userInfoData?.data?.user?.address);
+      setValue("country", userInfoData?.data?.user?.country);
+      if (userInfoData?.data?.user?.date_of_birth) {
+        const formattedDate = new Date(userInfoData?.data?.user?.date_of_birth)
           .toISOString()
           .split("T")[0];
         setValue("date_of_birth", formattedDate);
       }
-      if (userInfoData?.data?.nid_frontend_image) {
-        setFrontend(userInfoData?.data?.nid_frontend_image);
+      if (userInfoData?.data?.user?.nid_frontend_image) {
+        setFrontend(userInfoData?.data?.user?.nid_frontend_image);
       }
-      if (userInfoData?.data?.nid_backend_image) {
-        setIndBackend(userInfoData?.data?.nid_backend_image);
+      if (userInfoData?.data?.user?.nid_backend_image) {
+        setIndBackend(userInfoData?.data?.user?.nid_backend_image);
       }
     }
   }, [userInfoData, setValue]);
@@ -174,7 +173,7 @@ const AccountForm = () => {
                             required: "Please enter a phone number",
                           })}
                           type={`text`}
-                          readOnly={userInfoData?.data?.phone_number}
+                          readOnly={userInfoData?.data?.user?.phone_number}
                           className="peer global-input"
                           placeholder
                         />
@@ -199,7 +198,7 @@ const AccountForm = () => {
                             message: "Please enter a valid email address",
                           })}
                           type={`email`}
-                          readOnly={userInfoData?.data?.email}
+                          readOnly={userInfoData?.data?.user?.email}
                           className="peer global-input"
                         />
                         <label className="global-label">Email</label>

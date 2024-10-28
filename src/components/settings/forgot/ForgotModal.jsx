@@ -1,5 +1,4 @@
 "use client";
-
 import { useForgotPasswordMutation } from "@/redux/api/forgotApi";
 import { forgotStatus } from "@/redux/features/forgotPasswordSlice";
 import React, { useState } from "react";

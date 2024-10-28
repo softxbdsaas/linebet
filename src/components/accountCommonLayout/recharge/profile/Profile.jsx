@@ -1,6 +1,6 @@
 "use client";
 import CircleProgress from "@/components/ui/progress/ProfileProgress";
-import { useGetBetterBalanceQuery } from "@/redux/api/authApi";
+import { useGetBetterBalanceQuery, useGetUserInfoQuery } from "@/redux/api/authApi";
 import { mobileAccountMenuToggle } from "@/redux/features/mobileMenuSlice";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -9,6 +9,9 @@ const Profile = () => {
   const { user } = useSelector((state) => state.auth);
   const [currentStep, setCurrentStep] = useState(1);
   const { data } = useGetBetterBalanceQuery();
+  const { data: userInfoData } = useGetUserInfoQuery();
+
+  const roundedPercentage = Math.round(userInfoData?.data?.profile_completion / 20) ;
   const totalSteps = 5;
   const dispatch = useDispatch();
   return (
@@ -31,7 +34,7 @@ const Profile = () => {
           </p>
         </div>
         <div>
-          <CircleProgress currentStep={currentStep} totalSteps={totalSteps} />
+          <CircleProgress currentStep={roundedPercentage} totalSteps={totalSteps} />
         </div>
       </div>
 

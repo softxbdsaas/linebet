@@ -18,7 +18,7 @@ const forgotApi = baseApi.injectEndpoints({
         method: "POST",
         data,
       }),
-      providesTags: [tagTypes.user],
+      providesTags:      [tagTypes.user],
     }),
     resentOtp: builder.mutation({
       query: (data) => ({
