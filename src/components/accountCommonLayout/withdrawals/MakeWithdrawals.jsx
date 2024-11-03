@@ -70,8 +70,10 @@ const MakeWithdrawals = ({ activeModal, setActiveModal }) => {
     }
   };
 
+  console.log(availableBalance);
+
   return (
-    <div className="max-w-[600px] md:min-w-[400px] relative sm:mx-auto bg-white text-black-base p-2 md:p-4 rounded mx-2">
+    <div className="max-w-[400px] md:min-w-[400px] relative sm:mx-auto bg-white text-black-base p-2 md:p-4 rounded mx-2">
       <IoClose
         onClick={() => setActiveModal({})}
         className="text-[18px] absolute right-2 top-2 hover:text-danger-base cursor-pointer"
@@ -80,6 +82,7 @@ const MakeWithdrawals = ({ activeModal, setActiveModal }) => {
         <h1 className="text-bold text-sm sm:text-base md:text-lg xl:text-xl text-center">
           Withdraw Request
         </h1>
+
         <div className="bg-white mx-auto h-[80px] w-[120px]">
           <Image
             className="w-full h-[80px] object-contain"
@@ -89,7 +92,12 @@ const MakeWithdrawals = ({ activeModal, setActiveModal }) => {
             alt="image"
           />
         </div>
-
+        <div className="mb-2 bg-light-muted px-2 rounded py-1">
+          <p>
+            Before making a request, please transfer funds within 10 minutes
+            using the payment details specified below.
+          </p>
+        </div>
         <p className="text-xs sm:text-sm md:text-base">
           Received Payment Method:
           <span className="ml-2 capitalize">{activeModal?.name}</span>
@@ -161,6 +169,7 @@ const MakeWithdrawals = ({ activeModal, setActiveModal }) => {
             <div>
               <button
                 type="submit"
+                disabled={isLoading || availableBalance <= 0}
                 className="w-full px-4 py-2 text-sm md:text-base text-white bg-primary-base uppercase rounded hover:bg-light-base focus:outline-none focus:bg-green-600"
               >
                 {isLoading ? "Loading..." : "Confirm"}

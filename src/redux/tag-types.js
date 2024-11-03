@@ -3,14 +3,14 @@ export const tagTypes = {
   payments: "payments",
   banners: "banners",
   withdraws: "withdraws",
-  bonus: "bonus"
-  
+  bonus: "bonus",
+  chats: "chats",
 };
 export const tagTypesList = [
   tagTypes.user,
   tagTypes.payments,
   tagTypes.banners,
   tagTypes.withdraws,
-  tagTypes.bonus
-
+  tagTypes.bonus,
+  tagTypes.chats,
 ];
