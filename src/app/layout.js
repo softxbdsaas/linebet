@@ -6,6 +6,7 @@ import MobileMenu from "@/components/shared/mobileMenus/MobileMenu";
 import MobileFooter from "@/components/shared/footers/MobileFooter";
 import MobileAccountSidebar from "@/components/shared/sidebars/accountLeftSidebar/MobileAccountSidebar";
 import NextAuthSessionProvider from "@/components/auth/NextAuthSessionProvider";
+import ChattingBox from "@/components/chattingsBox/ChattingBox";
 const roboto = Roboto({ subsets: ["latin"], weight: ["400", "700"] });
 
 export const metadata = {
@@ -26,6 +27,7 @@ export default function RootLayout({ children }) {
             <MobileMenu />
             <MobileFooter />
             <MobileAccountSidebar />
+            <ChattingBox />
           </NextAuthSessionProvider>
         </ReduxProvider>
       </body>
