@@ -20,11 +20,13 @@ const PhoneNumberForm = () => {
     formState: { errors },
   } = useForm();
   const onSubmit = async (data) => {
+    console.log(verifyPhoneNumberStatus)
     try {
       const newData = {
         currency: selectCurrency?.currency,
-        phone_number: verifyPhoneNumberStatus?.phone_number,
+        phone_number: verifyPhoneNumberStatus?.mobile,
       };
+      console.log(newData)
       setLoading(true);
       // Make the POST request to your API
       const response = await fetch(
@@ -113,7 +115,7 @@ const PhoneNumberForm = () => {
         {/* submit button  */}
         <div className="w-full mt-4">
           <button
-            disabled={!verifyPhoneNumberStatus || loading}
+            disabled={loading}
             type="submit"
             className="bg-button-base w-full hover:bg-active-base duration-300 text-white uppercase font-sans text-[14px] md:text-[16px] font-medium py-2 md:py-3 px-4 rounded"
           >

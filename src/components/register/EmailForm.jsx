@@ -41,6 +41,7 @@ const EmailForm = () => {
         firstName,
         lastName,
         phone_number,
+      
       } = data;
 
       // Validate passwords match
@@ -66,9 +67,12 @@ const EmailForm = () => {
         phone_number: phone_number,
       };
 
+      console.log(newData)
+
 
       // Attempt to register the user
       const result = await registerForEmail(newData).unwrap();
+      console.log(result)
    
 
       // Check for API response
@@ -101,6 +105,7 @@ const EmailForm = () => {
         return; // Exit early
       }
     } catch (error) {
+      console.log(error)
       const errorMessage =
         error.response?.data?.message ||
         error.message ||

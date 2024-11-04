@@ -70,7 +70,8 @@ const VerifyPhoneNumber = ({ setVerifyPhoneNumberStatus }) => {
         }
       );
       const result = await response.json();
-  
+      console.log(result);
+      setVerifyPhoneNumberStatus(result?.data);
       if (response.ok) {
         setIsLoading(false);
         startCountdown();
@@ -129,6 +130,13 @@ const VerifyPhoneNumber = ({ setVerifyPhoneNumberStatus }) => {
           return;
         }
 
+        Swal.fire({
+          title: "Success",
+          text: ` Verify  success`,
+          icon: "success",
+          confirmButtonText: "OK",
+        });
+        return;
         setIsLoading(true);
         // Make the POST request to your API
         const response = await fetch(
@@ -286,11 +294,7 @@ const VerifyPhoneNumber = ({ setVerifyPhoneNumberStatus }) => {
                 type="tel"
                 className="global-input"
               />
-              <label
-                className="global-label"
-              >
-                Confirmation code
-              </label>
+              <label className="global-label">Confirmation code</label>
               <button
                 type="button"
                 onClick={handleVerifyCode}
