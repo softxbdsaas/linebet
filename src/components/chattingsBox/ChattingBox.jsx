@@ -32,14 +32,12 @@ const ChattingBox = () => {
     try {
       const formData = new FormData();
       formData.append("messages", newMessage);
-      formData.append("photo", file);
-      formData.append("receiver_id", 1);
-
+      formData.append("image_name", file);
       const res = await seneMessage(formData).unwrap();
       console.log(res);
       if (res?.status) {
         setNewMessage("");
-        setFile(null);
+        setFile("");
         refetch();
       }
     } catch (error) {
@@ -77,7 +75,6 @@ const ChattingBox = () => {
     };
   }, [refetch, accessToken]);
 
-
   // Scroll to bottom when messages update
   // Scroll to bottom when messages update or when chat box is opened
   useEffect(() => {
@@ -92,14 +89,15 @@ const ChattingBox = () => {
   );
   const adminInf = filteredData?.[0];
 
+  console.log(massageData);
   return (
     <>
       <div className="sm:pt-3  fixed  bottom-0  md:bottom-0  2k:bottom-16  sm:right-3 z-[500]">
         {liveChatStatus ? (
-          <div className="flex flex-col h-screen sm:h-[500px] mx-auto  w-full sm::w-[400px] border border-gray-200 overflow-hidden  shadow-[0_3px_10px_rgb(0,0,0,0.2)] z-50">
+          <div className="flex flex-col h-screen sm:h-[500px] mx-auto  w-full sm::w-[400px] overflow-hidden  shadow-[0_3px_10px_rgb(0,0,0,0.2)] z-50">
             {/* Chat Header */}
             <div className=" ">
-              <div className=" bg-[#000] text-white p-2 md:p-4 rounded-t-lg relative ">
+              <div className=" bg-primary-base text-white p-2 md:p-4 rounded-t-lg relative ">
                 <div className=" pb-2 flex justify-center items-center">
                   <div className=" bg-[#96929273]  flex  items-center cursor-pointer gap-1 px-5 text-white py-1 rounded-[14px]">
                     <PiChatTeardropDots className="text-[18px]" />
@@ -135,9 +133,9 @@ const ChattingBox = () => {
             {/* Chat Messages */}
             <div
               ref={chatContainerRef}
-              className="flex-1 p-4 space-y-2 overflow-y-auto  relative chattingScrollbar bg-gray-50 w-[300px] md:min-w-[320px]"
+              className="flex-1 p-4 o space-y-2 overflow-y-auto  relative chattingScrollbar bg-light-muted w-[300px] md:min-w-[320px]"
             >
-              {massageData?.data?.messages?.length &&
+              {massageData?.data?.messages?.length ? (
                 massageData?.data?.messages?.map((msg, index) => (
                   <div key={index}>
                     <p className="text-[10px] text-center font-medium uppercase">
@@ -146,15 +144,15 @@ const ChattingBox = () => {
                     <div
                       key={msg?.id}
                       className={`flex ${
-                        msg?.added_by == 1 ? "justify-end" : "justify-start"
-                      }`}
+                        msg?.added_by != 1 ? "justify-end" : "justify-start"
+                      }  `}
                     >
                       <div
-                        className={`max-w-xs p-3 rounded-lg ${
+                        className={`max-w-xs px-3 py-[6px] rounded-lg ${
                           msg?.sender === "User"
-                            ? "bg-gray-200 text-black"
-                            : "bg-gray-200 text-black"
-                        }`}
+                            ? "bg-white text-black-base text-black"
+                            : "bg-white text-black-base text-black"
+                        } overflow-hidden`}
                       >
                         {msg?.name !== "User" && (
                           <p className="text-xs font-semibold capitalize">
@@ -162,26 +160,24 @@ const ChattingBox = () => {
                           </p>
                         )}
                         <div>
-                          {msg.isLink ? (
-                            <Link
-                              href={msg.messages}
-                              target="_blank"
-                              className="text-blue-500 underline"
-                            >
-                              {msg.text}
-                            </Link>
-                          ) : msg.image_name ? (
+                          {msg.image_name ? (
                             <div className="h-24 w-24 rounded mt-1">
                               <Image
                                 onClick={() =>
                                   setActivePhoto(
-                                    "https://i.ibb.co.com/VjG8wKf/ceo.webp"
+                                    process.env.NEXT_PUBLIC_IMAGE_URL +
+                                      "/images/" +
+                                      msg.image_name
                                   )
                                 }
                                 className=" h-24 w-24 rounded"
                                 width={100}
                                 height={100}
-                                src={"https://i.ibb.co.com/VjG8wKf/ceo.webp"}
+                                src={
+                                  process.env.NEXT_PUBLIC_IMAGE_URL +
+                                  "/images/" +
+                                  msg.image_name
+                                }
                                 alt="file"
                               />
                             </div>
@@ -192,10 +188,13 @@ const ChattingBox = () => {
                       </div>
                     </div>
                   </div>
-                ))}
-              {massageData?.length === 0 && (
-                <div className="text-center text-xs">No messages yet.</div>
+                ))
+              ) : (
+                <div className="text-center min-h-[200px] flex justify-center items-center  text-black-base text-xs">
+                  No messages yet.
+                </div>
               )}
+
               {file && (
                 <div className=" absolute bg-white rounded w-[120px] h-[120px] ">
                   <div className=" relative  z-50 w-full h-full mx-auto flex justify-center items-center">
@@ -216,9 +215,9 @@ const ChattingBox = () => {
             </div>
 
             {/* Chat Input */}
-            <div className="p-2 border-t border-gray-200 bg-white">
+            <div className="p-2 border-t border-gray-200 bg-white text-black-base">
               <div className="flex items-center">
-                <input
+                <textarea
                   type="text"
                   value={newMessage}
                   onChange={(e) => setNewMessage(e.target.value)}
@@ -229,7 +228,7 @@ const ChattingBox = () => {
                     }
                   }}
                   placeholder="Type a message..."
-                  className="flex-1 p-2 rounded-lg text-black-base outline-none"
+                  className="flex-1 p-2 text-sm placeholder:text-sm rounded-lg text-black-base outline-none"
                 />
 
                 <button
