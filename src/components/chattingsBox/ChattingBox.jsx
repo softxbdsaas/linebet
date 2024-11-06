@@ -18,6 +18,7 @@ import {
 import { liveChatToggle } from "@/redux/features/chatsSlice";
 import Cookies from "js-cookie";
 import { authKey } from "@/constants/authKey";
+import { uploadImage } from "@/helpers/uploadImage/uploadImage";
 const ChattingBox = () => {
   const { data: massageData, refetch } = useLoadMessageQuery(5);
   const [seneMessage, { isLoading }] = useSeneMessageMutation();
@@ -30,9 +31,19 @@ const ChattingBox = () => {
 
   const handleSend = async () => {
     try {
+      let photoName = "";
+      if (file) {
+        photoName = await uploadImage({
+          file: file,
+        });
+      }
+      console.log(photoName);
+      if (!newMessage && !file) return;
       const formData = new FormData();
       formData.append("messages", newMessage);
-      formData.append("image_name", file);
+      if (photoName) {
+        formData.append("image_name", photoName);
+      }
       const res = await seneMessage(formData).unwrap();
       console.log(res);
       if (res?.status) {
@@ -89,7 +100,6 @@ const ChattingBox = () => {
   );
   const adminInf = filteredData?.[0];
 
-  console.log(massageData);
   return (
     <>
       <div className="sm:pt-3  fixed  bottom-0  md:bottom-0  2k:bottom-16  sm:right-3 z-[500]">
@@ -160,7 +170,7 @@ const ChattingBox = () => {
                           </p>
                         )}
                         <div>
-                          {msg.image_name ? (
+                          {msg.image_name && (
                             <div className="h-24 w-24 rounded mt-1">
                               <Image
                                 onClick={() =>
@@ -181,8 +191,12 @@ const ChattingBox = () => {
                                 alt="file"
                               />
                             </div>
-                          ) : (
-                            <p> {msg.messages} </p>
+                          )}
+                          {msg.messages && (
+                            <p className="words-breaks w-full">
+                              {" "}
+                              {msg.messages}{" "}
+                            </p>
                           )}
                         </div>
                       </div>
@@ -282,7 +296,7 @@ const ChattingBox = () => {
                 width={400}
                 height={600}
                 className=" object-contain w-full h-full rounded-xl"
-                src={"https://i.ibb.co.com/VjG8wKf/ceo.webp"}
+                src={activeProto}
                 alt="image"
               />
               <span

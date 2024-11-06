@@ -170,3 +170,8 @@ body {
   transform: translate(-10px, -14px) scale(0.88);
   z-index: 1; /* Changed to 1 for layering */
 }
+
+.words-breaks{
+  word-wrap: break-word; /* Allows long words to break onto a new line */
+  white-space: normal; /* Ensures text wraps to the next line when it reaches the edge */
+}
