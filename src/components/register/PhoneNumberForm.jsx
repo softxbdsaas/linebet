@@ -115,7 +115,7 @@ const PhoneNumberForm = () => {
         {/* submit button  */}
         <div className="w-full mt-4">
           <button
-            disabled={loading}
+            disabled={!verifyPhoneNumberStatus || loading}
             type="submit"
             className="bg-button-base w-full hover:bg-active-base duration-300 text-white uppercase font-sans text-[14px] md:text-[16px] font-medium py-2 md:py-3 px-4 rounded"
           >

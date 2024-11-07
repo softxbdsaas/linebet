@@ -70,7 +70,7 @@ const VerifyPhoneNumber = ({ setVerifyPhoneNumberStatus }) => {
         }
       );
       const result = await response.json();
-      console.log(result);
+      console.log(result)
       setVerifyPhoneNumberStatus(result?.data);
       if (response.ok) {
         setIsLoading(false);
@@ -136,8 +136,7 @@ const VerifyPhoneNumber = ({ setVerifyPhoneNumberStatus }) => {
           icon: "success",
           confirmButtonText: "OK",
         });
-        return;
-        setIsLoading(true);
+
         // Make the POST request to your API
         const response = await fetch(
           `${process.env.NEXT_PUBLIC_API_URL}/api/auth/verify-token/4`,
@@ -150,6 +149,7 @@ const VerifyPhoneNumber = ({ setVerifyPhoneNumberStatus }) => {
           }
         );
         const result = await response.json();
+        console.log(result,"resultresult")
 
         if (response.ok) {
           setIsLoading(false);
