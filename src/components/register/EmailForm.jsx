@@ -73,8 +73,6 @@ const EmailForm = () => {
       // Attempt to register the user
       const result = await registerForEmail(newData).unwrap();
       console.log(result)
-   
-
       // Check for API response
       if (result.status == true) {
         // Handle successful response
