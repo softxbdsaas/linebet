@@ -13,7 +13,7 @@ import { TbCurrencyDollar } from "react-icons/tb";
 
 const MobileFooter = () => {
   const dispatch = useDispatch();
-  const { user } = useSelector((state) => state.auth);
+  const { betterInfo } = useSelector((state) => state.auth);
   return (
     <>
       <div className="block lg:hidden   sticky  w-full bottom-0 bg-white text-black-base px-2 py-1 z-50">
@@ -43,7 +43,7 @@ const MobileFooter = () => {
               Bet slip
             </span>
           </Link>
-          {user?.user_name ? (
+          {betterInfo?.user_name ? (
             <Link
               href={"/office/recharge"}
               className=" flex  flex-col justify-center items-center "

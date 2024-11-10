@@ -29,7 +29,7 @@ import { Sign_in_out } from "@/redux/features/authSlice";
 
 const NavbarRightSite = () => {
   const dispatch = useDispatch();
-  const { user } = useSelector((state) => state.auth);
+  const { betterInfo } = useSelector((state) => state.auth);
   const { data } = useGetBetterBalanceQuery();
   const [tooltipVisible, setTooltipVisible] = useState(false);
   
@@ -77,7 +77,7 @@ const NavbarRightSite = () => {
 
   return (
     <div className="flex items-center gap-2 relative">
-      {user?.user_name ? (
+      {betterInfo?.user_name ? (
         <>
           <div className="  flex   md:hidden items-center gap-2  ">
             <button className="px-3 py-[5px] bg-light-base rounded text-[14px]">
@@ -115,7 +115,7 @@ const NavbarRightSite = () => {
 
       <div className="  hidden lg:block">
         <div className="flex items-center gap-4">
-          {user?.user_name && (
+          {betterInfo?.user_name && (
             <div className="bg-light-base text-center  px-2 py-[1px]  rounded relative">
               <p className="text-[10px] leading-[15px]">Main Balance </p>
               <p className="text-[11px] text-start -translate-y-1">
@@ -138,7 +138,7 @@ const NavbarRightSite = () => {
             <MdOutlineKeyboardArrowDown className="text-[20px] text-white" />
           </div>
           {/* users box  */}
-          {user ? (
+          {betterInfo ? (
             <div
               onMouseEnter={() => setTooltipVisible(true)}
               onMouseLeave={() => setTooltipVisible(false)}

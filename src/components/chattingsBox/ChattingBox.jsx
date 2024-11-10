@@ -104,14 +104,14 @@ const ChattingBox = () => {
     <>
       <div className="sm:pt-3  fixed  bottom-0  md:bottom-0  2k:bottom-16  sm:right-3 z-[500]">
         {liveChatStatus ? (
-          <div className="flex flex-col h-screen sm:h-[500px] mx-auto  w-full sm::w-[400px] overflow-hidden  shadow-[0_3px_10px_rgb(0,0,0,0.2)] z-50">
+          <div className="flex flex-col h-[90vh] sm:h-[500px] mx-auto min-w-[300px]  w-full sm:w-[400px] overflow-hidden  shadow-[0_3px_10px_rgb(0,0,0,0.2)] z-50">
             {/* Chat Header */}
             <div className=" ">
               <div className=" bg-primary-base text-white p-2 md:p-4 rounded-t-lg relative ">
                 <div className=" pb-2 flex justify-center items-center">
                   <div className=" bg-[#96929273]  flex  items-center cursor-pointer gap-1 px-5 text-white py-1 rounded-[14px]">
-                    <PiChatTeardropDots className="text-[18px]" />
-                    <p className="text-white text-base">Chat</p>
+                    <PiChatTeardropDots className=" text-sm md:text-[18px]" />
+                    <p className="text-white text-sm md:text-base">Chat</p>
                   </div>
                 </div>
                 <div
@@ -131,9 +131,7 @@ const ChattingBox = () => {
                     />
                   </div>
                   <div className="text-sm">
-                    <p className="text-sm font-medium">
-                      {adminInf?.name} from Onedrob
-                    </p>
+                    <p className="text-sm font-medium"> Mybet27</p>
                     <p className="text-xs">Customer Service</p>
                   </div>
                 </div>
@@ -143,7 +141,7 @@ const ChattingBox = () => {
             {/* Chat Messages */}
             <div
               ref={chatContainerRef}
-              className="flex-1 p-4 o space-y-2 overflow-y-auto  relative chattingScrollbar bg-light-muted w-[300px] md:min-w-[320px]"
+              className="flex-1 p-4 space-y-2 overflow-y-auto  relative chattingScrollbar bg-light-muted  w-full"
             >
               {massageData?.data?.messages?.length ? (
                 massageData?.data?.messages?.map((msg, index) => (

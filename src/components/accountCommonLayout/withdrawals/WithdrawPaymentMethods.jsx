@@ -13,14 +13,14 @@ const WithdrawPaymentMethods = () => {
   const { data } = useGetPaymentTypeQuery();
   const { data: getAllPaymentMethods } = useGetAllPaymentMethodsQuery();
   const [showPaymentMethods, setShowPaymentMethods] = useState(0);
-  const { user } = useSelector((state) => state.auth);
+  const { betterInfo } = useSelector((state) => state.auth);
   return (
     <div className="bg-light-muted p-2">
       <div className=" bg-white p-2 md:p-4 ">
         <div>
           <div className="text-black-base b px-2">
             <h1 className="text-[16px] md:text-[22px] font-medium ">
-              Account {user?.user_name}
+              Account {betterInfo?.user_name}
             </h1>
             <p className="text-[12px]  md:text-[14px] font-normal py-1">
               Select payment method to top up your account:
