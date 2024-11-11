@@ -4,7 +4,6 @@ import React, { useEffect, useRef, useState } from "react";
 import { AllCountryNumberCodeData } from "../../../public/database/countryNumber";
 import { IoIosArrowUp } from "react-icons/io";
 import Swal from "sweetalert2";
-import { toast } from "react-toastify";
 const VerifyPhoneNumber = ({ setVerifyPhoneNumberStatus }) => {
   const [activeCountry, setActiveCountry] = useState(false);
   const [selectCountry, setSelectCountry] = useState();
@@ -70,7 +69,6 @@ const VerifyPhoneNumber = ({ setVerifyPhoneNumberStatus }) => {
         }
       );
       const result = await response.json();
-      console.log(result)
       setVerifyPhoneNumberStatus(result?.data);
       if (response.ok) {
         setIsLoading(false);
@@ -149,7 +147,7 @@ const VerifyPhoneNumber = ({ setVerifyPhoneNumberStatus }) => {
           }
         );
         const result = await response.json();
-        console.log(result,"resultresult")
+        console.log(result, "resultresult");
 
         if (response.ok) {
           setIsLoading(false);

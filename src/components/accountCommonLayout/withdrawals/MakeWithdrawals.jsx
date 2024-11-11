@@ -1,6 +1,9 @@
 "use client";
 import { MySwal } from "@/components/ui/toast/SweetAlert";
-import { useGetBetterBalanceQuery } from "@/redux/api/authApi";
+import {
+  useGetBetterBalanceQuery,
+  useGetUserInfoQuery,
+} from "@/redux/api/authApi";
 import { useGetWelcomeBonusHistoryQuery } from "@/redux/api/bonusApi";
 import {
   useCreateWithdrawMutation,
@@ -32,8 +35,21 @@ const MakeWithdrawals = ({ activeModal, setActiveModal }) => {
     setError, // To trigger custom errors
   } = useForm();
   const [createWithdraw, { isLoading }] = useCreateWithdrawMutation();
-
+  const { data: userInfoData } = useGetUserInfoQuery();
   const onSubmit = async (data) => {
+    if (
+      !userInfoData?.data?.user?.email &&
+      !userInfoData?.data?.user?.phone_number
+    ) {
+      MySwal.fire(
+        "Error!",
+        "To make a withdrawal request, please ensure your account has either an email address or a phone number. Update your contact information in your account settings.",
+        "error"
+      );
+      window.location.replace("/office/account");
+      return;
+    }
+
     const withdrawAmount = parseFloat(data.amount);
     if (withdrawAmount > availableBalance) {
       setError("amount", {

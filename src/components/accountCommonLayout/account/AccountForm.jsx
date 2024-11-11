@@ -13,10 +13,14 @@ import { useDispatch } from "react-redux";
 import { userInfo } from "@/redux/features/authSlice";
 import ChangePasswordModal from "./ChangePassword";
 import { MdEdit } from "react-icons/md";
+import VerifyEmail from "./VerifyEmail";
+import PhoneNumberVerify from "./PhoneNumberVerify";
 
 const AccountForm = () => {
   const { data: userInfoData } = useGetUserInfoQuery();
   const [activeModal, setActiveModal] = useState(false);
+  const [activeEmailVerify, setActiveEmailVerify] = useState(false);
+  const [activeMobileVerify, setActiveMobileVerify] = useState(false);
 
   const dispatch = useDispatch();
   const [frontend, setFrontend] = useState(
@@ -179,7 +183,16 @@ const AccountForm = () => {
                         />
                         <label className="global-label">Phone</label>
                         <span className=" absolute right-2 cursor-pointer top-4">
-                          <IoLockClosed className="text-[18px] font-normal" />
+                          {userInfoData?.data?.user?.phone_number ? (
+                            <IoLockClosed className="text-[18px] font-normal" />
+                          ) : (
+                            <MdEdit
+                              onClick={() =>
+                                setActiveMobileVerify(!activeMobileVerify)
+                              }
+                              className="text-[18px] font-normal"
+                            />
+                          )}
                         </span>
                       </div>
                       {errors.phone_number && (
@@ -203,7 +216,16 @@ const AccountForm = () => {
                         />
                         <label className="global-label">Email</label>
                         <span className=" absolute right-2 cursor-pointer top-4">
-                          <IoLockClosed className="text-[18px] font-normal" />
+                          {userInfoData?.data?.user?.email ? (
+                            <IoLockClosed className="text-[18px] font-normal" />
+                          ) : (
+                            <MdEdit
+                              onClick={() =>
+                                setActiveEmailVerify(!activeEmailVerify)
+                              }
+                              className="text-[18px] font-normal"
+                            />
+                          )}
                         </span>
                       </div>
                       {errors.email && (
@@ -365,6 +387,19 @@ const AccountForm = () => {
           activeModal={activeModal}
           setActiveModal={setActiveModal}
         />
+        {activeEmailVerify && (
+          <VerifyEmail
+            activeModal={activeEmailVerify}
+            setActiveModal={setActiveEmailVerify}
+          />
+        )}
+
+        {activeMobileVerify && (
+          <PhoneNumberVerify
+            activeModal={activeMobileVerify}
+            setActiveModal={setActiveMobileVerify}
+          />
+        )}
       </div>
     </>
   );
