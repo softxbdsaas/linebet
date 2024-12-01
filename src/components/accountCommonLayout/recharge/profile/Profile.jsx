@@ -6,7 +6,7 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 const Profile = () => {
-  const { user } = useSelector((state) => state.auth);
+  const { betterInfo } = useSelector((state) => state.auth);
   const [currentStep, setCurrentStep] = useState(1);
   const { data } = useGetBetterBalanceQuery();
   const { data: userInfoData } = useGetUserInfoQuery();
@@ -22,15 +22,15 @@ const Profile = () => {
       >
         <div>
           <h1 className="text-[16px] tracking-wider capitalize font-semibold">
-            {user?.name ? user?.name : "unknown name"}
+            {betterInfo?.name ? betterInfo?.name : "unknown name"}
           </h1>
           <p className="text-[12px] text-light-muted">
             {" "}
-            {user?.email
-              ? user?.email
-              : user?.phoneNumber
-              ? user?.phoneNumber
-              : user?.user_name}
+            {betterInfo?.email
+              ? betterInfo?.email
+              : betterInfo?.phoneNumber
+              ? betterInfo?.phoneNumber
+              : betterInfo?.user_name}
           </p>
         </div>
         <div>

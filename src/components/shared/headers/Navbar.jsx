@@ -12,19 +12,19 @@ import { useGetUserInfoQuery } from "@/redux/api/authApi";
 import Cookies from "js-cookie";
 import { authKey } from "@/constants/authKey";
 const Navbar = () => {
-  const { user } = useSelector((state) => state.auth);
+  const { betterInfo } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
   const { data: userInfoData, error } = useGetUserInfoQuery();
   const accessToken = Cookies.get(authKey);
   useEffect(() => {
     const loginUser = async () => {
-      if (userInfoData && !user?.userName && accessToken) {
+      if (userInfoData && !betterInfo?.userName && accessToken) {
         const newData = userInfoData?.data?.user;
         dispatch(userInfo(newData));
       }
     };
     loginUser();
-  }, [userInfoData, dispatch, user, accessToken]);
+  }, [userInfoData, dispatch, betterInfo, accessToken]);
 
 
   return (

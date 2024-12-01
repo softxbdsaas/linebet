@@ -25,7 +25,7 @@ const authApi = baseApi.injectEndpoints({
         url: "/auth/get-single-better-balance",
         method: "GET",
       }),
-      providesTags: [tagTypes.user],
+      providesTags: [tagTypes.user, tagTypes.withdraws],
     }),
 
     // login
@@ -46,7 +46,7 @@ const authApi = baseApi.injectEndpoints({
       }),
       providesTags: [tagTypes.user],
     }),
-    // change password 
+    // change password
     changePassword: builder.mutation({
       query: (data) => ({
         url: "/auth/change-password",
@@ -56,6 +56,32 @@ const authApi = baseApi.injectEndpoints({
       providesTags: [tagTypes.user],
     }),
 
+    // forgot password
+    verifyEmail: builder.mutation({
+      query: (data) => ({
+        url: `/auth/email-verify`,
+        method: "POST",
+        data,
+      }),
+      providesTags: [tagTypes.user],
+    }),
+
+    emailOtpVerify: builder.mutation({
+      query: (data) => ({
+        url: `/auth/email-opt-verify`,
+        method: "POST",
+        data,
+      }),
+      providesTags: [tagTypes.user],
+    }),
+    phoneNumberVerify: builder.mutation({
+      query: (data) => ({
+        url: `/auth/phone-number-verify/4`,
+        method: "POST",
+        data,
+      }),
+      providesTags: [tagTypes.user],
+    }),
   }),
 });
 
@@ -65,5 +91,8 @@ export const {
   useRegisterForEmailMutation,
   useLoginMutation,
   useGetBetterBalanceQuery,
-  useChangePasswordMutation
+  useChangePasswordMutation,
+  useVerifyEmailMutation,
+  useEmailOtpVerifyMutation,
+  usePhoneNumberVerifyMutation,
 } = authApi;

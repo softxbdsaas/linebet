@@ -6,6 +6,7 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { IoClose } from "react-icons/io5";
 import { FaRegCopy } from "react-icons/fa6";
+import { useGetUserInfoQuery } from "@/redux/api/authApi";
 
 const MakeDepositModal = ({ activeModal, setActiveModal }) => {
   const {
@@ -14,9 +15,23 @@ const MakeDepositModal = ({ activeModal, setActiveModal }) => {
     register,
   } = useForm();
   const [createDeposit, { isLoading }] = useCreateDepositMutation();
+  const { data: userInfoData } = useGetUserInfoQuery();
 
   const onSubmit = async (data) => {
     try {
+      if (
+        !userInfoData?.data?.user?.email &&
+        !userInfoData?.data?.user?.phone_number
+      ) {
+        MySwal.fire(
+          "Error!",
+          "You need to have either an email or a phone number on your account to make a deposit request.",
+          "error"
+        );
+        window.location.replace("/office/account");
+        return;
+      }
+
       const newData = {
         ...data,
         agent_id: activeModal?.agent_id,

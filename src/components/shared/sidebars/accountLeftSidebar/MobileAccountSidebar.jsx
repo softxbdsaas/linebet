@@ -27,7 +27,7 @@ const MobileAccountSidebar = () => {
             <div className="mt-2 py-2 rounded bg-primary-base h-[75vh] flex flex-col justify-between">
               <div>
                 <AccountMenu />
-                <ExtraMenu />
+                {/* <ExtraMenu /> */}
                 <ProfileMenu />
               </div>
               <Logout />
