@@ -4,12 +4,12 @@
 
 @layer base {
   :root {
-    --color-primary-base: #2c0c5a;
-    --color-primary-muted: #1a0736;
-    --color-light-base: #7c2eeb;
-    --color-light-muted: #e3d1fb;
-    --color-button-base: #431881;
-    --color-shape-base: #e3d1fb;
+    --color-primary-base: #103958;
+    --color-primary-muted: #1A5684;
+    --color-light-base: #93C738;
+    --color-light-muted: #F5FAFC;
+    --color-button-base: #23507D;
+    --color-shape-base: #7AA738;
     --color-danger-base: #ce3426;
     --color-active-base: #61d17d;
     --color-button-muted: #431881;

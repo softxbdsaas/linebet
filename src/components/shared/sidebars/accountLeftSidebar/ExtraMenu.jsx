@@ -27,7 +27,7 @@ const ExtraMenu = () => {
           <Link
             onClick={() => dispatch(mobileAccountMenuToggle())}
             href={"/office/account"}
-            className="py-[6px] px-2 hover:bg-light-base duration-200  flex justify-between items-center gap-1"
+            className="py-[6px] px-2 hover:bg-button-base duration-200  flex justify-between items-center gap-1"
           >
             <div className=" flex items-center gap-1">
               <BsCurrencyDollar />
@@ -38,7 +38,7 @@ const ExtraMenu = () => {
           <Link
             onClick={() => dispatch(mobileAccountMenuToggle())}
             href={"/office/account"}
-            className="py-[6px] px-2 hover:bg-light-base duration-200  flex justify-between items-center gap-1"
+            className="py-[6px] px-2 hover:bg-button-base duration-200  flex justify-between items-center gap-1"
           >
             <div className=" flex items-center gap-1">
               <BsCurrencyDollar />
@@ -48,7 +48,7 @@ const ExtraMenu = () => {
           <Link
             onClick={() => dispatch(mobileAccountMenuToggle())}
             href={"/office/account"}
-            className="py-[6px] px-2 hover:bg-light-base duration-200  flex justify-between items-center gap-1"
+            className="py-[6px] px-2 hover:bg-button-base duration-200  flex justify-between items-center gap-1"
           >
             <div className=" flex items-center gap-1">
               <BsCurrencyDollar />
