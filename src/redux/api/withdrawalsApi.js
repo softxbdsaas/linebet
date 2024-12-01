@@ -9,7 +9,7 @@ const withdrawalsApi = baseApi.injectEndpoints({
         method: "POST",
         data: data,
       }),
-      invalidatesTags: [tagTypes.withdraws],
+      invalidatesTags: [tagTypes.withdraws,tagTypes.user],
     }),
     getLockWithdraw: builder.query({
       query: () => ({

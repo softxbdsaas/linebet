@@ -222,10 +222,7 @@ const NavbarRightSite = () => {
           <NavbarWebsiteSetting />
           <TimeZone />
           <LanguageSetting />
-          {/* call  */}
-          <div className="bg-light-base pr-1 pl-2 cursor-pointer py-[6px] flex items-center rounded">
-            <MdPhone className="text-[18px] text-white" />
-          </div>
+          
         </div>
       </div>
     </div>

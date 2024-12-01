@@ -4,28 +4,23 @@ import {
   useGetBetterBalanceQuery,
   useGetUserInfoQuery,
 } from "@/redux/api/authApi";
-import { useGetWelcomeBonusHistoryQuery } from "@/redux/api/bonusApi";
+// import { useGetWelcomeBonusHistoryQuery } from "@/redux/api/bonusApi";
 import {
   useCreateWithdrawMutation,
-  useGetAllPendingWithdrawRequestBySingleBetterQuery,
   useGetLockWithdrawQuery,
 } from "@/redux/api/withdrawalsApi";
 import Image from "next/image";
-import React, { useState } from "react";
+import React from "react";
 import { useForm } from "react-hook-form";
 import { IoClose } from "react-icons/io5";
 
 const MakeWithdrawals = ({ activeModal, setActiveModal }) => {
   const { data: withdrawLockBalance } = useGetLockWithdrawQuery();
   const { data: betterBalance } = useGetBetterBalanceQuery();
-  const { data: welcomeBonusHistory } = useGetWelcomeBonusHistoryQuery();
-  const { data: pendingWithdrawRequest } =
-    useGetAllPendingWithdrawRequestBySingleBetterQuery();
+  // const { data: welcomeBonusHistory } = useGetWelcomeBonusHistoryQuery();
 
   const availableBalance = betterBalance?.data
-    ? betterBalance?.data?.balance -
-      withdrawLockBalance?.data?.amount -
-      pendingWithdrawRequest?.data
+    ? betterBalance?.data?.balance - withdrawLockBalance?.data?.amount
     : 0;
 
   const {

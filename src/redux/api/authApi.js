@@ -25,7 +25,7 @@ const authApi = baseApi.injectEndpoints({
         url: "/auth/get-single-better-balance",
         method: "GET",
       }),
-      providesTags: [tagTypes.user],
+      providesTags: [tagTypes.user, tagTypes.withdraws],
     }),
 
     // login
