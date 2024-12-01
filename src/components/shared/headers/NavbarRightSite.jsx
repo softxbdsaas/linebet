@@ -120,7 +120,7 @@ const NavbarRightSite = () => {
               <p className="text-[10px] leading-[15px]">Main Balance </p>
               <p className="text-[11px] text-start -translate-y-1">
                 {" "}
-                {data?.data?.balance}{" "}
+                {data?.data?.balance ? data?.data?.balance : "00:00" }{" "}
               </p>
             </div>
           )}
