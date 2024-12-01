@@ -20,9 +20,9 @@ const AccountMenu = () => {
             href={`/office/recharge`}
             className={` ${
               pathName == "/office/recharge"
-                ? "bg-light-base border-danger-base  border-l-[2px]"
+                ? "bg-button-base border-danger-base  border-l-[2px]"
                 : ""
-            } py-[6px] hover:bg-light-base hover:border-danger-base  hover:border-l-[2px]  px-2   flex justify-between duration-200 items-center gap-1`}
+            } py-[6px] hover:bg-button-base hover:border-danger-base  hover:border-l-[2px]  px-2   flex justify-between duration-200 items-center gap-1`}
           >
             <div className=" flex items-center gap-1">
               <BsCurrencyDollar />
@@ -35,36 +35,24 @@ const AccountMenu = () => {
             href={"/office/withdrawals"}
             className={` ${
               pathName == "/office/withdrawals"
-                ? "bg-light-base border-danger-base  border-l-[2px]"
+                ? "bg-button-base border-danger-base  border-l-[2px]"
                 : "border-l-[2px] border-transparent"
-            } py-[6px] hover:bg-light-base hover:border-danger-base  hover:border-l-[2px]  px-2   flex justify-between duration-200 items-center gap-1`}
+            } py-[6px] hover:bg-button-base hover:border-danger-base  hover:border-l-[2px]  px-2   flex justify-between duration-200 items-center gap-1`}
           >
             <div className=" flex items-center gap-1">
               <BsCurrencyDollar />
               <p className="text-[14px] font-medium">Withdraw funds</p>
             </div>
           </Link>
-          {/* <Link
-            href={"/office/account"}
-            className={` ${
-              pathName == "/office/account"
-                ? "bg-light-base border-danger-base  border-l-[2px]"
-                : "border-l-[2px] border-transparent"
-            } py-[6px] hover:bg-light-base hover:border-danger-base  hover:border-l-[2px]  px-2   flex justify-between duration-200 items-center gap-1`}
-          >
-            <div className=" flex items-center gap-1">
-              <BsCurrencyDollar />
-              <p className="text-[14px] font-medium">Bet history</p>
-            </div>
-          </Link> */}
+
           <Link
             onClick={() => dispatch(mobileAccountMenuToggle())}
             href={"/office/transaction-history"}
             className={` ${
               pathName == "/office/transaction-history"
-                ? "bg-light-base border-danger-base  border-l-[2px]"
+                ? "bg-button-base border-danger-base  border-l-[2px]"
                 : "border-l-[2px] border-transparent"
-            } py-[6px] hover:bg-light-base hover:border-danger-base  hover:border-l-[2px]  px-2   flex justify-between duration-200 items-center gap-1`}
+            } py-[6px] hover:bg-button-base hover:border-danger-base  hover:border-l-[2px]  px-2   flex justify-between duration-200 items-center gap-1`}
           >
             <div className=" flex items-center gap-1">
               <BsCurrencyDollar />

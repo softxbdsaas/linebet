@@ -20,9 +20,9 @@ const ProfileMenu = () => {
             href={"/office/account"}
             className={` ${
               pathName == "/office/account"
-                ? "bg-light-base border-danger-base  border-l-[2px]"
+                ? "bg-button-base border-danger-base  border-l-[2px]"
                 : "border-l-[2px] border-transparent"
-            } py-[6px] hover:bg-light-base hover:border-danger-base  hover:border-l-[2px]  px-2   flex justify-between duration-200 items-center gap-1`}
+            } py-[6px] hover:bg-button-base hover:border-danger-base  hover:border-l-[2px]  px-2   flex justify-between duration-200 items-center gap-1`}
           >
             <div className=" flex items-center gap-1">
               <BsCurrencyDollar />
@@ -35,9 +35,9 @@ const ProfileMenu = () => {
             href={"/office/security"}
             className={` ${
               pathName == "/office/security"
-                ? "bg-light-base border-danger-base  border-l-[2px]"
+                ? "bg-button-base border-danger-base  border-l-[2px]"
                 : "border-l-[2px] border-transparent"
-            } py-[6px] hover:bg-light-base hover:border-danger-base  hover:border-l-[2px]  px-2   flex justify-between duration-200 items-center gap-1`}
+            } py-[6px] hover:bg-button-base hover:border-danger-base  hover:border-l-[2px]  px-2   flex justify-between duration-200 items-center gap-1`}
           >
             <div className=" flex items-center gap-1">
               <BsCurrencyDollar />
@@ -50,9 +50,9 @@ const ProfileMenu = () => {
             href={"/office/setting"}
             className={` ${
               pathName == "/office/setting"
-                ? "bg-light-base border-danger-base  border-l-[2px]"
+                ? "bg-button-base border-danger-base  border-l-[2px]"
                 : "border-l-[2px] border-transparent"
-            } py-[6px] hover:bg-light-base hover:border-danger-base  hover:border-l-[2px]  px-2   flex justify-between duration-200 items-center gap-1`}
+            } py-[6px] hover:bg-button-base hover:border-danger-base  hover:border-l-[2px]  px-2   flex justify-between duration-200 items-center gap-1`}
           >
             <div className=" flex items-center gap-1">
               <BsCurrencyDollar />
