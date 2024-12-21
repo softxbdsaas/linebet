@@ -1,7 +1,6 @@
 "use client";
 import React, { useEffect } from "react";
-import logo from "../../../../public/assets/logo.png";
-import subLogo from "../../../../public/assets/sub-logo.png";
+import logo from "../../../../public/assets/mybet.png";
 import Image from "next/image";
 import NavFeatureItems from "./NavFeatureItems";
 import NavbarRightSite from "./NavbarRightSite";
@@ -32,7 +31,7 @@ const Navbar = () => {
         <div className="flex items-center gap-4">
           <Link href="/" className="flex items-center gap-8">
             <Image
-              className="w-[80px] md:w-[102px] lg:w-[150px] object-contain"
+              className="w-[80px] md:w-[102px] lg:w-[150px] object-center"
               src={logo}
               width={102}
               height={32}
