@@ -23,7 +23,7 @@ export default function RootLayout({ children }) {
         <link rel="apple-touch-icon" href="/icons/icon-192x192.png" />
         <meta name="theme-color" content="#000000" />
       </Head>
-      <body className={`${roboto.className} antialiased`} style={{background:"#0B2B44"}}>
+      <body className={`${roboto.className} antialiased`} style={{background:"#0c314d"}}>
         <ReduxProvider>
           <NextAuthSessionProvider>
             {children}

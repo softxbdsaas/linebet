@@ -26,7 +26,7 @@ const Navbar = () => {
   }, [userInfoData, dispatch, betterInfo, accessToken]);
 
   return (
-    <div className="py-2 sticky top-0 w-full z-[200] px-1 md:px-2 bg-primary-muted">
+    <div className="py-2 sticky top-0 w-full z-[200] px-1 md:px-2 bg-[#1A5684]">
       <div className="flex justify-between items-center gap-3">
         <div className="flex items-center gap-4">
           <Link href="/" className="flex items-center gap-8">
