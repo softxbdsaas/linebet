@@ -10,6 +10,7 @@ import { userInfo } from "@/redux/features/authSlice";
 import { useGetUserInfoQuery } from "@/redux/api/authApi";
 import Cookies from "js-cookie";
 import { authKey } from "@/constants/authKey";
+import OnClickRegisterModal from "@/components/register/OnClickRegisterModal";
 const Navbar = () => {
   const { betterInfo } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
@@ -31,11 +32,12 @@ const Navbar = () => {
         <div className="flex items-center gap-4">
           <Link href="/" className="flex items-center gap-8">
             <Image
-              className="w-[80px] md:w-[102px] lg:w-[150px] object-center"
+              className="w-[80px] md:w-[102px] lg:w-[150px] "
               src={logo}
               width={102}
               height={32}
               alt="logo"
+              layout="responsive"
             />
           </Link>
           {/* NavFeatureItems */}

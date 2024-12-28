@@ -74,6 +74,15 @@ const authApi = baseApi.injectEndpoints({
       }),
       providesTags: [tagTypes.user],
     }),
+
+    sendEmilForUsernameAndPassword: builder.mutation({
+      query: (data) => ({
+        url: `/auth/send-email-for-send-username-and-email`,
+        method: "POST",
+        data,
+      }),
+      providesTags: [tagTypes.user],
+    }),
     phoneNumberVerify: builder.mutation({
       query: (data) => ({
         url: `/auth/phone-number-verify/4`,
@@ -95,4 +104,5 @@ export const {
   useVerifyEmailMutation,
   useEmailOtpVerifyMutation,
   usePhoneNumberVerifyMutation,
+  useSendEmilForUsernameAndPasswordMutation
 } = authApi;
