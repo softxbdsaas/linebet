@@ -62,10 +62,8 @@ const MakeWithdrawals = ({ activeModal, setActiveModal }) => {
         number: activeModal?.number,
         payment_method: activeModal?.name,
       };
-      console.log(newData);
 
       const res = await createWithdraw(newData).unwrap();
-      console.log(res);
       if (res?.status == true) {
         MySwal.fire("Submitted!", "withdraw Request successfully", "success");
         setActiveModal({});

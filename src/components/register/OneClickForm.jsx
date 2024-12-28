@@ -8,11 +8,14 @@ import { MySwal } from "../ui/toast/SweetAlert";
 import { registerToggle } from "@/redux/features/registerSlice";
 import Cookies from "js-cookie";
 import { authKey, cookiesExpires } from "@/constants/authKey";
+import OnClickRegisterModal from "./OnClickRegisterModal";
+import CommonModal from "../Modal/CommonModal";
 
 const OneClickForm = () => {
   const [selectCountry, setSelectCountry] = useState();
   const [selectCurrency, setSelectCurrency] = useState();
   const [isLoading, setIsLoading] = useState(false);
+  const [activeModal, setActiveModal] = useState(null);
   const dispatch = useDispatch();
   const {
     register,
@@ -50,29 +53,31 @@ const OneClickForm = () => {
 
       // If confirmed, submit the form
       dispatch(userInfo(newData)); // Call your submit function
-      MySwal.fire("Submitted!", " Registration success", "success");
       setIsLoading(false);
-      MySwal.fire({
-        title: "Your UserId And Password",
-        text: `Your UserId :${result?.data?.userName} and Password :${result?.data?.password}`,
-        icon: "warning",
-        showCancelButton: true,
-        confirmButtonColor: "#3085d6",
-        cancelButtonColor: "#d33",
-        confirmButtonText: "Yes , I got it!",
-      }).then((result) => {
-        if (result.isConfirmed) {
-          setIsLoading(false);
-          dispatch(registerToggle());
-          window.location.replace("/");
-          MySwal.fire({
-            title: "success",
-            text: "One  click Register success",
-            icon: "success",
-            confirmButtonText: "ok",
-          });
-        }
-      });
+      if (result) {
+        setActiveModal(result?.data);
+      }
+      // MySwal.fire({
+      //   title: "Your UserId And Password",
+      //   text: `Your UserId :${result?.data?.userName} and Password :${result?.data?.password}`,
+      //   icon: "warning",
+      //   showCancelButton: true,
+      //   confirmButtonColor: "#3085d6",
+      //   cancelButtonColor: "#d33",
+      //   confirmButtonText: "Yes , I got it!",
+      // }).then((result) => {
+      //   if (result.isConfirmed) {
+      //     setIsLoading(false);
+      //     dispatch(registerToggle());
+      //     window.location.replace("/");
+      //     MySwal.fire({
+      //       title: "success",
+      //       text: "One  click Register success",
+      //       icon: "success",
+      //       confirmButtonText: "ok",
+      //     });
+      //   }
+      // });
     } catch (error) {
       // Handle errors
       setIsLoading(false);
@@ -120,6 +125,9 @@ const OneClickForm = () => {
           </div>
         </div>
       </form>
+      <CommonModal active={activeModal} setActive={setActiveModal}>
+        <OnClickRegisterModal userinfo={activeModal} />
+      </CommonModal>
     </div>
   );
 };

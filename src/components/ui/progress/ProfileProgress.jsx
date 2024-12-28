@@ -14,7 +14,7 @@ const CircleProgress = ({ currentStep, totalSteps, size = 60, strokeWidth = 6 })
   return (
     <div
       className="flex justify-center items-center  relative"
-      style={{ backgroundColor: '#2C0C5A', borderRadius: '50%', width: `${size}px`, height: `${size}px` }}
+      style={{ backgroundColor: '#0c314d', borderRadius: '50%', width: `${size}px`, height: `${size}px` }}
     >
       <svg
         width={size}
@@ -23,7 +23,7 @@ const CircleProgress = ({ currentStep, totalSteps, size = 60, strokeWidth = 6 })
       >
         {/* Background circle */}
         <circle
-          stroke="#2C0C5A" // Dark green background circle
+          stroke="#103958" // Dark green background circle
           fill="transparent"
           strokeWidth={strokeWidth}
           r={radius}
@@ -32,7 +32,7 @@ const CircleProgress = ({ currentStep, totalSteps, size = 60, strokeWidth = 6 })
         />
         {/* Progress circle */}
         <circle
-          stroke="#7C2EEB" // Light green progress circle
+          stroke="#1A5684" // Light green progress circle
           fill="transparent"
           strokeWidth={strokeWidth}
           r={radius}
